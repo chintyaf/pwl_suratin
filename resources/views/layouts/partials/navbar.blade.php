@@ -81,13 +81,17 @@
                     <i class="align-middle" data-feather="settings"></i>
                 </a>
 
+
+                {{-- PROFILE --}}
                 <a class="nav-link  d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown"
                     style="display: flex; align-items: center;">
                     <div class="d-flex align-items-center dropdown-toggle ">
-                        <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-2"
+                        <img src="{{ asset('img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-2"
                             alt="Jane Doe" />
                         <div class="d-flex flex-column px-2">
-                            <span class="text-dark fw-bold">Jane Doe</span>
+
+
+                            <span class="text-dark fw-bold">{{ Auth::check() }}</span>
                             <span class="fs-6">Admin</span>
                         </div>
                     </div>
@@ -106,7 +110,13 @@
                             data-feather="help-circle"></i> Help
                         Center</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Log out</a>
+
+                    <form method="POST" class="dropdown-item" action="{{ route('logout') }}">
+                        @csrf
+                        <a class="block w-full text-start leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out dropdown-item p-0"
+                        href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); this.closest('form').submit();">Log Out</a>
+                    </form>
                 </div>
 
                 <br>

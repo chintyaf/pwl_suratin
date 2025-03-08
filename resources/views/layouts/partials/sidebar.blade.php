@@ -6,6 +6,22 @@
 
         <ul class="sidebar-nav">
             <li class="sidebar-header">
+                User
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('add-account') }}">
+                    <span class="align-middle">
+                        Buat Akun
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+
+
+        <ul class="sidebar-nav">
+            <li class="sidebar-header">
                 Form Surat
             </li>
 
