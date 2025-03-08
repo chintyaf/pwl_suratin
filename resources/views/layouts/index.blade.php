@@ -24,11 +24,11 @@
 <body>
 	<div class="wrapper">
         {{-- NAVBAR --}}
-        @include('layouts.sidebar')
+        @include('layouts.partials.sidebar')
 
 
 		<div class="main">
-            @include('layouts.navbar')
+            @include('layouts.partials.navbar')
 
 
 			<main class="content">
@@ -38,7 +38,7 @@
 
 			</main>
 
-            @include('layouts.footer')
+            {{-- @include('layouts.partials.footer') --}}
 
 		</div>
 	</div>
