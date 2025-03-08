@@ -9,22 +9,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('layouts.index');
-// })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('layouts.index');
+})->name('dashboard');
 
 
 Route::get('/create-account', function () {
     return view('admin.add-account');
 })->name('add-account');
 
-// Route::get('/dashboard', function () {
-//     return "hi";
-// })->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return Auth::check() ? "Logged in" : "Not logged in";
-})->name('dashboard');
+
+
+// Ga bisa AUTH =)
+
+// Route::get('/dashboard', function () {
+//     return Auth::check() ? "Logged in" : "Not logged in";
+// })->name('dashboard');
 
 // ADMIN
 // Route::middleware('auth')->group(function () {
@@ -48,50 +49,5 @@ Route::get('/dashboard', function () {
 //     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 // });
 
-
-Route::middleware('auth')->group(function () {});
-
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::middleware('role:0')->group(function () {
-//         Route::prefix('dashboard/admin')->group(function () {
-//             Route::get('/', function () {
-//                 return view('dashboard.admin');
-//             })->name('dashboard');
-//             // Add more admin routes here
-//         });
-//     });
-// });
-
-
-// Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
-//     Route::get('/create-account', function () {
-//         return view('admin.add-account');
-//     })->name('add-account');
-
-//     Route::get('/dashboard', function () {
-//         return view('layouts.index');
-//     })->name('dashboard');
-// });
-
-
-
-// Route::middleware(['auth', 'verified', 'role:2'])->group(function () {
-//     Route::get('/dashboard/user', function () {
-//         return view('dashboard.user');
-//     })->name('dashboard.user');
-// });
-
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
 require __DIR__ . '/auth.php';
