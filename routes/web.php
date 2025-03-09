@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\MOController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,8 +20,17 @@ Route::get('/create-account', function () {
     return view('admin.add-account');
 })->name('add-account');
 
+Route::controller(MOController::class)->prefix('mo')->group(function () {
+    Route::get('dashboard', 'index')->name('mo.dashboard');
+});
 
+Route::controller(KaprodiController::class)->prefix('kaprodi')->group(function () {
+    Route::get('dashboard', 'index')->name('kaprodi.dashboard');
+});
 
+Route::get('/sk-mahasiswa-aktif/detail', function () {
+    return view('surat.sk_mhs_aktif.detail'); // Load snippet from resources/views/partials/snippet.blade.php
+});
 
 // Ga bisa AUTH =)
 
