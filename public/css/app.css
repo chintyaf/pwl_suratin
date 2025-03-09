@@ -4257,7 +4257,7 @@ fieldset:disabled .btn {
     margin-left: 1.25rem;
 }
 .card-header {
-    background-color: #fff;
+    /* background-color: #fff; */
     /* border-bottom: 0 solid transparent; */
     margin-bottom: 0;
     /* padding: 1rem 1.25rem; */

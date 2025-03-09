@@ -7,3 +7,8 @@
 .sidebar-item {
     font-size: 13px;
 }
+
+.modal-dialog {
+    margin-top: 70px;
+    max-width: 1000px;
+}

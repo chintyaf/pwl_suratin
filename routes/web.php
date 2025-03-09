@@ -28,9 +28,23 @@ Route::controller(KaprodiController::class)->prefix('kaprodi')->group(function (
     Route::get('dashboard', 'index')->name('kaprodi.dashboard');
 });
 
+Route::get('/surat-detail', function () {
+    return view('surat.box'); // Load snippet from resources/views/partials/snippet.blade.php
+});
+
 Route::get('/sk-mahasiswa-aktif/detail', function () {
     return view('surat.sk_mhs_aktif.detail'); // Load snippet from resources/views/partials/snippet.blade.php
 });
+Route::get('/lhs/detail', function () {
+    return view('surat.lhs.detail'); // Load snippet from resources/views/partials/snippet.blade.php
+});
+Route::get('/sp-tugas-mk/detail', function () {
+    return view('surat.sp_tugas_mk.detail'); // Load snippet from resources/views/partials/snippet.blade.php
+});
+Route::get('/sk/detail', function () {
+    return view('surat.sk_lulus.detail'); // Load snippet from resources/views/partials/snippet.blade.php
+});
+
 
 // Ga bisa AUTH =)
 
