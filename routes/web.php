@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MOController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,10 @@ Route::controller(MOController::class)->prefix('mo')->group(function () {
 
 Route::controller(KaprodiController::class)->prefix('kaprodi')->group(function () {
     Route::get('dashboard', 'index')->name('kaprodi.dashboard');
+});
+
+Route::controller(MahasiswaController::class)->prefix('mahasiswa')->group(function () {
+    Route::get('dashboard', 'index')->name('mahasiswa.dashboard');
 });
 
 Route::get('/surat-detail', function () {
@@ -61,9 +66,9 @@ Route::get('/form-surat-keterangan-lulus', function () {
     return view('mahasiswa.form-surat-lulus');
 })->name('form-surat-keterangan-lulus');
 
-Route::get('/dashboard-mahasiswa', function () {
-    return view('mahasiswa.dashboard');
-})->name('dashboard-mahasiswa');
+// Route::get('/dashboard-mahasiswa', function () {
+//     return view('mahasiswa.dashboard');
+// })->name('dashboard-mahasiswa');
 
 // Ga bisa AUTH =)
 
