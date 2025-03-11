@@ -14,7 +14,7 @@
                 <div class="card flex-fill">
                     <div class="card-header">
 
-                        <h5 class="px-3 py-2 mb-0 card-title">Menunggu Persetujuan</h5>
+                        <h5 class="px-3 py-2 mb-0 card-title">Menunggu Persutujuan</h5>
                     </div>
                     <div class="px-4 pb-4">
                         <table class="table p-2 my-0 table-hover">
