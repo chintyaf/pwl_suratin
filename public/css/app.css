@@ -2594,7 +2594,7 @@ textarea.form-control-lg {
     z-index: 3;
 }
 .btn {
-    background-color: transparent;
+    /* background-color: transparent; */
     border: 1px solid transparent;
     border-radius: 0.2rem;
     color: #495057;
@@ -2633,14 +2633,14 @@ fieldset:disabled .btn {
     pointer-events: none;
 }
 .btn-primary {
-    background-color: #3b7ddd;
+    /* background-color: #3b7ddd; */
     border-color: #3b7ddd;
     color: #fff;
 }
 .btn-check:focus + .btn-primary,
 .btn-primary:focus,
 .btn-primary:hover {
-    background-color: #326abc;
+    /* background-color: #326abc; */
     border-color: #2f64b1;
     color: #fff;
 }

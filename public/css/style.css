@@ -8,6 +8,10 @@
     border: none;
 }
 
+.btn-primary:hover {
+    background-color: #13879b;
+}
+
 /* SIDEBAR  */
 .sidebar {
     background: #fff;
@@ -58,4 +62,30 @@
     font-weight: 700;
     width: auto;
     border-radius: 10px;
+}
+
+/* FORM */
+.form {
+    /* border: 1px red solid; */
+    padding: 40px 35px;
+    padding-top: 25x;
+    background: white;
+    border-radius: 22px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.form h1 {
+    font-weight: 600;
+    font-size: 21px;
+}
+
+.form-label {
+    color: #000;
+    font-weight: 600;
+}
+
+.form input,
+.form select {
+    color: black;
+    height: 50px;
 }

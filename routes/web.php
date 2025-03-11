@@ -25,6 +25,10 @@ Route::get('/create-account', function () {
     return view('admin.add-account');
 })->name('add-account');
 
+Route::controller(AdminController::class)->prefix('admin')->group(function () {
+    Route::get('dashboard', 'index')->name('admin.dashboard');
+});
+
 Route::controller(MOController::class)->prefix('mo')->group(function () {
     Route::get('dashboard', 'index')->name('mo.dashboard');
 });
@@ -37,38 +41,45 @@ Route::controller(MahasiswaController::class)->prefix('mahasiswa')->group(functi
     Route::get('dashboard', 'index')->name('mahasiswa.dashboard');
 });
 
+
+
+
 Route::get('/surat-detail', function () {
-    return view('surat.box'); // Load snippet from resources/views/partials/snippet.blade.php
+    return view('surat.box');
 });
 
 Route::get('/sk-mahasiswa-aktif/detail', function () {
-    return view('surat.sk_mhs_aktif.detail'); // Load snippet from resources/views/partials/snippet.blade.php
+    return view('surat.sk_mhs_aktif.detail');
 });
 Route::get('/lhs/detail', function () {
-    return view('surat.lhs.detail'); // Load snippet from resources/views/partials/snippet.blade.php
+    return view('surat.lhs.detail');
 });
 Route::get('/sp-tugas-mk/detail', function () {
-    return view('surat.sp_tugas_mk.detail'); // Load snippet from resources/views/partials/snippet.blade.php
+    return view('surat.sp_tugas_mk.detail');
 });
 Route::get('/sk/detail', function () {
-    return view('surat.sk_lulus.detail'); // Load snippet from resources/views/partials/snippet.blade.php
+    return view('surat.sk_lulus.detail');
 });
 
-Route::get('/form-laporan-hasil-studi', function () {
+
+
+Route::get('/form-lhs', function () {
     return view('mahasiswa.form-lhs');
-})->name('form-laporan-hasil-studi');
+})->name('form-lhs');
 
-Route::get('/form-surat-keterangan-mahasiswa-aktif', function () {
+Route::get('/form-sk-mhs-aktif', function () {
     return view('mahasiswa.form-skma');
-})->name('form-surat-keterangan-mahasiswa-aktif');
+})->name('form-sk-mhs-aktif');
 
-Route::get('/form-surat-pengantar-tugas-mata-kuliah', function () {
+Route::get('/form-sp-tugas-mk', function () {
     return view('mahasiswa.form-surat-pengantar');
-})->name('form-surat-pengantar-tugas-mata-kuliah');
+})->name('form-sp-tugas-mk');
 
-Route::get('/form-surat-keterangan-lulus', function () {
+Route::get('/form-sk-lulus', function () {
     return view('mahasiswa.form-surat-lulus');
-})->name('form-surat-keterangan-lulus');
+})->name('form-sk-lulus');
+
+
 
 // Route::get('/dashboard-mahasiswa', function () {
 //     return view('mahasiswa.dashboard');
