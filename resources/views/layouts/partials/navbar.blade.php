@@ -92,7 +92,7 @@
 
 
                             <span class="text-dark fw-bold">{{ Auth::check() }}</span>
-                            <span class="fs-6">Admin</span>
+                            <span class="fs-6">User</span>
                         </div>
                     </div>
                 </a>

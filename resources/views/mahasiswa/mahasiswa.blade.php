@@ -33,34 +33,30 @@
         {{-- NAVBAR --}}
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="index.html">
-                    <span class="align-middle">AdminKit</span>
+        
+                <a class="sidebar-brand d-flex justify-content-center" href="{{ route('dashboard') }}">
+                    <img src="{{ asset('img/logo/SuratIn_Logo_v2.svg') }}" alt="" class="col-8">
                 </a>
         
-                {{-- <ul class="sidebar-nav">
-                    <li class="sidebar-header">
-                        User
-                    </li>
-        
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('add-account') }}">
-                            <span class="align-middle">
-                                Buat Akun
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-        
-        
-         --}}
                 <ul class="sidebar-nav">
+                        <li class="sidebar-header {{ request()->is('dashboard') ? 'active' : '' }}">
+                            <a class="" href="{{ route('dashboard') }}">
+                                <span class="">
+                                    Dashboard
+                                </span>
+                            </a>
+                        </li>
+        
+                    
+        
                     <li class="sidebar-header">
-                        Form Surat
+                        <span>
+                            Form Surat
+                        </span>
                     </li>
         
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="index.html">
-                            <!-- <i class="align-middle" data-feather="sliders"></i> -->
+                        <a class="sidebar-link actives" href="{{ route('form-surat-keterangan-mahasiswa-aktif') }}">
                             <span class="align-middle">
                                 Surat Keterangan Mahasiswa Aktif
                             </span>
@@ -68,8 +64,7 @@
                     </li>
         
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="index.html">
-                            <!-- <i class="align-middle" data-feather="sliders"></i> -->
+                        <a class="sidebar-link actives" href="{{ route('form-surat-pengantar-tugas-mata-kuliah') }}">
                             <span class="align-middle">
                                 Surat Pengantar Tugas Mata Kuliah
                             </span>
@@ -77,8 +72,7 @@
                     </li>
         
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="index.html">
-                            <!-- <i class="align-middle" data-feather="sliders"></i> -->
+                        <a class="sidebar-link actives" href="{{ route('form-surat-keterangan-lulus') }}">
                             <span class="align-middle">
                                 Surat Keterangan Lulus
                             </span>
@@ -86,21 +80,34 @@
                     </li>
         
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="index.html">
-                            <!-- <i class="align-middle" data-feather="sliders"></i> -->
+                        <a class="sidebar-link actives" href="{{ route('form-laporan-hasil-studi') }}">
                             <span class="align-middle">
                                 Laporan Hasil Studi
                             </span>
                         </a>
                     </li>
+
+                    <li class="sidebar-header">
+                        <span>
+                            Riwayat Pengajuan
+                        </span>
+                    </li>
+        
+                    <li class="sidebar-item">
+                        <a class="sidebar-link actives" href="{{ route('history-mahasiswa') }}">
+                            <span class="align-middle">
+                                Daftar pengajuan surat sebelumnya
+                            </span>
+                        </a>
+                    </li>
+        
+                </ul>
         
             </div>
         </nav>
-
-
+        
 		<div class="main">
             @include('layouts.partials.navbar')
-
 
 			<main class="content">
                 {{-- <p>
