@@ -14,6 +14,31 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link " href="{{ route('admin.dashboard') }}">
+                        Admin
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link " href="{{ route('kaprodi.dashboard') }}">
+                        Kaprodi
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link " href="{{ route('mo.dashboard') }}">
+                        MO
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link " href="{{ route('mahasiswa.dashboard')}}">
+                        Mahasiswa
+                    </a>
+                </li>
+
+
             <li class="sidebar-header">
                 User
             </li>
@@ -33,7 +58,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link actives" href="index.html">
+                <a class="sidebar-link actives" href="{{ route('form-sk-mhs-aktif') }}">
                     <span class="align-middle">
                         Surat Keterangan Mahasiswa Aktif
                     </span>
@@ -41,7 +66,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link actives" href="index.html">
+                <a class="sidebar-link actives" href="{{ route('form-sp-tugas-mk') }}">
                     <span class="align-middle">
                         Surat Pengantar Tugas Mata Kuliah
                     </span>
@@ -49,7 +74,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link actives" href="index.html">
+                <a class="sidebar-link actives" href="{{ route('form-sk-lulus') }}">
                     <span class="align-middle">
                         Surat Keterangan Lulus
                     </span>
@@ -57,7 +82,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link actives" href="index.html">
+                <a class="sidebar-link actives" href="{{ route('form-lhs') }}">
                     <span class="align-middle">
                         Laporan Hasil Studi
                     </span>
