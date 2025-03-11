@@ -79,7 +79,9 @@ Route::get('/form-sk-lulus', function () {
     return view('mahasiswa.form-surat-lulus');
 })->name('form-sk-lulus');
 
-
+Route::get('/mahasiswa/history', function () {
+    return view('mahasiswa.history');
+})->name('history-mahasiswa');
 
 // Route::get('/dashboard-mahasiswa', function () {
 //     return view('mahasiswa.dashboard');
