@@ -102,5 +102,4 @@
 
 @section('ExtraJS')
 <script src="{{ asset('js/surat.js') }}"></script>
-
 @endsection
