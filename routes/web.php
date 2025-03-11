@@ -45,6 +45,25 @@ Route::get('/sk/detail', function () {
     return view('surat.sk_lulus.detail'); // Load snippet from resources/views/partials/snippet.blade.php
 });
 
+Route::get('/form-laporan-hasil-studi', function () {
+    return view('mahasiswa.form-lhs');
+})->name('form-laporan-hasil-studi');
+
+Route::get('/form-surat-keterangan-mahasiswa-aktif', function () {
+    return view('mahasiswa.form-skma');
+})->name('form-surat-keterangan-mahasiswa-aktif');
+
+Route::get('/form-surat-pengantar-tugas-mata-kuliah', function () {
+    return view('mahasiswa.form-surat-pengantar');
+})->name('form-surat-pengantar-tugas-mata-kuliah');
+
+Route::get('/form-surat-keterangan-lulus', function () {
+    return view('mahasiswa.form-surat-lulus');
+})->name('form-surat-keterangan-lulus');
+
+Route::get('/dashboard-mahasiswa', function () {
+    return view('mahasiswa.dashboard');
+})->name('dashboard-mahasiswa');
 
 // Ga bisa AUTH =)
 
