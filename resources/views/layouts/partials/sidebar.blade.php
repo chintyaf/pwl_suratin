@@ -43,7 +43,7 @@
                 User
             </li>
 
-            <li class="sidebar-item active">
+            <li class="sidebar-item {{ request()->is('create-account') ? 'active' : '' }}">
                 <a class="sidebar-link " href="{{ route('add-account') }}">
                     <span class="">
                         Buat Akun
@@ -58,7 +58,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link actives" href="{{ route('form-sk-mhs-aktif') }}">
+                <a class="sidebar-link {{ request()->is('form-sk-mhs-aktif') ? 'active' : '' }}" href="{{ route('form-sk-mhs-aktif') }}">
                     <span class="align-middle">
                         Surat Keterangan Mahasiswa Aktif
                     </span>
@@ -66,7 +66,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link actives" href="{{ route('form-sp-tugas-mk') }}">
+                <a class="sidebar-link {{ request()->is('form-sp-tugas-mk') ? 'active' : '' }}" href="{{ route('form-sp-tugas-mk') }}">
                     <span class="align-middle">
                         Surat Pengantar Tugas Mata Kuliah
                     </span>
@@ -74,7 +74,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link actives" href="{{ route('form-sk-lulus') }}">
+                <a class="sidebar-link {{ request()->is('form-sk-lulus') ? 'active' : '' }}" href="{{ route('form-sk-lulus') }}">
                     <span class="align-middle">
                         Surat Keterangan Lulus
                     </span>
@@ -82,7 +82,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link actives" href="{{ route('form-lhs') }}">
+                <a class="sidebar-link {{ request()->is('form-lhs') ? 'active' : '' }}" href="{{ route('form-lhs') }}">
                     <span class="align-middle">
                         Laporan Hasil Studi
                     </span>

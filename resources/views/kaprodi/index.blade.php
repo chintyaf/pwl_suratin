@@ -32,11 +32,15 @@
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Surat Pengantar Tugas Mata Kuliah </td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class="status"> Menunggu persetujuan </span></td>
+                                    <td><span class="status"> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="loadSnippet">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat = "sk_tugas_mk"
+                                            id="loadSurat001">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
                                     </td>
@@ -44,11 +48,15 @@
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Surat Keterangan Mahasiswa Aktif</td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class=""> Menunggu persetujuan </span></td>
+                                    <td><span class=""> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="loadSnippet">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat = "sk_mhs_aktif"
+                                            id="loadSurat002" onclick="edit('test')">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
                                     </td>
@@ -56,11 +64,15 @@
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Surat Keterangan Lulus</td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class=""> Menunggu persetujuan </span></td>
+                                    <td><span class=""> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="loadSnippet">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat = "sk_lulus"
+                                            id="loadSurat003">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
                                     </td>
@@ -69,11 +81,15 @@
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Laporan Hasil Studi </td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class=""> Menunggu persetujuan </span></td>
+                                    <td><span class=""> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="loadSnippet">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat="lhs"
+                                            id="loadSurat004">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
                                     </td>
@@ -110,11 +126,15 @@
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Surat Pengantar Tugas Mata Kuliah </td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class="status"> Menunggu persetujuan </span></td>
+                                    <td><span class="status"> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="loadSnippet">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat = "sk_tugas_mk"
+                                            id="loadSurat001">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
                                     </td>
@@ -122,24 +142,48 @@
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Surat Keterangan Mahasiswa Aktif</td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class=""> Menunggu persetujuan </span></td>
+                                    <td><span class=""> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <a href="" class="button">
-                                            Edit
-                                        </a>
-
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat = "sk_mhs_aktif"
+                                            id="loadSurat002" onclick="edit('test')">
+                                            <i class="align-middle" data-feather="edit"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Surat Keterangan Lulus</td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class=""> Menunggu persetujuan </span></td>
+                                    <td><span class=""> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="loadSnippet">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat = "sk_lulus"
+                                            id="loadSurat003">
+                                            <i class="align-middle" data-feather="edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2372002</td>
+                                    <td>Jennifer Charity Sharon Lukita</td>
+                                    <td class="d-none d-xl-table-cell">Laporan Hasil Studi </td>
+                                    <td class="d-none d-xl-table-cell">31/06/2021</td>
+                                    <td><span class=""> Disetujui - Menunggu Dokumen </span></td>
+                                    <td class="d-none d-md-table-cell">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat="lhs"
+                                            id="loadSurat004">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
                                     </td>
@@ -175,11 +219,15 @@
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Surat Pengantar Tugas Mata Kuliah </td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class="status"> Menunggu persetujuan </span></td>
+                                    <td><span class="status"> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="loadSnippet">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat = "sk_tugas_mk"
+                                            id="loadSurat001">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
                                     </td>
@@ -187,26 +235,50 @@
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Surat Keterangan Mahasiswa Aktif</td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class=""> Menunggu persetujuan </span></td>
+                                    <td><span class=""> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <a href="" class="button">
-                                            Edit
-                                        </a>
-
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat = "sk_mhs_aktif"
+                                            id="loadSurat002" onclick="edit('test')">
+                                            <i class="align-middle" data-feather="edit"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>2372002</td>
                                     <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">Surat Keterangan Aktif</td>
+                                    <td class="d-none d-xl-table-cell">Surat Keterangan Lulus</td>
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                    <td><span class=""> Menunggu persetujuan </span></td>
+                                    <td><span class=""> Disetujui - Menunggu Dokumen </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <a href="" class="button">
-                                            Edit
-                                        </a>
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat = "sk_lulus"
+                                            id="loadSurat003">
+                                            <i class="align-middle" data-feather="edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2372002</td>
+                                    <td>Jennifer Charity Sharon Lukita</td>
+                                    <td class="d-none d-xl-table-cell">Laporan Hasil Studi </td>
+                                    <td class="d-none d-xl-table-cell">31/06/2021</td>
+                                    <td><span class=""> Disetujui - Menunggu Dokumen </span></td>
+                                    <td class="d-none d-md-table-cell">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-surat="lhs"
+                                            id="loadSurat004">
+                                            <i class="align-middle" data-feather="edit"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>

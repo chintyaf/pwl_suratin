@@ -85,7 +85,5 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ducimus max
           </div>
 
         </fieldset>
-          <button type="button" class="btn btn-success">Terima</button>
-          <button type="button" class="btn btn-danger">Tolak</button>
       </form>
 </div>
