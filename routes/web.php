@@ -15,6 +15,10 @@ Route::get('/dashboard', function () {
     return view('layouts.index');
 })->name('dashboard');
 
+// Route::get('/dashboard', function () {
+//     return Auth::check() ? "Logged in" : "Not logged in";
+// })->name('dashboard');
+
 
 Route::get('/create-account', function () {
     return view('admin.add-account');

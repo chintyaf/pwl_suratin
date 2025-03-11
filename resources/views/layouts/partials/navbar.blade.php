@@ -5,14 +5,14 @@
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown d-flex align-items-center mx-2">
+            <li class="mx-2 nav-item dropdown d-flex align-items-center">
                 <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                     <div class="position-relative">
                         <i class="align-middle" data-feather="mail"></i>
                         <span class="indicator">4</span>
                     </div>
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+                <div class="py-0 dropdown-menu dropdown-menu-lg dropdown-menu-end"
                     aria-labelledby="alertsDropdown">
                     <div class="dropdown-menu-header">
                         4 New Notifications
@@ -25,9 +25,9 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="text-dark">Update completed</div>
-                                    <div class="text-muted small mt-1">Restart server 12 to complete the
+                                    <div class="mt-1 text-muted small">Restart server 12 to complete the
                                         update.</div>
-                                    <div class="text-muted small mt-1">30m ago</div>
+                                    <div class="mt-1 text-muted small">30m ago</div>
                                 </div>
                             </div>
                         </a>
@@ -38,10 +38,10 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="text-dark">Lorem ipsum</div>
-                                    <div class="text-muted small mt-1">Aliquam ex eros, imperdiet
+                                    <div class="mt-1 text-muted small">Aliquam ex eros, imperdiet
                                         vulputate
                                         hendrerit et.</div>
-                                    <div class="text-muted small mt-1">2h ago</div>
+                                    <div class="mt-1 text-muted small">2h ago</div>
                                 </div>
                             </div>
                         </a>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="text-dark">Login from 192.186.1.8</div>
-                                    <div class="text-muted small mt-1">5h ago</div>
+                                    <div class="mt-1 text-muted small">5h ago</div>
                                 </div>
                             </div>
                         </a>
@@ -63,9 +63,9 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="text-dark">New connection</div>
-                                    <div class="text-muted small mt-1">Christina accepted your request.
+                                    <div class="mt-1 text-muted small">Christina accepted your request.
                                     </div>
-                                    <div class="text-muted small mt-1">14h ago</div>
+                                    <div class="mt-1 text-muted small">14h ago</div>
                                 </div>
                             </div>
                         </a>
@@ -83,12 +83,12 @@
 
 
                 {{-- PROFILE --}}
-                <a class="nav-link  d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown"
+                <a class="nav-link d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown"
                     style="display: flex; align-items: center;">
                     <div class="d-flex align-items-center dropdown-toggle ">
-                        <img src="{{ asset('img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-2"
+                        <img src="{{ asset('img/avatars/avatar.jpg') }}" class="rounded avatar img-fluid me-2"
                             alt="Jane Doe" />
-                        <div class="d-flex flex-column px-2">
+                        <div class="px-2 d-flex flex-column">
 
 
                             <span class="text-dark fw-bold">{{ Auth::check() }}</span>
@@ -113,7 +113,7 @@
 
                     <form method="POST" class="dropdown-item" action="{{ route('logout') }}">
                         @csrf
-                        <a class="block w-full text-start leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out dropdown-item p-0"
+                        <a class="block w-full p-0 leading-5 text-gray-700 transition duration-150 ease-in-out text-start hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dropdown-item"
                         href="{{ route('logout') }}"
                         onclick="event.preventDefault(); this.closest('form').submit();">Log Out</a>
                     </form>

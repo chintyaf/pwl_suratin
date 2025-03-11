@@ -139,9 +139,9 @@
                                     <td class="d-none d-xl-table-cell">31/06/2021</td>
                                     <td><span class=""> Menunggu persetujuan </span></td>
                                     <td class="d-none d-md-table-cell">
-                                        <a href="" class="button">
-                                            Edit
-                                        </a>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="loadSnippet">
+                                            <i class="align-middle" data-feather="edit"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
