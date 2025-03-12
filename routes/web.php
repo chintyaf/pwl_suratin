@@ -38,7 +38,7 @@ Route::controller(KaprodiController::class)->prefix('kaprodi')->group(function (
 });
 
 Route::controller(MahasiswaController::class)->prefix('mahasiswa')->group(function () {
-    Route::get('dashboard', 'index')->name('mahasiswa.dashboard');
+    Route::get('dashboard', 'index')->name('mhs.dashboard');
 });
 
 
@@ -64,24 +64,28 @@ Route::get('/sk/detail', function () {
 
 
 Route::get('/form-lhs', function () {
-    return view('mahasiswa.form-lhs');
+    return view('surat.lhs.form-lhs');
 })->name('form-lhs');
 
 Route::get('/form-sk-mhs-aktif', function () {
-    return view('mahasiswa.form-skma');
+    return view('surat.sk_mhs_aktif.form-skma');
 })->name('form-sk-mhs-aktif');
 
 Route::get('/form-sp-tugas-mk', function () {
-    return view('mahasiswa.form-surat-pengantar');
+    return view('surat.sp_tugas_mk.form-surat-pengantar');
 })->name('form-sp-tugas-mk');
 
 Route::get('/form-sk-lulus', function () {
-    return view('mahasiswa.form-surat-lulus');
+    return view('surat.sk_lulus.form-surat-lulus');
 })->name('form-sk-lulus');
 
 Route::get('/mahasiswa/history', function () {
-    return view('mahasiswa.history');
+    return view('mhs.history');
 })->name('history-mahasiswa');
+
+Route::get('/mahasiswa/notification', function () {
+    return view('mhs.notifikasi');
+})->name('notif-mhs');
 
 // Route::get('/dashboard-mahasiswa', function () {
 //     return view('mahasiswa.dashboard');

@@ -1,4 +1,4 @@
-@extends('mahasiswa.mahasiswa')
+@extends('mhs.mahasiswa')
 @section('content')
 
 <div class="container mt-5">

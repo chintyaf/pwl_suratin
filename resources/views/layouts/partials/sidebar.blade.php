@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link " href="{{ route('mahasiswa.dashboard')}}">
+                    <a class="sidebar-link " href="{{ route('mhs.dashboard')}}">
                         Mahasiswa
                     </a>
                 </li>
