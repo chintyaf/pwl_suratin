@@ -19,6 +19,14 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+.sidebar a {
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    color: #13879b;
+}
+
 .sidebar-header a {
     font-size: 14px;
     color: #000;
@@ -89,3 +97,12 @@
     color: black;
     height: 50px;
 }
+
+/* TABEL */
+.card-header {
+    background: #fcfdff;
+}
+/*
+.card-header h5 {
+    color: white;
+} */
