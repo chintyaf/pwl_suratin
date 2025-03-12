@@ -1,4 +1,4 @@
-@extends('mahasiswa.mahasiswa')
+@extends('mhs.mahasiswa')
 @section('content')
 
 <div class="container mt-4">
@@ -33,7 +33,8 @@
 
     <!-- Row 2: Tombol Ajukan Surat -->
     <div class="text-center my-4">
-        <button type="button" class="btn btn-primary" id="btnAjukanSurat" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="bottom">
+        <button type="button" class="btn btn-primary btn-hover-active" id="btnAjukanSurat" 
+            data-bs-toggle="popover" data-bs-html="true" data-bs-placement="bottom">
             + Ajukan Surat Baru
         </button>
     </div>
