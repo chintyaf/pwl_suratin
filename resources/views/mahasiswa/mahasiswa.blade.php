@@ -31,7 +31,7 @@
 <body>
 	<div class="wrapper">
         {{-- NAVBAR --}}
-        <nav id="sidebar" class="sidebar js-sidebar">
+        <nav id="sidebar" class="sidebar js-sidebar bg-white shadow-sm border-end">
             <div class="sidebar-content js-simplebar">
         
                 <a class="sidebar-brand d-flex justify-content-center" href="{{ route('dashboard') }}">
@@ -39,62 +39,44 @@
                 </a>
         
                 <ul class="sidebar-nav">
-                    <li class="sidebar-header">
-                        <span>
-                            Form Surat
-                        </span>
+                    <li class="sidebar-header border-bottom pb-3 mb-3 text-uppercase fw-bold text-secondary ">
+                        <span>Form Surat</span>
                     </li>
         
                     <li class="sidebar-item">
-                        <a class="sidebar-link actives" href="{{ route('form-sk-mhs-aktif') }}">
-                            <span class="align-middle">
-                                Surat Keterangan Mahasiswa Aktif
-                            </span>
+                        <a class="sidebar-link d-flex align-items-center" href="{{ route('form-sk-mhs-aktif') }}">
+                            Surat Keterangan Mahasiswa Aktif
                         </a>
                     </li>
         
                     <li class="sidebar-item">
-                        <a class="sidebar-link actives" href="{{ route('form-sp-tugas-mk') }}">
-                            <span class="align-middle">
-                                Surat Pengantar Tugas Mata Kuliah
-                            </span>
+                        <a class="sidebar-link d-flex align-items-center" href="{{ route('form-sp-tugas-mk') }}">
+                            Surat Pengantar Tugas Mata Kuliah
                         </a>
                     </li>
         
                     <li class="sidebar-item">
-                        <a class="sidebar-link actives" href="{{ route('form-sk-lulus') }}">
-                            <span class="align-middle">
-                                Surat Keterangan Lulus
-                            </span>
+                        <a class="sidebar-link d-flex align-items-center" href="{{ route('form-sk-lulus') }}">
+                            Surat Keterangan Lulus
                         </a>
+                    </li>
+        
+                    <li class="sidebar-item mb-4">
+                        <a class="sidebar-link d-flex align-items-center" href="{{ route('form-lhs') }}">
+                            Laporan Hasil Studi
+                        </a>
+                    </li>
+        
+                    <li class="sidebar-header border-top pt-3 mt-3 pb-3 mb-3 text-uppercase fw-bold text-secondary">
+                        <span>Riwayat Pengajuan</span>
                     </li>
         
                     <li class="sidebar-item">
-                        <a class="sidebar-link actives" href="{{ route('form-lhs') }}">
-                            <span class="align-middle">
-                                Laporan Hasil Studi
-                            </span>
+                        <a class="sidebar-link d-flex align-items-center" href="{{ route('history-mahasiswa') }}">
+                            Daftar Pengajuan Surat
                         </a>
                     </li>
-
-                    <li class="sidebar-header">
-                        <span>
-                            Riwayat Pengajuan
-                        </span>
-                    </li>
-        
-                    <li class="sidebar-item">
-                        <a class="sidebar-link actives" href="{{ route('history-mahasiswa') }}">
-                        <a class="sidebar-link" href="{{ route('history-mahasiswa') }}">
-                            <!-- <i class="align-middle" data-feather="sliders"></i> -->
-                            <span class="align-middle">
-                                Daftar pengajuan surat sebelumnya
-                            </span>
-                        </a>
-                    </li>
-        
                 </ul>
-        
             </div>
         </nav>
         

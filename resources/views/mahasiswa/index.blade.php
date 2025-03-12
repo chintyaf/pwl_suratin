@@ -4,7 +4,7 @@
 <div class="container mt-4">
     <!-- Welcome Message -->
     <div class="text-center mb-4">
-        <h2>🎓 Selamat Datang, Mahasiswa!</h2>
+        <h2>Selamat Datang, Mahasiswa!</h2>
         <p class="text-muted">Kelola pengajuan surat akademik Anda dengan mudah.</p>
     </div>
 
@@ -33,15 +33,18 @@
 
     <!-- Row 2: Tombol Ajukan Surat -->
     <div class="text-center my-4">
-        <a href="#" class="btn btn-primary">+ Ajukan Surat Baru</a>
+        <button type="button" class="btn btn-primary" id="btnAjukanSurat" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="bottom">
+            + Ajukan Surat Baru
+        </button>
     </div>
+
 
     <!-- Row 3: Riwayat Pengajuan & Notifikasi -->
     <div class="row">
         <!-- Riwayat Pengajuan -->
         <div class="col-md-8">
             <div class="card mb-4">
-                <div class="card-header bg-primary text-white">📄 Riwayat Pengajuan Surat</div>
+                <div class="card-header bg-primary text-white">Riwayat Pengajuan Surat Terbaru</div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead class="table-light">
@@ -78,12 +81,12 @@
         <!-- Notifikasi -->
         <div class="col-md-4">
             <div class="card mb-4">
-                <div class="card-header bg-secondary text-white">🔔 Notifikasi</div>
+                <div class="card-header bg-secondary text-white">Notifikasi</div>
                 <div class="card-body">
                     <ul class="list-group">
-                        <li class="list-group-item">✅ Surat Keterangan Lulus telah selesai</li>
-                        <li class="list-group-item">📌 Surat Keterangan Mahasiswa Aktif menunggu ACC</li>
-                        <li class="list-group-item">⏳ Surat Pengantar Tugas sedang diproses</li>
+                        <li class="list-group-item">Surat Keterangan Lulus telah selesai</li>
+                        <li class="list-group-item">Surat Keterangan Mahasiswa Aktif menunggu ACC</li>
+                        <li class="list-group-item">Surat Pengantar Tugas sedang diproses</li>
                     </ul>
                 </div>
             </div>
@@ -108,7 +111,7 @@
                 <p><strong>Status:</strong> <span class="badge bg-warning">{{ $data['status'] }}</span></p>
                 @if($id == 'modalSurat2')
                     <p><strong>Keterangan:</strong> Surat telah selesai dan dapat diunduh.</p>
-                    <a href="#" class="btn btn-success">💽 Unduh Surat</a>
+                    <a href="#" class="btn btn-success">Unduh Surat</a>
                 @endif
             </div>
         </div>
@@ -119,5 +122,43 @@
 @endsection
 
 @section('ExtraJS')
-<script src="{{ asset('js/surat.js') }}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var btn = document.getElementById('btnAjukanSurat');
+
+    if (btn) {
+        var popover = new bootstrap.Popover(btn, {
+            html: true,
+            content: `
+                <div class="list-group">
+                    <a href="{{ route('form-sk-mhs-aktif') }}" class="list-group-item list-group-item-action">Surat Keterangan Mahasiswa Aktif</a>
+                    <a href="{{ route('form-sp-tugas-mk') }}" class="list-group-item list-group-item-action">Surat Pengantar Tugas Mata Kuliah</a>
+                    <a href="{{ route('form-sk-lulus') }}" class="list-group-item list-group-item-action">Surat Keterangan Lulus</a>
+                    <a href="{{ route('form-lhs') }}" class="list-group-item list-group-item-action">Laporan Hasil Studi</a>
+                </div>
+            `,
+            trigger: 'manual', // Memastikan popover dibuka & ditutup manual
+            placement: 'bottom',
+            container: 'body',
+            sanitize: false
+        });
+
+        btn.addEventListener("click", function() {
+            popover.toggle(); // Toggle popover saat tombol diklik
+        });
+
+        // Event listener untuk menutup popover saat klik di luar
+        document.addEventListener("click", function(e) {
+            if (!btn.contains(e.target) && !document.querySelector('.popover')?.contains(e.target)) {
+                popover.hide();
+            }
+        });
+    } else {
+        console.error("Element #btnAjukanSurat tidak ditemukan.");
+    }
+});
+
+
+
+</script>
 @endsection

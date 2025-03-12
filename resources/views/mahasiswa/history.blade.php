@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">📜 Riwayat Pengajuan & Status Surat</h2>
+    <h2 class="text-center mb-4">Riwayat Pengajuan & Status Surat</h2>
     
     <!-- Table Riwayat Pengajuan -->
     <div class="card card-custom p-4">
@@ -101,7 +101,7 @@
                 <p><strong>Tanggal Pengajuan:</strong> <span id="modalSelesaiTanggal"></span></p>
                 <p><strong>Status:</strong> <span class="badge bg-success">Selesai</span></p>
                 <p><strong>Keterangan:</strong> Surat telah selesai dan dapat diunduh.</p>
-                <a href="#" class="btn btn-success">📥 Unduh Surat</a>
+                <a href="#" class="btn btn-success">Unduh Surat</a>
             </div>
         </div>
     </div>
