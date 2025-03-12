@@ -5,76 +5,63 @@
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
+            @if (request()->routeIs('mhs.*'))
             <li class="mx-2 nav-item dropdown d-flex align-items-center">
                 <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                     <div class="position-relative">
                         <i class="align-middle" data-feather="mail"></i>
-                        <span class="indicator">4</span>
+                        <span class="indicator">3</span> <!-- Jumlah notifikasi -->
                     </div>
                 </a>
-                <div class="py-0 dropdown-menu dropdown-menu-lg dropdown-menu-end"
-                    aria-labelledby="alertsDropdown">
+                <div class="py-0 dropdown-menu dropdown-menu-lg dropdown-menu-end" aria-labelledby="alertsDropdown">
                     <div class="dropdown-menu-header">
-                        4 New Notifications
+                        3 Notifikasi Surat
                     </div>
                     <div class="list-group">
                         <a href="#" class="list-group-item">
                             <div class="row g-0 align-items-center">
                                 <div class="col-2">
-                                    <i class="text-danger" data-feather="alert-circle"></i>
+                                    <i class="text-success" data-feather="check-circle"></i>
                                 </div>
                                 <div class="col-10">
-                                    <div class="text-dark">Update completed</div>
-                                    <div class="mt-1 text-muted small">Restart server 12 to complete the
-                                        update.</div>
-                                    <div class="mt-1 text-muted small">30m ago</div>
+                                    <div class="text-dark">Surat Anda telah selesai</div>
+                                    <div class="mt-1 text-muted small">Surat Keterangan Mahasiswa Aktif siap diunduh.</div>
+                                    <div class="mt-1 text-muted small">10 menit yang lalu</div>
                                 </div>
                             </div>
                         </a>
                         <a href="#" class="list-group-item">
                             <div class="row g-0 align-items-center">
                                 <div class="col-2">
-                                    <i class="text-warning" data-feather="bell"></i>
+                                    <i class="text-warning" data-feather="clock"></i>
                                 </div>
                                 <div class="col-10">
-                                    <div class="text-dark">Lorem ipsum</div>
-                                    <div class="mt-1 text-muted small">Aliquam ex eros, imperdiet
-                                        vulputate
-                                        hendrerit et.</div>
-                                    <div class="mt-1 text-muted small">2h ago</div>
+                                    <div class="text-dark">Surat menunggu ACC</div>
+                                    <div class="mt-1 text-muted small">Surat Pengantar Tugas sedang menunggu persetujuan Kaprodi.</div>
+                                    <div class="mt-1 text-muted small">1 jam yang lalu</div>
                                 </div>
                             </div>
                         </a>
                         <a href="#" class="list-group-item">
                             <div class="row g-0 align-items-center">
                                 <div class="col-2">
-                                    <i class="text-primary" data-feather="home"></i>
+                                    <i class="text-danger" data-feather="x-circle"></i>
                                 </div>
                                 <div class="col-10">
-                                    <div class="text-dark">Login from 192.186.1.8</div>
-                                    <div class="mt-1 text-muted small">5h ago</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div class="row g-0 align-items-center">
-                                <div class="col-2">
-                                    <i class="text-success" data-feather="user-plus"></i>
-                                </div>
-                                <div class="col-10">
-                                    <div class="text-dark">New connection</div>
-                                    <div class="mt-1 text-muted small">Christina accepted your request.
-                                    </div>
-                                    <div class="mt-1 text-muted small">14h ago</div>
+                                    <div class="text-dark">Pengajuan surat ditolak</div>
+                                    <div class="mt-1 text-muted small">Surat Keterangan Lulus ditolak. Silakan cek alasan penolakan.</div>
+                                    <div class="mt-1 text-muted small">3 jam yang lalu</div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="dropdown-menu-footer">
-                        <a href="#" class="text-muted">Show all notifications</a>
+                        <a href="{{ route('notif-mhs') }}" class="text-muted">Lihat semua notifikasi</a>
                     </div>
                 </div>
             </li>
+            @endif
+
             <li class="nav-item dropdown">
                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
                     data-bs-toggle="dropdown">

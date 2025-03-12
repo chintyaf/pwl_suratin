@@ -1,11 +1,11 @@
-@extends('mhs.mahasiswa')
+@extends('layouts.index')
 @section('content')
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Riwayat Pengajuan & Status Surat</h2>
-    
+    <h2 class="mb-4 text-center">Riwayat Pengajuan & Status Surat</h2>
+
     <!-- Table Riwayat Pengajuan -->
-    <div class="card card-custom p-4">
+    <div class="p-4 card card-custom">
         <div class="card-body">
             <table class="table table-hover table-striped">
                 <thead>
@@ -27,18 +27,18 @@
                             ['jenis' => 'Surat Rekomendasi Beasiswa', 'tanggal' => '2 Februari 2025', 'status' => 'Ditolak', 'badge' => 'danger'],
                         ];
                     @endphp
-                    
+
                     @foreach($suratList as $index => $surat)
                         <tr>
                             <td>{{ $surat['jenis'] }}</td>
                             <td>{{ $surat['tanggal'] }}</td>
                             <td><span class="badge bg-{{ $surat['badge'] }}">{{ $surat['status'] }}</span></td>
                             <td>
-                                <button class="btn btn-primary btn-sm" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="{{ $surat['status'] == 'Selesai' ? '#modalSelesai' : ($surat['status'] == 'Ditolak' ? '#modalDitolak' : '#modalDiproses') }}" 
-                                    data-jenis="{{ $surat['jenis'] }}" 
-                                    data-tanggal="{{ $surat['tanggal'] }}" 
+                                <button class="btn btn-primary btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="{{ $surat['status'] == 'Selesai' ? '#modalSelesai' : ($surat['status'] == 'Ditolak' ? '#modalDitolak' : '#modalDiproses') }}"
+                                    data-jenis="{{ $surat['jenis'] }}"
+                                    data-tanggal="{{ $surat['tanggal'] }}"
                                     data-status="{{ $surat['status'] }}">
                                     Lihat
                                 </button>
@@ -56,7 +56,7 @@
 <div class="modal fade" id="modalDiproses" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-warning text-white">
+            <div class="text-white modal-header bg-warning">
                 <h5 class="modal-title">📄 Detail Surat Diproses</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
@@ -74,7 +74,7 @@
 <div class="modal fade" id="modalDitolak" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
+            <div class="text-white modal-header bg-danger">
                 <h5 class="modal-title">📄 Detail Surat Ditolak</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
@@ -92,7 +92,7 @@
 <div class="modal fade" id="modalSelesai" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
+            <div class="text-white modal-header bg-success">
                 <h5 class="modal-title">📄 Detail Surat Selesai</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>

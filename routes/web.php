@@ -16,9 +16,9 @@ Route::get('/dashboard', function () {
     return view('layouts.index');
 })->name('dashboard');
 
-// Route::get('/dashboard', function () {
-//     return Auth::check() ? "Logged in" : "Not logged in";
-// })->name('dashboard');
+Route::get('/dashboard', function () {
+    return Auth::check() ? "Logged in" : "Not logged in";
+})->name('dashboard');
 
 
 Route::get('/create-account', function () {
@@ -79,6 +79,8 @@ Route::get('/form-sk-lulus', function () {
     return view('surat.sk_lulus.form-surat-lulus');
 })->name('form-sk-lulus');
 
+
+
 Route::get('/mahasiswa/history', function () {
     return view('mhs.history');
 })->name('history-mahasiswa');
@@ -96,6 +98,10 @@ Route::get('/mahasiswa/notification', function () {
 // Route::get('/dashboard', function () {
 //     return Auth::check() ? "Logged in" : "Not logged in";
 // })->name('dashboard');
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('dashboard');
+// });
 
 // ADMIN
 // Route::middleware('auth')->group(function () {

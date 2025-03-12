@@ -53,6 +53,9 @@
                         </span>
                     </a>
                 </li>
+
+            @elseif (request()->routeIs('kaprodi.*'))
+            @elseif(request()->routeIs('mo.*'))
             @else
 
                 <li class="sidebar-header">
