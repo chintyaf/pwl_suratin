@@ -1,88 +1,7 @@
-
-// document.addEventListener("DOMContentLoaded", () => {
-
-
-
-//     document.querySelector("tbody").addEventListener("click", (event) => {
-
-//         let button = event.target.closest("button[data-surat]");
-//         if (!button) return;
-
-//         let suratType = button.dataset.surat;
-//         console.log(suratType);
-
-//         let url = `/surat-detail`;
-//         let suratNames = {
-//             "sk_mhs_aktif": "Surat Keterangan Mahasiswa Aktif",
-//             "sk_tugas_mk": "Surat Pengantar Tugas Mata Kuliah",
-//             "sk_lulus": "Surat Keterangan Lulus",
-//             "lhs": "Laporan Hasil Studi"
-//         };
-//         let surat_name = suratNames[suratType] || "Surat Detail";
-
-//         let routeMap = {
-//             "sk_mhs_aktif": "/sk-mahasiswa-aktif/detail",
-//             "sk_tugas_mk": "/sp-tugas-mk/detail",
-//             "sk_lulus": "/sk/detail",
-//             "lhs": "/lhs/detail"
-//         };
-
-//         let body_url = routeMap[suratType] || "/surat-detail";
-
-//         // let modalContent = document.getElementById("modalContent");
-//         // let suratDetailBody = document.getElementById("suratDetailBody");
-//         // let suratDetailTitle = document.getElementById("suratDetailTitle");
-
-//         // if (!modalContent || !suratDetailBody || !suratDetailTitle) {
-//         //     console.error("Modal elements not found.");
-//         //     return;
-//         // }
-
-
-//         let csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
-//         if (!csrfToken) {
-//             console.error("CSRF token not found.");
-//             return;
-//         }
-
-//         fetch(url, {
-//             method: "GET",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 "X-CSRF-TOKEN": csrfToken
-//             }
-//         })
-//         .then(res => res.text())
-//         .then(data => {
-//             modalContent.innerHTML = data;
-//             suratDetailTitle.innerText = surat_name;
-//         })
-//         .catch(err => console.error("Error loading modal content:", err));
-
-
-//         fetch(body_url, {
-//             method: "GET",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 "X-CSRF-TOKEN": csrfToken
-//             }
-//         })
-//         .then(res => res.text())
-//         .then(data =>
-//             suratDetailBody.innerHTML = data
-//         )
-//         .catch(err => console.error("Error loading surat detail body:", err));
-//     });
-
-//     let modal = document.getElementById("myModal");
-//     modal.addEventListener("hidden.bs.modal", () => {
-//         document.getElementById("modalContent").innerHTML = ``;
-//     });
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("tbody").addEventListener("click", async (event) => {
         let button = event.target.closest("button[data-surat]");
+        console.log("WOI");
         if (!button) return;
 
         let suratType = button.dataset.surat;
@@ -98,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let routeMap = {
             "sk_mhs_aktif": "/sk-mahasiswa-aktif/detail",
             "sk_tugas_mk": "/sp-tugas-mk/detail",
-            "sk_lulus": "/sk/detail",
+            "sk_lulus": "/sk-lulus/detail",
             "lhs": "/lhs/detail"
         };
 

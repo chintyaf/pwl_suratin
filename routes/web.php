@@ -57,7 +57,7 @@ Route::get('/lhs/detail', function () {
 Route::get('/sp-tugas-mk/detail', function () {
     return view('surat.sp_tugas_mk.detail');
 });
-Route::get('/sk/detail', function () {
+Route::get('/sk-lulus/detail', function () {
     return view('surat.sk_lulus.detail');
 });
 

@@ -12,6 +12,10 @@
     background-color: #13879b;
 }
 
+.btn-primary:active {
+    background-color: #13879b !important;
+}
+
 /* SIDEBAR  */
 .sidebar {
     background: #fff;
@@ -106,3 +110,81 @@
 .card-header h5 {
     color: white;
 } */
+
+/* SEARCH  */
+
+.search-wrapper {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.search-box {
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #eef0f5;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    border-color: #13879b;
+    transform: translateY(-2px);
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.search-icon {
+    color: #666;
+    cursor: pointer;
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #eef0f5;
+    margin-top: 5px;
+    display: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.suggestion-item {
+    padding: 12px 20px;
+    margin: 10px 0px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.suggestion-item:hover {
+    background: #efefef;
+    border-left: 7px #13879b solid;
+}
+
+.suggestion-item i {
+    margin-right: 10px;
+    color: #666;
+}
+
+.recent-searches {
+    color: #666;
+    font-size: 0.85rem;
+    padding: 10px 20px;
+    background: #f8f9fa;
+    font-weight: bold;
+}

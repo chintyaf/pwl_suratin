@@ -1,11 +1,12 @@
+
 @extends('layouts.index')
 @section('content')
+Ketua Program Studi
     <h1 class="mb-3 h3">
-        {{-- Ketua Program Studi --}}
         Dashboard
     </h1>
 
-
+    @include('layouts.partials.search')
 
     <div class="p-2 table_component rounded-4" role="region" tabindex="0">
 
@@ -302,5 +303,29 @@
 
 @section('ExtraJS')
     <script src="{{ asset('js/surat.js') }}"> </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.querySelector(".search-input");
+            const suggestions = document.querySelector(".suggestions");
+
+            searchInput.addEventListener("focus", function () {
+                suggestions.style.display = "block";
+            });
+
+            document.addEventListener("click", function (event) {
+                if (!searchInput.contains(event.target) && !suggestions.contains(event.target)) {
+                    suggestions.style.display = "none";
+                }
+            });
+
+            document.querySelectorAll(".suggestion-item").forEach(item => {
+                item.addEventListener("click", function () {
+                    searchInput.value = this.textContent.trim();
+                    suggestions.style.display = "none";
+                });
+            });
+        });
+    </script>
 
 @endsection
