@@ -1,4 +1,4 @@
-@extends('mhs.mahasiswa')
+@extends('layouts.index')
 @section('content')
 
 <div class="p-0 container-fluid">

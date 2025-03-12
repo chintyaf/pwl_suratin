@@ -1,9 +1,10 @@
-@extends('mhs.mahasiswa')
+@extends('layouts.index')
+{{-- @extends('mhs.mahasiswa') --}}
 @section('content')
 
 <div class="container mt-4">
     <!-- Welcome Message -->
-    <div class="text-center mb-4">
+    <div class="mb-4 text-center">
         <h2>Selamat Datang, Mahasiswa!</h2>
         <p class="text-muted">Kelola pengajuan surat akademik Anda dengan mudah.</p>
     </div>
@@ -22,7 +23,7 @@
         @foreach ($cards as $card)
             <div class="col-md-3">
                 <div class="card text-white bg-{{ $card['color'] }} mb-4" data-bs-toggle="modal" data-bs-target="#{{ $card['modal'] }}">
-                    <div class="card-body text-center">
+                    <div class="text-center card-body">
                         <h5 class="card-title">{{ $card['title'] }}</h5>
                         <h3>{{ $card['count'] }}</h3>
                     </div>
@@ -32,8 +33,8 @@
     </div>
 
     <!-- Row 2: Tombol Ajukan Surat -->
-    <div class="text-center my-4">
-        <button type="button" class="btn btn-primary btn-hover-active" id="btnAjukanSurat" 
+    <div class="my-4 text-center">
+        <button type="button" class="btn btn-primary btn-hover-active" id="btnAjukanSurat"
             data-bs-toggle="popover" data-bs-html="true" data-bs-placement="bottom">
             + Ajukan Surat Baru
         </button>
@@ -44,8 +45,8 @@
     <div class="row">
         <!-- Riwayat Pengajuan -->
         <div class="col-md-8">
-            <div class="card mb-4">
-                <div class="card-header bg-primary text-white">Riwayat Pengajuan Surat Terbaru</div>
+            <div class="mb-4 card">
+                <div class="text-white card-header bg-primary">Riwayat Pengajuan Surat Terbaru</div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead class="table-light">
@@ -81,8 +82,8 @@
 
         <!-- Notifikasi -->
         <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-header bg-secondary text-white">Notifikasi</div>
+            <div class="mb-4 card">
+                <div class="text-white card-header bg-secondary">Notifikasi</div>
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item">Surat Keterangan Lulus telah selesai</li>

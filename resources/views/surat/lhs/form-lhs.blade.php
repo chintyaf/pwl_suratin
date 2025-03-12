@@ -1,4 +1,4 @@
-@extends('mhs.mahasiswa')
+@extends('layouts.index')
 @section('content')
 
 <div class="p-0 container-fluid">
@@ -28,7 +28,7 @@
             </label>
             <textarea id="keperluan" name="keperluan" class="form-control" rows="3" placeholder="Jelaskan keperluan Anda" required></textarea>
         </div>
-        
+
         <div class="justify-content-end d-flex">
             <button type="reset" class="px-5 py-2 mt-3 btn btn-secondary rounded-3 me-2">Reset</button>
             <button type="submit" class="px-5 py-2 mt-3 btn btn-primary rounded-3">Submit</button>

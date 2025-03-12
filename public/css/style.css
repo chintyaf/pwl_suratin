@@ -48,6 +48,7 @@
 
 .sidebar-item.active {
     margin: 0px 15px;
+    margin-bottom: 10px;
 }
 
 .sidebar-header.active a,

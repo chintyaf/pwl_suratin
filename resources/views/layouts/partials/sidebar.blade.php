@@ -5,6 +5,8 @@
             <img src="{{ asset('img/logo/SuratIn_Logo_v2.svg') }}" alt="" class="col-8">
         </a>
 
+
+
         <ul class="sidebar-nav">
                 <li class="sidebar-header {{ request()->is('dashboard') ? 'active' : '' }}">
                     <a class="" href="{{ route('dashboard') }}">
@@ -39,55 +41,74 @@
                 </li>
 
 
-            <li class="sidebar-header">
-                User
-            </li>
+            @if (request()->routeIs('admin.*'))
+                <li class="sidebar-header">
+                    User
+                </li>
 
-            <li class="sidebar-item {{ request()->is('create-account') ? 'active' : '' }}">
-                <a class="sidebar-link " href="{{ route('add-account') }}">
-                    <span class="">
-                        Buat Akun
+                <li class="sidebar-item {{ request()->is('create-account') ? 'active' : '' }}">
+                    <a class="sidebar-link " href="{{ route('add-account') }}">
+                        <span class="">
+                            Buat Akun
+                        </span>
+                    </a>
+                </li>
+            @else
+
+                <li class="sidebar-header">
+                    <span>
+                        Form Surat
                     </span>
-                </a>
-            </li>
 
-            <li class="sidebar-header">
-                <span>
-                    Form Surat
-                </span>
-            </li>
+                    <li class="sidebar-item {{ request()->is('form-sk-mhs-aktif') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('form-sk-mhs-aktif') }}">
+                            <span class="align-middle">
+                                Surat Keterangan Mahasiswa Aktif
+                            </span>
+                        </a>
+                    </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('form-sk-mhs-aktif') ? 'active' : '' }}" href="{{ route('form-sk-mhs-aktif') }}">
-                    <span class="align-middle">
-                        Surat Keterangan Mahasiswa Aktif
-                    </span>
-                </a>
-            </li>
+                    <li class="sidebar-item {{ request()->is('form-sp-tugas-mk') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('form-sp-tugas-mk') }}">
+                            <span class="align-middle">
+                                Surat Pengantar Tugas Mata Kuliah
+                            </span>
+                        </a>
+                    </li>
+                </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('form-sp-tugas-mk') ? 'active' : '' }}" href="{{ route('form-sp-tugas-mk') }}">
-                    <span class="align-middle">
-                        Surat Pengantar Tugas Mata Kuliah
-                    </span>
-                </a>
-            </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('form-sk-lulus') ? 'active' : '' }}" href="{{ route('form-sk-lulus') }}">
-                    <span class="align-middle">
-                        Surat Keterangan Lulus
-                    </span>
-                </a>
-            </li>
+                <li class="sidebar-item {{ request()->is('form-sk-lulus') ? 'active' : '' }}">
+                    <a class="sidebar-link " href="{{ route('form-sk-lulus') }}">
+                        <span class="align-middle">
+                            Surat Keterangan Lulus
+                        </span>
+                    </a>
+                </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('form-lhs') ? 'active' : '' }}" href="{{ route('form-lhs') }}">
-                    <span class="align-middle">
-                        Laporan Hasil Studi
-                    </span>
-                </a>
-            </li>
+                <li class="sidebar-item {{ request()->is('form-lhs') ? 'active' : '' }}">
+                    <a class="sidebar-link " href="{{ route('form-lhs') }}">
+                        <span class="align-middle">
+                            Laporan Hasil Studi
+                        </span>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-header">
+                    <span>Riwayat Pengajuan</span>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('history-mahasiswa') }}">
+                        Daftar Pengajuan Surat
+                    </a>
+                </li>
+
+            @endif
+
+
+
 
         </ul>
 

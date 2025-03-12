@@ -1,7 +1,7 @@
-@extends('mhs.mahasiswa')
+@extends('layouts.index')
 @section('content')
 
-<div class="container-fluid p-0">
+<div class="p-0 container-fluid">
     <form class="form">
         <div class="mb-3">
             <h1 class="align-middle d-inline">Form Surat Keterangan Lulus</h1>
