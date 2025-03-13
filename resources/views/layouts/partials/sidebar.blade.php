@@ -54,9 +54,7 @@
 
             @elseif (auth()->user()->id_role === '1')
             @elseif(auth()->user()->id_role === '2')
-            @elseif(auth()->user()->id_reple === '3')
-
-
+            @elseif(auth()->user()->id_role === '3')
                 <li class="sidebar-header">
                     <span>
                         Form Surat
