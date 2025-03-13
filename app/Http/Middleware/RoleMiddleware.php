@@ -8,13 +8,19 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware
 {
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        return "Hi";
-        // if (Auth::check() && Auth::user()->id_role == $role) {
-        //     return $next($request);
-        // }
+        if (!Auth::check()) {
+            return redirect('/login'); // Redirect to login if not authenticated
+        }
 
-        abort(403, 'Unauthorized action.');
+        // \Log::info('Current User Role: ' . Auth::user()->id_role);
+
+
+        if (!in_array(Auth::user()->id_role, $roles)) {
+            abort(403, 'Unauthorized'); // Deny access if role is not allowed
+        }
+
+        return $next($request);
     }
 }

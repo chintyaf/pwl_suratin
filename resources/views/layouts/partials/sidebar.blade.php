@@ -5,8 +5,6 @@
             <img src="{{ asset('img/logo/SuratIn_Logo_v2.svg') }}" alt="" class="col-8">
         </a>
 
-
-
         <ul class="sidebar-nav">
                 <li class="sidebar-header {{ request()->is('dashboard') ? 'active' : '' }}">
                     <a class="" href="{{ route('dashboard') }}">
@@ -16,7 +14,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link " href="{{ route('admin.dashboard') }}">
                         Admin
                     </a>
@@ -38,10 +36,10 @@
                     <a class="sidebar-link " href="{{ route('mhs.dashboard')}}">
                         Mahasiswa
                     </a>
-                </li>
+                </li> --}}
 
 
-            @if (request()->routeIs('admin.*'))
+            @if (auth()->user()->id_role === '0')
                 <li class="sidebar-header">
                     User
                 </li>
@@ -54,9 +52,10 @@
                     </a>
                 </li>
 
-            @elseif (request()->routeIs('kaprodi.*'))
-            @elseif(request()->routeIs('mo.*'))
-            @else
+            @elseif (auth()->user()->id_role === '1')
+            @elseif(auth()->user()->id_role === '2')
+            @elseif(auth()->user()->id_reple === '3')
+
 
                 <li class="sidebar-header">
                     <span>

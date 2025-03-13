@@ -2,14 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $person = 'Chintya';
-        $friends = ['Brig', 'Nat', 'Cipuh'];
+        return view('admin.index');
+    }
+
+    public function store(Request $request)
+    {
+        $validateData = validator($request->all(), [
+            'nik' => 'required|string|max:7|unique:dosen,nik',
+            'name' => 'required|string|max:100',
+            'birth_date' => 'required',
+            'email' => 'required|email|max:45|unique:dosen,email'
+        ])->validate();
+
+        $acc = new User($validateData);
+        $acc->save();
 
         return view('admin.index');
     }

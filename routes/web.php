@@ -8,42 +8,74 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('layouts.index');
-})->name('dashboard');
-
-Route::get('/dashboard', function () {
-    return Auth::check() ? "Logged in" : "Not logged in";
-})->name('dashboard');
-
-
-Route::get('/create-account', function () {
+Route::get('/test', function () {
     return view('admin.add-account');
-})->name('add-account');
-
-Route::controller(AdminController::class)->prefix('admin')->group(function () {
-    Route::get('dashboard', 'index')->name('admin.dashboard');
 });
 
-Route::controller(MOController::class)->prefix('mo')->group(function () {
-    Route::get('dashboard', 'index')->name('mo.dashboard');
+// DASHBOARD
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+})->middleware('auth');
+
+// Redirect dashboard
+Route::get('/dashboard', function () {
+    if (Auth::check() && Auth::user()->id_role === '0') {
+        return redirect()->route('admin.dashboard');
+    } else if (Auth::check() && Auth::user()->id_role === '1') {
+        return redirect()->route('kaprodi.dashboard');
+    } else if (Auth::check() && Auth::user()->id_role === '2') {
+        return redirect()->route('mo.dashboard');
+    } else if (Auth::check() && Auth::user()->id_role === '3') {
+        return redirect()->route('mhs.dashboard');
+    }
+})->name('dashboard');
+
+
+// ADMIN
+Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
+    Route::controller(AdminController::class)->prefix('admin')->group(function () {
+        Route::get('dashboard', 'index')->name('admin.dashboard');
+    });
+
+    Route::get('/create-account', function () {
+        return view('admin.add-account');
+    })->name('add-account');
 });
 
-Route::controller(KaprodiController::class)->prefix('kaprodi')->group(function () {
-    Route::get('dashboard', 'index')->name('kaprodi.dashboard');
+
+// KAPRODI
+Route::middleware(['auth', 'verified', 'role:1'])->group(function () {
+    Route::controller(KaprodiController::class)->prefix('kaprodi')->group(function () {
+        Route::get('dashboard', 'index')->name('kaprodi.dashboard');
+    });
 });
 
-Route::controller(MahasiswaController::class)->prefix('mahasiswa')->group(function () {
-    Route::get('dashboard', 'index')->name('mhs.dashboard');
+
+// MO
+Route::middleware(['auth', 'verified', 'role:2'])->group(function () {
+    Route::controller(MOController::class)->prefix('mo')->group(function () {
+        Route::get('dashboard', 'index')->name('mo.dashboard');
+    });
+});
+
+// MAHASISWA
+Route::middleware(['auth', 'verified', 'role:3'])->group(function () {
+    Route::controller(MahasiswaController::class)->prefix('mhs')->group(function () {
+        Route::get('dashboard', 'index')->name('mhs.dashboard');
+    });
+
+    Route::get('/mahasiswa/history', function () {
+        return view('mhs.history');
+    })->name('history-mahasiswa');
+
+    Route::get('/mahasiswa/notification', function () {
+        return view('mhs.notifikasi');
+    })->name('notif-mhs');
 });
 
 
-
-
+// SURAT
+// surat detil
 Route::get('/surat-detail', function () {
     return view('surat.box');
 });
@@ -61,8 +93,7 @@ Route::get('/sk-lulus/detail', function () {
     return view('surat.sk_lulus.detail');
 });
 
-
-
+// surat form
 Route::get('/form-lhs', function () {
     return view('surat.lhs.form-lhs');
 })->name('form-lhs');
@@ -78,52 +109,5 @@ Route::get('/form-sp-tugas-mk', function () {
 Route::get('/form-sk-lulus', function () {
     return view('surat.sk_lulus.form-surat-lulus');
 })->name('form-sk-lulus');
-
-
-
-Route::get('/mahasiswa/history', function () {
-    return view('mhs.history');
-})->name('history-mahasiswa');
-
-Route::get('/mahasiswa/notification', function () {
-    return view('mhs.notifikasi');
-})->name('notif-mhs');
-
-// Route::get('/dashboard-mahasiswa', function () {
-//     return view('mahasiswa.dashboard');
-// })->name('dashboard-mahasiswa');
-
-// Ga bisa AUTH =)
-
-// Route::get('/dashboard', function () {
-//     return Auth::check() ? "Logged in" : "Not logged in";
-// })->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('dashboard');
-// });
-
-// ADMIN
-// Route::middleware('auth')->group(function () {
-//     Route::get('/dashboard', function () {
-//         $user = Auth::user();
-
-//         return $user;
-//         if (!$user) {
-//             return response()->json(['error' => 'User not authenticated'], 401);
-//         }
-
-//         if ($user->id_role === '0') {
-//             return redirect()->route('admin.dashboard');
-//         } elseif ($user->id_role === '1') {
-//             return redirect('/dashboard/user');
-//         }
-
-//         return redirect('/');
-//     })->name('dashboard');
-
-//     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-// });
-
 
 require __DIR__ . '/auth.php';
