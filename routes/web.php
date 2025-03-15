@@ -5,6 +5,7 @@ use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MOController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,9 +38,22 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
         Route::get('dashboard', 'index')->name('admin.dashboard');
     });
 
-    Route::get('/create-account', function () {
-        return view('admin.add-account');
-    })->name('add-account');
+    // Create account
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/user', 'index')->name('user.index');
+
+        Route::get('/add-user', 'add')->name('user.add');
+        Route::post('/user/store', 'store')->name('user.store');
+
+        Route::get('/addmulti-user', 'multiAdd')->name('user.multiAdd');
+        Route::get('/addmulti-user/store', 'multiStore')->name('user.multiStore');
+
+
+
+        Route::get('/user/edit{id}', 'index')->name('user.edit');
+        Route::get('/user/update{id}', 'index')->name('user.update');
+        Route::get('/user/delete/{id}', 'index')->name('user.delete');
+    });
 });
 
 

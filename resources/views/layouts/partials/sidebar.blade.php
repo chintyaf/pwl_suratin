@@ -45,7 +45,7 @@
                 </li>
 
                 <li class="sidebar-item {{ request()->is('create-account') ? 'active' : '' }}">
-                    <a class="sidebar-link " href="{{ route('add-account') }}">
+                    <a class="sidebar-link " href="{{ route('user.add') }}">
                         <span class="">
                             Buat Akun
                         </span>
