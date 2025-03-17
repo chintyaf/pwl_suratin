@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Container\Attributes\DB;
 use Illuminate\Http\Request;
 
 class KaprodiController extends Controller
 {
     public function index()
     {
-        return view('kaprodi.index');
+        // $surat = DB("SELECT * FROM surat WHERE status = ?", ['menunggu']);
+
+        return view('surat.index');
     }
 }

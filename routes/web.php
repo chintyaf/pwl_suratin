@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
-    return view('admin.add-account');
+    return view('admin.add-user',['id_role' => '0']);
 });
 
 // DASHBOARD
@@ -40,20 +40,38 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
 
     // Create account
     Route::controller(UserController::class)->group(function () {
-        Route::get('/user', 'index')->name('user.index');
 
-        Route::get('/add-user', 'add')->name('user.add');
-        Route::post('/user/store', 'store')->name('user.store');
+        // Route::get('/add-user', 'add')->name('user.add');
+        // Route::post('/user/store', 'store')->name('user.store');
 
         Route::get('/addmulti-user', 'multiAdd')->name('user.multiAdd');
         Route::get('/addmulti-user/store', 'multiStore')->name('user.multiStore');
 
 
 
-        Route::get('/user/edit{id}', 'index')->name('user.edit');
-        Route::get('/user/update{id}', 'index')->name('user.update');
-        Route::get('/user/delete/{id}', 'index')->name('user.delete');
     });
+});
+
+// HOW TO MAKE THE FIRST ADMIN???
+Route::get('/box-modal', function () {
+    return view('layouts.partials.box');
+});
+
+// Route::get('/user/edit', function () {
+//     return view('user.detail');
+// })->name('user.edit');
+
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user', 'index')->name('user.index');
+
+    Route::get('/add-user', 'add')->name('user.add');
+    Route::post('/user/store', 'store')->name('user.store');
+    Route::get('/user/edit/{nip}', 'edit')->name('user.edit');
+    Route::post('/user/update/{id}', 'update')->name('user.update');
+    Route::get('/user/delete/{id}', 'delete')->name('user.delete');
+
+
 });
 
 

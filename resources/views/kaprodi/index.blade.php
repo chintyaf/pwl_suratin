@@ -6,9 +6,38 @@ Ketua Program Studi
         Dashboard
     </h1>
 
+    <div id="status" class="row">
+        @php
+            $cards = [
+                ['title' => 'Menunggu persetujuan', 'count' => 3, 'color' => '#fcfdff', 'txt-color' => '#13879b', 'modal' => 'modalDiproses'],
+                ['title' => 'Disetujui - Menunggu Dokumen', 'count' => 10, 'color' => '#fff7e8', 'txt-color' => '#faad14 ', 'modal' => 'modalMenunggu'],
+                ['title' => 'Selesai', 'count' => 2, 'color' => '#eef9e8', 'txt-color' => '#52c41a', 'modal' => 'modalSelesai'],
+                ['title' => 'Ditolak', 'count' => 1, 'color' => '#ffeded', 'txt-color' => '#ff4d4f', 'modal' => 'modalDitolak'],
+            ];
+        @endphp
+
+        <div class="d-flex">
+            @foreach ($cards as $card)
+                <div class="px-2 col-3">
+                    <div class="mb-4 text-white card" data-bs-toggle="modal" data-bs-target="#{{ $card['modal'] }}">
+                        <div style="background-color:{{ $card['color'] }}"
+                            class="text-center card-header status">
+                            <h5 style="color:{{ $card['txt-color'] }};font-size: 16px" class="m-0 card-title">{{ $card['title'] }}</h5>
+                        </div>
+                        <div class="text-center card-body">
+                            <h3 style="font-weight: 800">{{ $card['count'] }}</h3>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
     @include('layouts.partials.search')
 
     <div class="p-2 table_component rounded-4" role="region" tabindex="0">
+
+
 
         <div class="row">
             <div class="col-12 d-flex">

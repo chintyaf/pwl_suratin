@@ -22,6 +22,21 @@
     background-color: #13879b !important;
 }
 
+#submit-btn .btn{
+    min-width: 100px;
+    min-height: 35px;
+}
+
+.btn-danger{
+    background-color:#ff4d4f !important;
+    color: #ffffff !important;
+}
+
+.btn-success{
+    background-color:#13879b !important;
+    color: #fff !important;
+}
+
 /* SIDEBAR  */
 .sidebar {
     background: #fff;
@@ -194,4 +209,62 @@
     padding: 10px 20px;
     background: #f8f9fa;
     font-weight: bold;
+}
+
+#status .card {
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+#status .card-header.status {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    max-height: 50px;
+    text-align: center;
+    font-weight: bold;
+
+    line-clamp: 2; /* Limit to 2 lines */
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    padding: 5px; /* Ensure spacing */
+}
+
+#status .card-header h5 {
+    width: 100%;
+    color: black;
+    font-size: 16px;
+    text-align: center;
+
+    /* Ensure it wraps correctly */
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+
+
+.card {
+    border: 2px solid #eef0f5;
+}
+
+.card-header {
+    min-height: 53px;
+    /* font-weight: bold; */
+    background-color: #f9feff;
+    color: white;
+}
+
+.card-header h5 {
+    color: #13879b;
+}
+
+.pc-link{
+    padding-left:20px;
+}
+
+.modal-body{
+    background:white;
 }

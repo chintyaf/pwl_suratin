@@ -46,6 +46,10 @@
                                             id="loadSurat001">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
+                                        <a href="{{ route('user.delete', $user->nip) }}" type="button"
+                                            class="delete-button btn btn-danger">
+                                            <i class="align-middle" data-feather="delete"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -69,4 +73,35 @@
 @endsection
 
 @section('ExtraJS')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+console.log("test")
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".delete-button").forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault(); // Mencegah navigasi langsung
+
+            let deleteUrl = this.getAttribute("href");
+
+            Swal.fire({
+                title: "Apakah Anda yakin?",
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Batal",
+                reverseButtons: true    
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl; // Redirect ke URL delete
+                }
+            });
+        });
+    });
+});
+
+</script>
 @endsection

@@ -34,10 +34,10 @@
     @endif
 
 </div>
-<div class="modal-footer">
+{{-- <div class="modal-footer"> --}}
     {{-- Kaprodi --}}
     {{-- <button type="button" class="btn btn-success">Terima</button>
     <button type="button" class="btn btn-danger">Tolak</button> --}}
 
     {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-</div>
+{{-- </div> --}}

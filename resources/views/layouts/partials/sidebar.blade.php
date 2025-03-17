@@ -40,11 +40,15 @@
 
 
             @if (auth()->user()->id_role === '0')
-                <li class="sidebar-header">
-                    User
+                <li class="sidebar-header {{ request()->is('user') ? 'active' : '' }}">
+                    <a class="" href="{{ route('user.index') }}">
+                        <span class="">
+                            User
+                        </span>
+                    </a>
                 </li>
 
-                <li class="sidebar-item {{ request()->is('create-account') ? 'active' : '' }}">
+                <li class="sidebar-item {{ request()->is('add-user') ? 'active' : '' }}">
                     <a class="sidebar-link " href="{{ route('user.add') }}">
                         <span class="">
                             Buat Akun

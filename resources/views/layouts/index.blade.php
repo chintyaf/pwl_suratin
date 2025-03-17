@@ -15,32 +15,43 @@
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
     @yield('ExtraCSS')
+    @yield('ExtraCSS-layout')
 
 	<title>SuratIn</title>
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 	<div class="wrapper">
         {{-- NAVBAR --}}
-        @include('layouts.partials.sidebar')
+
+        {{-- @include('layouts.partials.navbar2') --}}
+
+        @include('layouts.partials.sidebar2')
+        {{-- @include('layouts.partials.sidebar') --}}
 
 
+        {{-- <div class="pc-container">
+            <div class="pc-content">
+                @yield('content')
+
+            </div>
+        </div> --}}
 		<div class="main">
             @include('layouts.partials.navbar')
-
 
 			<main class="content">
 
                 @yield('content')
 			</main>
 
-            {{-- @include('layouts.partials.footer') --}}
+            @include('layouts.partials.footer')
 
 		</div>
 	</div>

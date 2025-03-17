@@ -25,28 +25,35 @@
                                     <th>NIP</th>
                                     <th>Nama</th>
                                     <th>Email</th>
-                                    <th>Jurusan</th>
+                                    {{-- <th>Jurusan</th> --}}
                                     <th class="">Role</th>
                                     <th class="">Detil</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($users as $user)
                                 <tr>
-                                    <td>2372002</td>
-                                    <td>Jennifer Charity Sharon Lukita</td>
-                                    <td class="d-none d-xl-table-cell">2372002@maranatha.ac.id</td>
-                                    <td class="d-none d-xl-table-cell">Teknik Informatika</td>
-                                    <td class="d-none d-xl-table-cell">Mahasiswa</td>
+                                    <td>{{ $user->nip }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td class="d-none d-xl-table-cell">{{ $user->email }}</td>
+                                    {{-- <td class="d-none d-xl-table-cell">{{ $user->alamat }}</td> --}}
+                                    <td class="d-none d-xl-table-cell">{{ $user->getRole->name_role ?? 'None' }}</td>
                                     <td class="d-none d-md-table-cell">
                                         <button type="button" class="btn btn-primary"
                                             data-bs-toggle="modal"
                                             data-bs-target="#myModal"
-                                            data-surat = "sk_tugas_mk"
-                                            id="loadSurat001">
+                                            data-type = "user"
+                                            data-id = "{{ $user->nip }}"
+                                            id="{{ $user->nip }}">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
+                                        <a href="{{ route('user.delete', $user->nip) }}" type="button"
+                                            class="delete-button btn btn-danger">
+                                            <i class="align-middle" data-feather="delete"></i>
+                                        </a>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -67,4 +74,5 @@
 @endsection
 
 @section('ExtraJS')
+    <script src="{{ asset('js/box.js') }}"></script>
 @endsection
