@@ -33,8 +33,11 @@
 
         {{-- @include('layouts.partials.navbar2') --}}
 
-        @include('layouts.partials.sidebar2')
         {{-- @include('layouts.partials.sidebar') --}}
+
+        @if(!request()->is('test'))
+        @include('layouts.partials.sidebar2')
+        @endif
 
 
         {{-- <div class="pc-container">
@@ -44,7 +47,9 @@
             </div>
         </div> --}}
 		<div class="main">
-            @include('layouts.partials.navbar')
+            @if(!request()->is('test'))
+            @include('layouts.partials.sidebar2')
+            @endif
 
 			<main class="content">
 
