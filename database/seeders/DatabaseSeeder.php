@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Container\Attributes\DB;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB as FacadesDB;
+use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB as FacadesDB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -16,18 +17,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        DB::table('role')->insert([
 
-        User::factory()->create([
             [
-                'nip' => 'adm001',
-                'name' => 'admin01',
-                'email' => 'johndoe@example.com',
+                'id_role' => '0',
+                'name_role' => 'Admin'
+            ],
+
+            [
+                'id_role' => '1',
+                'name_role' => 'Kepala Program Studi'
+            ],
+
+            [
+                'id_role' => '2',
+                'name_role' => 'Manajemen Operasional'
+            ],
+
+            [
+                'id_role' => '3',
+                'name_role' => 'Mahasiswa'
+            ],
+
+        ]);
+
+        DB::table('users')->insert([
+            [
+                'nip' => 'adm000',
+                'name' => 'admin00',
+                'email' => 'admin@example.com',
                 'password' => Hash::make('12345678'),
                 'id_role' => '0',
             ],

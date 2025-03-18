@@ -53,7 +53,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'id_role' => $request->role
+            'id_role' => $request->id_role
         ]);
 
         event(new Registered($user));
