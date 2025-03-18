@@ -11,6 +11,6 @@ class KaprodiController extends Controller
     {
         // $surat = DB("SELECT * FROM surat WHERE status = ?", ['menunggu']);
 
-        return view('surat.index');
+        return view('kaprodi.index');
     }
 }

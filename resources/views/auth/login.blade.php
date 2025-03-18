@@ -8,19 +8,13 @@
         <!-- NIP -->
         <div>
             <x-input-label for="nip" :value="__('NIP')" />
-            {{-- <x-text-input id="nip" class="block w-full mt-1" type="text" name="nip" :value="old('nip')" required autofocus autocomplete="nip" /> --}}
-            <x-text-input id="nip" class="block w-full mt-1" type="text" name="nip" value="ADM002" required autofocus autocomplete="nip" />
+            <x-text-input id="nip" class="block w-full mt-1" type="text" name="nip" value="" required autofocus autocomplete="nip" />
             <x-input-error :messages="$errors->get('nip')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-
-            {{-- <x-text-input id="password" class="block w-full mt-1"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" /> --}}
 
             <x-text-input id="password" class="block w-full mt-1"
             type="password"

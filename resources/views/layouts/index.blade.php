@@ -29,15 +29,15 @@
 
 <body>
 	<div class="wrapper">
+        {{ Auth::check() }}
         {{-- NAVBAR --}}
 
         {{-- @include('layouts.partials.navbar2') --}}
 
         {{-- @include('layouts.partials.sidebar') --}}
-
-        @if(!request()->is('test'))
+        @auth
         @include('layouts.partials.sidebar2')
-        @endif
+        @endauth
 
 
         {{-- <div class="pc-container">
@@ -47,9 +47,9 @@
             </div>
         </div> --}}
 		<div class="main">
-            @if(!request()->is('test'))
-            @include('layouts.partials.sidebar2')
-            @endif
+            @auth
+            @include('layouts.partials.navbar')
+            @endauth
 
 			<main class="content">
 

@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'nip',
+        'nip' => 'string',
         'name',
         'email',
         'password',
@@ -31,6 +31,8 @@ class User extends Authenticatable
     protected $primaryKey = 'nip';
 
     public $incrementing = false;
+
+    public $keyType = 'string';
 
     /**
      * The attributes that should be hidden for serialization.
@@ -50,6 +52,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+            'nip' => 'string',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];

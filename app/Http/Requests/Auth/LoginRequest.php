@@ -5,9 +5,12 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
+
 
 class LoginRequest extends FormRequest
 {
@@ -41,6 +44,8 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        // dd($this->only('nip', 'password'));
+
         if (! Auth::attempt($this->only('nip', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
@@ -51,6 +56,23 @@ class LoginRequest extends FormRequest
 
         RateLimiter::clear($this->throttleKey());
     }
+
+
+    // public function authenticate(): void
+    // {
+    //     $this->ensureIsNotRateLimited();
+
+    //     $user = \App\Models\User::where('nip', $this->input('nip'))->first();
+
+    //     if (!$user || !Hash::check($this->input('12345678'), $user->password)) {
+    //         throw ValidationException::withMessages([
+    //             'nip' => 'Invalid credentials.',
+    //         ]);
+    //     }
+
+    //     Auth::login($user);
+    // }
+
 
     /**
      * Ensure the login request is not rate limited.
