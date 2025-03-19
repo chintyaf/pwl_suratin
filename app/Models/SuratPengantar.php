@@ -13,6 +13,7 @@ class SuratPengantar extends Model
     public $incrementing = false; 
     
     protected $fillable = [
+        'surat_id_surat',
         'ditujukan_kepada', 
         'mata_kuliah', 
         'periode',

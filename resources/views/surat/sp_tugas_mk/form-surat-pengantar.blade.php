@@ -4,7 +4,9 @@
 <div class="p-0 container-fluid">
     <form class="form" method="POST" action="{{ route('surat_pengantarStore') }}">
         @csrf
-        <input type="hidden" id="nip" name="nip" value = "nip">
+        
+        <input type="hidden" id="nip" name="nip" value = "{{ auth()->user()->nip }}">
+        <input type="text" id="surat_id_surat" name="surat_id_surat" value = "Surat002">
         <div class="mb-3">
             <h1 class="align-middle d-inline">Pengajuan Surat Pengantar Tugas Mata Kuliah</h1>
             <p class="text-muted">Silakan isi data berikut untuk mengajukan surat pengantar tugas mata kuliah.</p>

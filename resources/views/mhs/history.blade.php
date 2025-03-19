@@ -13,37 +13,30 @@
                         <th>Jenis Surat</th>
                         <th>Tanggal Pengajuan</th>
                         <th>Status</th>
-                        <th>Aksi</th>
+                        <th>Detil</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $suratList = [
-                            ['jenis' => 'Surat Keterangan Mahasiswa Aktif', 'tanggal' => '10 Maret 2025', 'status' => 'Diproses', 'badge' => 'warning'],
-                            ['jenis' => 'Surat Keterangan Lulus', 'tanggal' => '5 Maret 2025', 'status' => 'Selesai', 'badge' => 'success'],
-                            ['jenis' => 'Surat Pengantar Tugas', 'tanggal' => '12 Februari 2025', 'status' => 'Ditolak', 'badge' => 'danger'],
-                            ['jenis' => 'Surat Laporan Hasil Studi', 'tanggal' => '20 Januari 2025', 'status' => 'Selesai', 'badge' => 'success'],
-                            ['jenis' => 'Surat Cuti Akademik', 'tanggal' => '18 Maret 2025', 'status' => 'Diproses', 'badge' => 'warning'],
-                            ['jenis' => 'Surat Rekomendasi Beasiswa', 'tanggal' => '2 Februari 2025', 'status' => 'Ditolak', 'badge' => 'danger'],
-                        ];
-                    @endphp
-
-                    @foreach($suratList as $index => $surat)
+                    @foreach ($surats as $surat)
                         <tr>
-                            <td>{{ $surat['jenis'] }}</td>
-                            <td>{{ $surat['tanggal'] }}</td>
-                            <td><span class="badge bg-{{ $surat['badge'] }}">{{ $surat['status'] }}</span></td>
+                            <td>{{ $surat->type_surat }}</td>
+                            <td>{{ $surat->created_at }}</td>
                             <td>
-                                <button class="btn btn-primary btn-sm"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="{{ $surat['status'] == 'Selesai' ? '#modalSelesai' : ($surat['status'] == 'Ditolak' ? '#modalDitolak' : '#modalDiproses') }}"
-                                    data-jenis="{{ $surat['jenis'] }}"
-                                    data-tanggal="{{ $surat['tanggal'] }}"
-                                    data-status="{{ $surat['status'] }}">
-                                    Lihat
-                                </button>
+                                {{-- <span class="badge bg-{{ $surat['badge'] }}">{{ $surat['status'] }}</span> --}}
+                                {{ $surat->status }}
                             </td>
-                        </tr>
+                            <td>
+                                    
+                                <button class="btn btn-primary btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="{{ $surat['status'] == 'Selesai' ? '#modalSelesai' : ($surat['status'] == 'Ditolak' ? '#modalDitolak' : '#modalDiproses') }}"
+                                data-jenis="{{ $surat['jenis'] }}"
+                                data-tanggal="{{ $surat['tanggal'] }}"
+                                data-status="{{ $surat['status'] }}">
+                                Lihat
+                            </button>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>

@@ -95,11 +95,12 @@ Route::middleware(['auth', 'verified', 'role:2'])->group(function () {
 Route::middleware(['auth', 'verified', 'role:3'])->group(function () {
     Route::controller(MahasiswaController::class)->prefix('mhs')->group(function () {
         Route::get('dashboard', 'index')->name('mhs.dashboard');
+        Route::get('history', 'history')->name('mhs.history-surat');
     });
 
-    Route::get('/mahasiswa/history', function () {
-        return view('mhs.history');
-    })->name('history-mahasiswa');
+    // Route::get('/mahasiswa/history', function () {
+    //     return view('mhs.history');
+    // })->name('history-mahasiswa');
 
     Route::get('/mahasiswa/notification', function () {
         return view('mhs.notifikasi');

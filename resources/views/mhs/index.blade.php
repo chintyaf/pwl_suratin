@@ -12,20 +12,24 @@
     <!-- Row 1: Ringkasan -->
     <div class="row">
         @php
-            $cards = [
-                ['title' => 'Surat Diproses', 'count' => 3, 'color' => 'primary', 'modal' => 'modalDiproses'],
-                ['title' => 'Surat Selesai', 'count' => 10, 'color' => 'success', 'modal' => 'modalSelesai'],
-                ['title' => 'Menunggu ACC', 'count' => 2, 'color' => 'warning', 'modal' => 'modalMenunggu'],
-                ['title' => 'Ditolak', 'count' => 1, 'color' => 'danger', 'modal' => 'modalDitolak'],
-            ];
-        @endphp
+        $cards = [
+            ['title' => 'Menunggu persetujuan', 'count' => $menunggu, 'color' => '#fcfdff', 'txt-color' => '#13879b', 'modal' => 'modalDiproses'],
+            ['title' => 'Disetujui - Menunggu Dokumen', 'count' => $diproses, 'color' => '#fff7e8', 'txt-color' => '#faad14 ', 'modal' => 'modalMenunggu'],
+            ['title' => 'Selesai', 'count' => $selesai, 'color' => '#eef9e8', 'txt-color' => '#52c41a', 'modal' => 'modalSelesai'],
+            ['title' => 'Ditolak', 'count' => $ditolak, 'color' => '#ffeded', 'txt-color' => '#ff4d4f', 'modal' => 'modalDitolak'],
+        ];
+    @endphp
 
+    <div class="d-flex">
         @foreach ($cards as $card)
-            <div class="col-md-3">
-                <div class="card text-white bg-{{ $card['color'] }} mb-4" data-bs-toggle="modal" data-bs-target="#{{ $card['modal'] }}">
+            <div class="px-2 col-3">
+                <div class="mb-4 text-white card" data-bs-toggle="modal" data-bs-target="#{{ $card['modal'] }}">
+                    <div style="background-color:{{ $card['color'] }}"
+                        class="text-center card-header status">
+                        <h5 style="color:{{ $card['txt-color'] }};font-size: 16px" class="m-0 card-title">{{ $card['title'] }}</h5>
+                    </div>
                     <div class="text-center card-body">
-                        <h5 class="card-title">{{ $card['title'] }}</h5>
-                        <h3>{{ $card['count'] }}</h3>
+                        <h3 style="font-weight: 800">{{ $card['count'] }}</h3>
                     </div>
                 </div>
             </div>
@@ -43,45 +47,50 @@
 
     <!-- Row 3: Riwayat Pengajuan & Notifikasi -->
     <div class="row">
-        <!-- Riwayat Pengajuan -->
-        <div class="col-md-8">
-            <div class="mb-4 card">
-                <div class="text-white card-header bg-primary">Riwayat Pengajuan Surat Terbaru</div>
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead class="table-light">
+        <div class="col-12 d-flex">
+            <div class="card flex-fill">
+                <div class="card-header">
+
+                    <h5 class="px-3 py-2 mb-0 card-title">Riwayat Pengajuan Surat Terbaru</h5>
+                </div>
+                <div class="px-4 pb-4">
+                    <table class="table p-2 my-0 table-hover">
+                        <thead>
                             <tr>
                                 <th>Jenis Surat</th>
                                 <th>Tanggal Pengajuan</th>
                                 <th>Status</th>
-                                <th>Aksi</th>
+                                <th>Dokumen</th>
+                                <th>Detil</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($surats as $surat)
                             <tr>
-                                <td>Surat Keterangan Mahasiswa Aktif</td>
-                                <td>10 Maret 2025</td>
-                                <td><span class="badge bg-warning">Menunggu ACC</span></td>
+                                <td>{{ $surat->type_surat }}</td>
+                                <td>{{ $surat->created_at }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalSurat1">Lihat</button>
+                                    {{-- <span class="badge bg-success">Selesai</span> --}}
+                                    {{ $surat->status }}
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Surat Keterangan Lulus</td>
-                                <td>5 Maret 2025</td>
-                                <td><span class="badge bg-success">Selesai</span></td>
+                                <td>{{ $surat->dokumen?? 'Tidak ada Dokumen' }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalSurat2">Lihat</button>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
+    </div>
+
+    <div class="row">
+
         <!-- Notifikasi -->
-        <div class="col-md-4">
+        {{-- <div class="col-md-4">
             <div class="mb-4 card">
                 <div class="text-white card-header bg-secondary">Notifikasi</div>
                 <div class="card-body">
@@ -92,7 +101,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 

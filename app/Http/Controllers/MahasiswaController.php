@@ -2,12 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Surat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MahasiswaController extends Controller
 {
     public function index()
-    {
-        return view('mhs.index');
+    {   
+        $nip = Auth::user()->nip;
+        
+        $menunggu = Surat::where('nip', $nip)->where('status', 'Menunggu Persetujuan')->count();
+        $diproses = Surat::where('nip', $nip)->where('status', 'Disetujui - Menunggu Dokumen')->count();
+        $selesai = Surat::where('nip', $nip)->where('status', 'Selesai')->count();
+        $ditolak = Surat::where('nip', $nip)->where('status', 'Ditolak')->count();
+
+        $surats = Surat::where('nip', $nip)
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return view('mhs.index', compact('menunggu', 'diproses', 'selesai', 'ditolak'))->with('surats', $surats);
+
+    }
+
+    public function history(){
+        $nip = Auth::user()->nip;
+
+        $surats = Surat::where('nip', $nip)->get();
+
+        return view('mhs.history')->with('surats', $surats);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Models\SuratPengantar;
 
@@ -20,17 +21,32 @@ class SuratPengantarController extends Controller
      */
     public function store(Request $request)
     {
+
+        $surat = new Surat([
+            'id_surat' => $request->surat_id_surati,
+            'status' => "Menunggu Persetujuan",
+            'nip' => $request->nip,
+            'type_surat' => "Surat Pengantar Mata Kuliah"
+        ]);
+        // return $request;
+
         $validatedData = validator($request->all(),[
+            'surat_id_surat' => 'required|string',
             'ditujukan_kepada' => 'required|string',
             'mata_kuliah' => 'required|string',
             'periode' => 'required|string',
             'nama_anggota_kelompok' => 'required|string',
             'tujuan' => 'required|string',
             'topik' => 'required|string',
-            'nip' => 'required|string', // Validasi NIP juga
         ])->validate();
+
         $surat_pengantar = new SuratPengantar($validatedData);
+        
+        $surat->save();
         $surat_pengantar -> save();
+
+
+        // dd($surat, $surat_pengantar);
 
         return redirect(route('mhs.dashboard'));
 
