@@ -80,7 +80,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', "unique:users,email,{$user->nip},nip"],
             // 'password' => ['required', Rules\Password::defaults()],
-            'id_role' => ['required', 'exists:role,id_role '],
+            'id_role' => ['required', 'exists:role,id_role'],
 
         ],[
             'id_role.exists' => 'The selected role does not exist. Please choose a valid role.',

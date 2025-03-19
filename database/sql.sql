@@ -101,12 +101,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `suratin`.`surat_keterangan_mahasiswa_aktif` ;
 
 CREATE TABLE IF NOT EXISTS `suratin`.`surat_keterangan_mahasiswa_aktif` (
-  `id_surat` INT NOT NULL,
   `surat_id_surat` VARCHAR(25) NOT NULL,
   `periode` VARCHAR(20) NOT NULL,
   `alamat_bandung` VARCHAR(300) NOT NULL,
   `keperluan_pengajuan` VARCHAR(200) NOT NULL,
-  PRIMARY KEY (`id_surat`),
   INDEX `fk_surat_keterangan_mahasiswa_aktif_surat1_idx` (`surat_id_surat` ASC) ,
   CONSTRAINT `fk_surat_keterangan_mahasiswa_aktif_surat1`
     FOREIGN KEY (`surat_id_surat`)

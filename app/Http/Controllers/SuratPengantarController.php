@@ -23,7 +23,7 @@ class SuratPengantarController extends Controller
     {
 
         $surat = new Surat([
-            'id_surat' => $request->surat_id_surati,
+            'id_surat' => $request->surat_id_surat,
             'status' => "Menunggu Persetujuan",
             'nip' => $request->nip,
             'type_surat' => "Surat Pengantar Mata Kuliah"
@@ -41,7 +41,7 @@ class SuratPengantarController extends Controller
         ])->validate();
 
         $surat_pengantar = new SuratPengantar($validatedData);
-        
+
         $surat->save();
         $surat_pengantar -> save();
 
