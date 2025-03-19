@@ -19,13 +19,15 @@
         </div>
 
         <div class="mb-3">
-            <label for="semester" class="form-label">Semester</label>
-            <select name="semester" id="semester" class="mb-3 form-select" required>
+            <label for="periode" class="form-label">Periode</label>
+            {{-- <select name="periode" id="periode" class="mb-3 form-select" required>
                 <option selected>Choose</option>
                 @for ($i = 1; $i <= 10; $i++)
                     <option>{{ $i }}</option>
                 @endfor
-            </select>
+            </select> --}}
+            <input type="text" id="periode" name="periode" class="form-control" placeholder="Contoh : Genap 2025/2026" required>
+
         </div>
 
         <div class="mb-3">

@@ -2,7 +2,9 @@
 @section('content')
 
 <div class="p-0 container-fluid">
-    <form class="form">
+    <form class="form" method="POST" action="{{ route('surat_pengantarStore') }}">
+        @csrf
+        <input type="hidden" id="nip" name="nip" value = "nip">
         <div class="mb-3">
             <h1 class="align-middle d-inline">Pengajuan Surat Pengantar Tugas Mata Kuliah</h1>
             <p class="text-muted">Silakan isi data berikut untuk mengajukan surat pengantar tugas mata kuliah.</p>
@@ -15,21 +17,34 @@
         </div>
 
         <div class="mb-3">
-            <label for="mata_kuliah" class="form-label">Nama Mata Kuliah - Kode Mata Kuliah</label>
-            <p class="text-muted">Contoh: Proses Bisnis - IN255</p>
-            <input type="text" id="mata_kuliah" name="mata_kuliah" class="form-control" placeholder="Masukkan mata kuliah dan kode" required>
+            <label for="mata_kuliah" class="form-label fw-bold">Nama Mata Kuliah - Kode Mata Kuliah</label>
+            <div class="dropdown w-100">
+                <button class="form-control d-flex justify-content-between align-items-center dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span id="dropdownDisplay">Pilih Mata Kuliah</span>
+                </button>
+                <div class="dropdown-menu w-100 p-2">
+                    <input type="text" class="form-control mb-2" id="searchInput" placeholder="Cari Mata Kuliah">
+                    <ul class="list-unstyled mb-0" id="dropdownList">
+                        <li><a class="dropdown-item" href="#">Proses Bisnis - IN255</a></li>
+                        <li><a class="dropdown-item" href="#">Dasar Pemrograman - IN220</a></li>
+                        <li><a class="dropdown-item" href="#">Web Dasar - IN212</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Hidden input -->
+            <input type="hidden" name="mata_kuliah" id="mata_kuliah" required>
         </div>
 
         <div class="mb-3">
-            <label for="semester" class="form-label">Semester</label>
-            <p class="text-muted">Isikan dengan semester yang sedang ditempuh saat ini (contoh: Semester Genap 23/24)</p>
-            <input type="text" id="semester" name="semester" class="form-control" placeholder="Masukkan semester" required>
+            <label for="periode" class="form-label">Periode</label>
+            <p class="text-muted">Isikan dengan Periode yang sedang ditempuh saat ini (contoh: Genap 23/24)</p>
+            <input type="text" id="periode" name="periode" class="form-control" placeholder="Masukkan Periode" required>
         </div>
 
         <div class="mb-3">
-            <label for="data_mahasiswa" class="form-label">Data Mahasiswa</label>
+            <label for="nama_anggota_kelompok" class="form-label">Data Mahasiswa</label>
             <p class="text-muted">Nama dan NRP tiap mahasiswa (contoh: Mahasiswa 1 - 15720xx; Mahasiswa 2 - 15720xx; dst)</p>
-            <textarea id="data_mahasiswa" name="data_mahasiswa" class="form-control" rows="3" placeholder="Masukkan data mahasiswa" required></textarea>
+            <textarea id="nama_anggota_kelompok" name="nama_anggota_kelompok" class="form-control" rows="3" placeholder="Masukkan data mahasiswa" required></textarea>
         </div>
 
         <div class="mb-3">
@@ -48,5 +63,22 @@
         </div>
     </form>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#searchInput').on('input', function () {
+            let value = $(this).val().toLowerCase();
+            $('#dropdownList li').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+
+        $('#dropdownList').on('click', 'li', function () {
+            var selected = $(this).text();
+            $('#dropdownDisplay').text(selected);
+            $('#mata_kuliah').val(selected); // Set hidden input value
+        });
+    });
+</script>
 
 @endsection

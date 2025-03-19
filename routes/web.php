@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SuratPengantarController;
 
 Route::get('/test', function () {
     return view('admin.add-user',['id_role' => '0']);
@@ -103,6 +104,10 @@ Route::middleware(['auth', 'verified', 'role:3'])->group(function () {
     Route::get('/mahasiswa/notification', function () {
         return view('mhs.notifikasi');
     })->name('notif-mhs');
+
+    Route::get('/surat_pengantar/create', [SuratPengantarController::class, 'create'])->name('surat_pengantarCreate');
+    Route::post('/surat_pengantar/create', [SuratPengantarController::class, 'store'])->name('surat_pengantarStore');
+
 });
 
 
