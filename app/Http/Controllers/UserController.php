@@ -40,13 +40,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        // return $request;
-        $validateData = validator($request->all(), [
-            'nip' => ['required', 'string', 'max:7', 'unique:users,nip'],
+        $request->validate([
+            'nip' => ['required', 'string', 'max:7', 'unique:users'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'string'],
-        ])->validate();
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', Rules\Password::defaults()],
+            'id_role' => ['required', 'string', 'exists:role,id_role'],
+        ]);
 
         $user = User::create([
             'nip' => $request->nip,
@@ -75,11 +75,15 @@ class UserController extends Controller
         // return $request;
 
         $user = User::findOrFail($request->nip); // Pastikan user ditemukan, jika tidak maka error 404
-        $validateData = $request->validate([
-            // 'nip' => ['required', 'string', 'max:7', "unique:users,nip,{$user->nip},nip"],
+        $request->validate([
+            'nip' => ['required', 'string', 'max:7', "unique:users,nip,{$user->nip},nip"],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', "unique:users,email,{$user->nip},nip"],
-            'password' => ['nullable', 'string'],
+            // 'password' => ['required', Rules\Password::defaults()],
+            'id_role' => ['required', 'exists:role,id_role '],
+
+        ],[
+            'id_role.exists' => 'The selected role does not exist. Please choose a valid role.',
         ]);
 
         // Update user
@@ -87,7 +91,7 @@ class UserController extends Controller
             'nip' => $request->nip,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password ? Hash::make($request->password) : $user->password,
+            // 'password' => $request->password ? Hash::make($request->password) : $user->password,
             'id_role' => $request->id_role
         ]);
 

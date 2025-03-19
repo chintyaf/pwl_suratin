@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
-    return view('admin.add-user',['id_role' => '0']);
+    return view('admin.add-user', ['id_role' => '0']);
 });
 
 // DASHBOARD
@@ -19,16 +19,33 @@ Route::get('/', function () {
 })->middleware('auth');
 
 // Redirect dashboard
+// Route::get('/dashboard', function () {
+//     if (Auth::check() && Auth::user()->id_role === '0') {
+//         return redirect()->route('admin.dashboard');
+//     } else if (Auth::check() && Auth::user()->id_role === '1') {
+//         return redirect()->route('kaprodi.dashboard');
+//     } else if (Auth::check() && Auth::user()->id_role === '2') {
+//         return redirect()->route('mo.dashboard');
+//     } else if (Auth::check() && Auth::user()->id_role === '3') {
+//         return redirect()->route('mhs.dashboard');
+//     }
+// })->name('dashboard');
+
 Route::get('/dashboard', function () {
-    if (Auth::check() && Auth::user()->id_role === '0') {
-        return redirect()->route('admin.dashboard');
-    } else if (Auth::check() && Auth::user()->id_role === '1') {
-        return redirect()->route('kaprodi.dashboard');
-    } else if (Auth::check() && Auth::user()->id_role === '2') {
-        return redirect()->route('mo.dashboard');
-    } else if (Auth::check() && Auth::user()->id_role === '3') {
-        return redirect()->route('mhs.dashboard');
+    if (!Auth::check()) {
+        return redirect()->route('login'); // Redirect to login if not authenticated
     }
+
+    $routes = [
+        '0' => 'admin.dashboard',
+        '1' => 'kaprodi.dashboard',
+        '2' => 'mo.dashboard',
+        '3' => 'mhs.dashboard',
+    ];
+
+    return isset($routes[Auth::user()->id_role])
+        ? redirect()->route($routes[Auth::user()->id_role])
+        : abort(403, 'Unauthorized'); // Handle undefined roles
 })->name('dashboard');
 
 
@@ -40,15 +57,22 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
 
     // Create account
     Route::controller(UserController::class)->group(function () {
+        Route::get('/user', 'index')->name('user.index');
+        Route::get('/user/admin', 'lsAdmin')->name('user.lsadmin');
+        Route::get('/user/kaprodi', 'ls')->name('user.lskaprodi');
+        Route::get('/user/mo', 'index')->name('user.lsmo');
+        Route::get('/user/mhs', 'index')->name('user.lsmhs');
 
-        // Route::get('/add-user', 'add')->name('user.add');
-        // Route::post('/user/store', 'store')->name('user.store');
+
+
+        Route::get('/add-user', 'add')->name('user.add');
+        Route::post('/user/store', 'store')->name('user.store');
+        Route::get('/user/edit/{nip}', 'edit')->name('user.edit');
+        Route::post('/user/update/{id}', 'update')->name('user.update');
+        Route::get('/user/delete/{id}', 'delete')->name('user.delete');
 
         Route::get('/addmulti-user', 'multiAdd')->name('user.multiAdd');
         Route::get('/addmulti-user/store', 'multiStore')->name('user.multiStore');
-
-
-
     });
 });
 
@@ -64,14 +88,18 @@ Route::get('/box-modal', function () {
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/user', 'index')->name('user.index');
+    Route::get('/user/admin', 'lsAdmin')->name('user.lsadmin');
+    Route::get('/user/kaprodi', 'ls')->name('user.lskaprodi');
+    Route::get('/user/mo', 'index')->name('user.lsmo');
+    Route::get('/user/mhs', 'index')->name('user.lsmhs');
+
+
 
     Route::get('/add-user', 'add')->name('user.add');
     Route::post('/user/store', 'store')->name('user.store');
     Route::get('/user/edit/{nip}', 'edit')->name('user.edit');
     Route::post('/user/update/{id}', 'update')->name('user.update');
     Route::get('/user/delete/{id}', 'delete')->name('user.delete');
-
-
 });
 
 

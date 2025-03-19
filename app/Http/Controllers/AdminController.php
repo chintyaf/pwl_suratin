@@ -21,7 +21,7 @@ class AdminController extends Controller
             'nik' => 'required|string|max:7|unique:dosen,nik',
             'name' => 'required|string|max:100',
             'birth_date' => 'required',
-            'email' => 'required|email|max:45|unique:dosen,email'
+            'email' => 'required|email|max:45|unique:dosen,email',
         ])->validate();
 
         $acc = new User($validateData);

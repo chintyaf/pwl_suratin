@@ -25,8 +25,8 @@
                                     <th>NIP</th>
                                     <th>Nama</th>
                                     <th>Email</th>
-                                    {{-- <th>Alamat</th> --}}
-                                    <th>Role</th>
+                                    {{-- <th>Jurusan</th> --}}
+                                    <th class="">Role</th>
                                     <th class="">Detil</th>
                                 </tr>
                             </thead>
@@ -37,13 +37,14 @@
                                     <td>{{ $user->name }}</td>
                                     <td class="d-none d-xl-table-cell">{{ $user->email }}</td>
                                     {{-- <td class="d-none d-xl-table-cell">{{ $user->alamat }}</td> --}}
-                                    <td class="d-none d-xl-table-cell">{{ $user->getRole->name_role }}</td>
+                                    <td class="d-none d-xl-table-cell">{{ $user->getRole->name_role ?? 'None' }}</td>
                                     <td class="d-none d-md-table-cell">
                                         <button type="button" class="btn btn-primary"
                                             data-bs-toggle="modal"
                                             data-bs-target="#myModal"
-                                            data-surat = "sk_tugas_mk"
-                                            id="loadSurat001">
+                                            data-type = "user"
+                                            data-id = "{{ $user->nip }}"
+                                            id="{{ $user->nip }}">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
                                         <a href="{{ route('user.delete', $user->nip) }}" type="button"
@@ -73,35 +74,5 @@
 @endsection
 
 @section('ExtraJS')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-console.log("test")
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".delete-button").forEach(button => {
-        button.addEventListener("click", function (event) {
-            event.preventDefault(); // Mencegah navigasi langsung
-
-            let deleteUrl = this.getAttribute("href");
-
-            Swal.fire({
-                title: "Apakah Anda yakin?",
-                text: "Data yang dihapus tidak dapat dikembalikan!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#d33",
-                cancelButtonColor: "#3085d6",
-                confirmButtonText: "Ya, hapus!",
-                cancelButtonText: "Batal",
-                reverseButtons: true    
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = deleteUrl; // Redirect ke URL delete
-                }
-            });
-        });
-    });
-});
-
-</script>
+    <script src="{{ asset('js/box.js') }}"></script>
 @endsection

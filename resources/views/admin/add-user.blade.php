@@ -7,14 +7,14 @@
         <div class="mb-3">
             <h1 class="align-middle d-inline">Add account</h1>
         </div>
-        <a href="{{ route('user.multiAdd') }}">Muti Add</a>
-        {{-- <legend>Disabled fieldset example</legend> --}}
+        {{-- <a href="{{ route('user.multiAdd') }}">Muti Add</a> --}}
+
         <div class="mb-3">
             <label for="nip" class="form-label">
                 NIP
             </label>
             <input type="text" id="nip" name="nip" class="form-control"
-            value="123" required>
+            value="" required>
         </div>
 
         <div class="mb-3">
@@ -22,7 +22,7 @@
                 Nama
             </label>
             <input type="text" id="name" name="name" class="form-control"
-            value="Chin" required>
+            value="" required>
         </div>
 
         <div class="mb-3">
@@ -30,7 +30,7 @@
                 Email
             </label>
             <input type="email" id="email" name="email" class="form-control"
-            value="chin@gmail.com" required>
+            value="" required>
         </div>
 
         <div class="mb-3">
@@ -38,15 +38,15 @@
                 Password
             </label>
             <input type="password" id="password" name="password" class="form-control"
-            value="12345678" required>
+            value="" required>
         </div>
 
         <div class="mb-3">
             <label for="role" class="form-label">
                 Role
             </label>
-            <select name="role" id="role" class="mb-3 form-select" required>
-                <option selected>None</option>
+            <select name="id_role" id="dropdown" onchange="toggleInput()" class="mb-3 form-select" required>
+                <option value="99" selected>None</option>
                 <option value="0">Admin</option>
                 <option value="1">Ketua Program Studi</option>
                 <option value="2">Manajemen Operasional</option>
@@ -71,5 +71,9 @@
       </form>
 </div>
 
+
+@endsection
+
+@section('ExtraCSS')
 
 @endsection

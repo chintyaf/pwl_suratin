@@ -7,14 +7,35 @@
 
         <div class="navbar-content">
             <ul class="pc-navbar">
-                <li class="pc-item {{ request()->is('dashboard') ? 'active' : '' }}">
+                <li class="pc-item {{ request()->routeIs('dashboard', 'admin.dashboard', 'kaprodi.dashboard', 'mo.dashboard', 'mhs.dashboard') ? 'active' : '' }}">
                     <a href="{{ route('dashboard') }}" class="pc-link">
                         <span class="pc-mtext">Dashboard</span>
                     </a>
                 </li>
 
-
                 @if (auth()->user()->id_role === '0')
+
+            {{-- <li class="pc-item pc-caption">
+                <label>List Akun</label>
+            </li>
+
+            @php
+            $ls_akun = [
+            ['title' => 'Admin', 'url' => 'user.index'],
+            ['title' => 'Kepala Program Studi', 'url' => 'user.index'],
+            ['title' => 'Manajemen Operasional', 'url' => 'user.index'],
+            ['title' => 'Mahasiswa', 'url' => 'user.index'],
+            ];
+            @endphp
+
+            @foreach ($ls_akun as $link)
+            <li class="pc-item {{ request()->routeIs($link['url']) ? 'active' : '' }}">
+                <a href="{{ route($link['url']) }}" class="pc-link">
+                    <span class="pc-mtext">{{ $link['title'] }}</span>
+                </a>
+            </li>
+            @endforeach --}}
+
 
                 <li class="pc-item pc-caption">
                     <label>Akun</label>

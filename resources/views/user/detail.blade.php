@@ -40,7 +40,7 @@
                 Alamat
             </label>
             <input type="text" name="test" id="disabledTextInput" class="form-control"
-            value="{{ $user->getRole->name_role }}">
+            value="{{ $user->alamat }}">
           </div>
 
           <div class="mb-3">
@@ -48,7 +48,7 @@
                 Alamat (di Bandung)
             </label>
             <input type="text" id="disabledTextInput" class="form-control"
-            value="{{ $user->getRole->name_role }}">
+            value="{{ $user->alamat_bandung }}">
           </div>
 
           <div class="mb-3">
@@ -56,7 +56,7 @@
                 Role
             </label>
 
-        <select name="id_role">
+        <select class="form-select" name="id_role">
                 <option value="0" {{ $user->getRole->name_role == 'Admin' ? 'selected' : '' }}>Admin</option>
                 <option value="1" {{ $user->getRole->name_role == 'Kepala Program Studi' ? 'selected' : '' }}>Kepala Program Studi</option>
                 <option value="2" {{ $user->getRole->name_role == 'Manajemen Operasional' ? 'selected' : '' }}>Manajemen Operasional</option>

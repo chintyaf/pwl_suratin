@@ -67,9 +67,11 @@
 
     @yield('ExtraJS')
 
+    <script src="{{ asset('js/box.js') }}"></script>
 
 
 	<script src="{{ asset('js/app.js') }}"></script>
+
 
 </body>
 

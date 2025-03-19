@@ -47,8 +47,7 @@
                                             id="{{ $user->nip }}">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </button>
-                                        <a href="{{ route('user.delete', $user->nip) }}" type="button"
-                                            class="delete-button btn btn-danger">
+                                        <a href="#" class="delete-button btn btn-danger" data-url="{{ route('user.delete', $user->nip) }}">
                                             <i class="align-middle" data-feather="delete"></i>
                                         </a>
                                     </td>
@@ -75,4 +74,32 @@
 
 @section('ExtraJS')
     <script src="{{ asset('js/box.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.delete-button').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let url = this.getAttribute('data-url');
+
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        cancelButtonColor: "#13879b",
+                        confirmButtonText: "Yes, delete it!",
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = url;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+
 @endsection

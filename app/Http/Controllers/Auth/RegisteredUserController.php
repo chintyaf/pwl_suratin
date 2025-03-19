@@ -29,25 +29,29 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'nip' => ['required', 'string', 'max:7', 'unique:users'],
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        // dd($request);
+        // return($request);
 
-        $user = User::create([
-            'nip' => $request->nip,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'id_role' => $request->id_role
-        ]);
+        // $request->validate([
+        //     'nip' => ['required', 'string', 'max:7', 'unique:users'],
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        //     'id_role' => ['required', 'exists:role,id_role '],
+        // ]);
 
-        event(new Registered($user));
+        // $user = User::create([
+        //     'nip' => $request->nip,
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        //     'id_role' => $request->id_role
+        // ]);
 
-        Auth::login($user);
+        // event(new Registered($user));
 
-        return redirect(route('dashboard', absolute: false));
+        // Auth::login($user);
+
+        // return redirect(route('dashboard', absolute: false));
     }
 }
