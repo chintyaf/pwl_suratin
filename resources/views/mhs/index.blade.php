@@ -5,7 +5,7 @@
 <div class="container mt-4">
     <!-- Welcome Message -->
     <div class="mb-4 text-center">
-        <h2>Selamat Datang, Mahasiswa!</h2>
+        <h2>Selamat Datang, {{ auth()->user()->name }}!</h2>
         <p class="text-muted">Kelola pengajuan surat akademik Anda dengan mudah.</p>
     </div>
 

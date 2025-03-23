@@ -27,17 +27,16 @@
 
         {{-- Kaprodi --}}
     @if (auth()->user()->id_role === '1')
-    <div class="gap-3 px-3 justify-content-center d-flex">
-        <button type="button" class="btn btn-success">Terima</button>
-        <button type="button" class="btn btn-danger">Tolak</button>
-    </div>
+    <form action="{{ route('surat.updateStatus', $surat->id_surat) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="gap-3 px-3 justify-content-center d-flex">
+            <button type="submit" name="status" value="setuju" class="btn btn-success">Mensetujui</button>
+            <button type="submit" name="status" value="tolak" class="btn btn-danger">Menolak</button>
+        </div>
+    </form>
     @endif
 
 </div>
 <div class="modal-footer">
-    {{-- Kaprodi --}}
-    {{-- <button type="button" class="btn btn-success">Terima</button>
-    <button type="button" class="btn btn-danger">Tolak</button> --}}
-
-    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
 </div>

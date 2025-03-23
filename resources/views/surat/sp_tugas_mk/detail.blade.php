@@ -15,10 +15,16 @@ Informasikan nama dan NRP tiap mahasiswa (contoh: Mahasiswa 1 - 15720xx; Mahasis
         <fieldset disabled>
             <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">
+                    ID Surat
+                </label>
+                <input type="text" id="disabledTextInput" class="form-control"
+                value="{{ $surat->id_surat }}">
+
+                <label for="disabledTextInput" class="form-label">
                     NRP
                 </label>
                 <input type="text" id="disabledTextInput" class="form-control"
-                value="2372018">
+                value="{{ $surat->nip }}">
                 </div>
 
                 <div class="mb-3">
@@ -26,62 +32,53 @@ Informasikan nama dan NRP tiap mahasiswa (contoh: Mahasiswa 1 - 15720xx; Mahasis
                     Nama
                 </label>
                 <input type="text" id="disabledTextInput" class="form-control"
-                value="Jennifer Charity Sharon Lukita">
+                value="{{ $surat->getNIP->name }}">
                 </div>
-          {{-- <legend>Disabled fieldset example</legend> --}}
           <div class="mb-3">
             <label for="disabledTextInput" class="form-label">
                 Surat Ditujukan Kepada
             </label>
-            {{-- <input type="text" id="disabledTextInput" class="form-control"
-            value="..."> --}}
-            <textarea class="form-control" rows="4" placeholder="Textarea">
-2372016 - Brigitta
-2372018 - Chintya Fernanda
-            </textarea>
+            <input type="text" id="disabledTextInput" class="form-control"
+            value="{{ $surat->suratPengantar->ditujukan_kepada }}">
           </div>
 
           <div class="mb-3">
             <label for="disabledTextInput" class="form-label">
                 Nama Mata Kuliah - Kode Mata Kuliah
             </label>
-            <input type="text" id="disabledTextInput" class="form-control"
-            value="">
+            <input type="text" id="disabledTextInput" class="form-control" value="{{ $surat->suratPengantar->periode }}">
           </div>
 
           <div class="mb-3">
             <label for="disabledTextInput" class="form-label">
-                Semester
+                Periode
             </label>
-            <input type="text" id="disabledTextInput" class="form-control"
-            value="">
+            <input type="text" id="disabledTextInput" class="form-control" value="{{ $surat->suratPengantar->periode }}">
           </div>
 
           <div class="mb-3">
             <label for="disabledTextInput" class="form-label">
                 Data Mahasiswa
             </label>
-            <textarea class="form-control" rows="4" placeholder="Textarea">
-2372016 - Brigitta
-2372018 - Chintya Fernanda
-            </textarea>
+            <textarea
+                class="form-control"
+                rows="4"
+                placeholder="Textarea">{{ $surat->suratPengantar->nama_anggota_kelompok }}</textarea>
           </div>
 
           <div class="mb-3">
             <label for="disabledTextInput" class="form-label">
                 Tujuan
             </label>
-            <textarea class="form-control" rows="4" placeholder="Textarea">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ducimus maxime iure deserunt, rem odit officiis nesciunt fugiat? Ratione earum porro repudiandae quod saepe molestias mollitia quasi ad nam ex!
-            </textarea>
+            <textarea
+                class="form-control"
+                rows="4"
+                placeholder="Textarea">{{ $surat->suratPengantar->tujuan }}</textarea>
           </div>
 
           <div class="mb-3">
-            <label for="disabledTextInput" class="form-label">
-                Topik
-            </label>
-            <input type="text" id="disabledTextInput" class="form-control"
-            value="">
+            <label for="disabledTextInput" class="form-label">Topik</label>
+            <input type="text" id="disabledTextInput" class="form-control" value="{{ $surat->suratPengantar->topik }}">
           </div>
 
         </fieldset>

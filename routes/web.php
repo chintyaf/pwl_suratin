@@ -5,6 +5,7 @@ use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MOController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SuratController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +35,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     if (!Auth::check()) {
-        return redirect()->route('login'); // Redirect to login if not authenticated
+        return redirect()->route('login');
     }
 
     $routes = [
@@ -46,7 +47,7 @@ Route::get('/dashboard', function () {
 
     return isset($routes[Auth::user()->id_role])
         ? redirect()->route($routes[Auth::user()->id_role])
-        : abort(403, 'Unauthorized'); // Handle undefined roles
+        : abort(403, 'Unauthorized');
 })->name('dashboard');
 
 
@@ -57,16 +58,10 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
     });
 
     // Create account
-    Route::controller(UserController::class)->group(function () {
+    Route::controller(UserController::class)->prefix('user')->group(function () {
         Route::get('/user', 'index')->name('user.index');
-        Route::get('/user/admin', 'lsAdmin')->name('user.lsadmin');
-        Route::get('/user/kaprodi', 'ls')->name('user.lskaprodi');
-        Route::get('/user/mo', 'index')->name('user.lsmo');
-        Route::get('/user/mhs', 'index')->name('user.lsmhs');
 
-
-
-        Route::get('/add-user', 'add')->name('user.add');
+        Route::get('/user/add', 'add')->name('user.add');
         Route::post('/user/store', 'store')->name('user.store');
         Route::get('/user/edit/{nip}', 'edit')->name('user.edit');
         Route::post('/user/update/{id}', 'update')->name('user.update');
@@ -77,15 +72,9 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
     });
 });
 
-// HOW TO MAKE THE FIRST ADMIN???
 Route::get('/box-modal', function () {
     return view('layouts.partials.box');
 });
-
-// Route::get('/user/edit', function () {
-//     return view('user.detail');
-// })->name('user.edit');
-
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/user', 'index')->name('user.index');
@@ -139,25 +128,23 @@ Route::middleware(['auth', 'verified', 'role:3'])->group(function () {
 
 });
 
+// Route::get('/surat-detail', function () {
+//     return view('surat.box');
+// });
+
+Route::get('/surat-detail/{surat}', [SuratController::class, 'suratBox'])->name('suratDetail');
+
+
+
+
+Route::controller(SuratController::class)->group(function () {
+    Route::get('/detail/{surat}', 'detailView')->name('surat.detailView');
+    Route::put('/detail/{surat}', 'updateStatus')->name('surat.updateStatus');
+});
 
 // SURAT
 // surat detil
-Route::get('/surat-detail', function () {
-    return view('surat.box');
-});
 
-Route::get('/sk-mahasiswa-aktif/detail', function () {
-    return view('surat.sk_mhs_aktif.detail');
-});
-Route::get('/lhs/detail', function () {
-    return view('surat.lhs.detail');
-});
-Route::get('/sp-tugas-mk/detail', function () {
-    return view('surat.sp_tugas_mk.detail');
-});
-Route::get('/sk-lulus/detail', function () {
-    return view('surat.sk_lulus.detail');
-});
 
 // surat form
 Route::get('/form-lhs', function () {
