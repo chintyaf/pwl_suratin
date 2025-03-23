@@ -3,25 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
         let button = event.target.closest("button[data-surat]");
         if (!button) return;
 
-        let suratType = button.dataset.surat;
-        console.log(suratType);
+        let id_surat = button.dataset.idsurat
 
-        let suratNames = {
-            "sk_mhs_aktif": "Surat Keterangan Mahasiswa Aktif",
-            "sk_tugas_mk": "Surat Pengantar Tugas Mata Kuliah",
-            "sk_lulus": "Surat Keterangan Lulus",
-            "lhs": "Laporan Hasil Studi"
-        };
-
-        let routeMap = {
-            "sk_mhs_aktif": "/sk-mahasiswa-aktif/detail",
-            "sk_tugas_mk": "/sp-tugas-mk/detail",
-            "sk_lulus": "/sk-lulus/detail",
-            "lhs": "/lhs/detail"
-        };
-
-        let surat_name = suratNames[suratType] || "Surat Detail";
-        let body_url = routeMap[suratType] || "/surat-detail";
+        let surat_name = button.dataset.surat || "Surat Detail";
+        let body_url = "/detail/" + id_surat;
+        console.log(body_url)
 
         let modalContent = document.getElementById("modalContent");
         modalContent.innerHTML = `<div class="modal-content p-3 text-center">Loading...</div>`;
@@ -31,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             // Fetch modal content and surat details in parallel
             let [modalRes, bodyRes] = await Promise.all([
-                fetch("/surat-detail", {
+                fetch("/surat-detail/" + id_surat, {
                     method: "GET",
                     headers: { "Content-Type": "application/json", "X-CSRF-TOKEN": csrfToken }
                 }).then(res => res.text()),

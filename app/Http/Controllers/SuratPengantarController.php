@@ -26,7 +26,7 @@ class SuratPengantarController extends Controller
             'id_surat' => $request->surat_id_surat,
             'status' => "Menunggu Persetujuan",
             'nip' => $request->nip,
-            'type_surat' => "Surat Pengantar Mata Kuliah"
+            'type_surat' => "Surat Pengantar Tugas Mata Kuliah"
         ]);
         // return $request;
 
@@ -51,4 +51,6 @@ class SuratPengantarController extends Controller
         return redirect(route('mhs.dashboard'));
 
     }
+
+
 }
