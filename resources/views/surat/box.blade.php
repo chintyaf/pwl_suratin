@@ -6,26 +6,32 @@
     <p>Loading...</p>
 </div>
 
-{{-- <hr> --}}
+{{--
+<hr> --}}
 
-<div id="submit-btn" class="pt-0 modal-body"  style="padding-bottom: 16px">
+<div id="submit-btn" class="pt-0 modal-body" style="padding-bottom: 16px">
 
 
-        {{-- MO --}}
-        @if (auth()->user()->id_role === '2')
-        <div class="mb-3">
+    {{-- MO --}}
+    @if (auth()->user()->id_role === '2')
+    <div class="mb-3">
+        <form action="{{ route('surat.upload', $surat->id_surat) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
             <label for="disabledTextInput" class="form-label">
                 Unggah Dokumen
             </label>
-            <input type="file" name="" id="" class="form-control" >
-        </div>
+            <input type="file" name="dokumen" id="" class="form-control">
+            <button type="submit">Upload</button>
+        </form>
+    </div>
 
-        {{-- <button type="button" class="btn btn-success">Simpan</button> --}}
+    {{-- <button type="button" class="btn btn-success">Simpan</button> --}}
 
-        @endif
+    @endif
 
 
-        {{-- Kaprodi --}}
+    {{-- Kaprodi --}}
     @if (auth()->user()->id_role === '1')
     <form action="{{ route('surat.updateStatus', $surat->id_surat) }}" method="POST">
         @csrf

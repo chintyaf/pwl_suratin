@@ -11,12 +11,12 @@
     <div id="status" class="row">
         @php
             $cards = [
-                ['title' => 'Menunggu persetujuan', 'count' => $totalMenunggu, 'color' => '#fcfdff', 'txt-color' => '#13879b', 'modal' => 'modalDiproses'],
-                ['title' => 'Disetujui - Menunggu Dokumen', 'count' => $totalDiproses, 'color' => '#fff7e8', 'txt-color' => '#faad14 ', 'modal' => 'modalMenunggu'],
-                ['title' => 'Dokumen Sudah Tersedia', 'count' => $totalSelesai, 'color' => '#eef9e8', 'txt-color' => '#52c41a', 'modal' => 'modalSelesai'],
-                ['title' => 'Selesai', 'count' => $totalSelesai, 'color' => '#eef9e8', 'txt-color' => '#52c41a', 'modal' => 'modalSelesai'],
-            ];
-        @endphp
+                ['title' => 'Menunggu persetujuan', 'count' => $pendingCount, 'color' => '#fcfdff', 'txt-color' => '#13879b', 'modal' => 'modalDiproses'],
+                ['title' => 'Disetujui - Menunggu Dokumen', 'count' => $processingCount, 'color' => '#fff7e8', 'txt-color' => '#faad14 ', 'modal' => 'modalMenunggu'],
+                ['title' => 'Dokumen Sudah Tersedia', 'count' => $completedCount, 'color' => '#eef9e8', 'txt-color' => '#52c41a', 'modal' => 'modalSelesai'],
+                ];
+                @endphp
+                {{-- ['title' => 'Selesai', 'count' => $totalSelesai, 'color' => '#eef9e8', 'txt-color' => '#52c41a', 'modal' => 'modalSelesai'], --}}
 
         <div class="d-flex">
             @foreach ($cards as $card)
@@ -43,8 +43,8 @@
             {{-- ['title' => 'Ditolak', 'total' => $totalDitolak, 'data' => $ditolak], --}}
             @php
             $table = [
-                ['title' => 'Disetujui - Menunggu Dokumen', 'total' => $totalDiproses, 'data' => $diproses],
-                ['title' => 'Dokumen Sudah Tersedia', 'total' => $totalSelesai, 'data' => $selesai],
+                ['title' => 'Disetujui - Menunggu Dokumen', 'total' => $processingCount, 'data' => $processingSurat],
+                ['title' => 'Dokumen Sudah Tersedia', 'total' => $completedCount, 'data' => $completedSurat],
             ];
             @endphp
 
@@ -66,7 +66,8 @@
                                         <th>NRP</th>
                                         <th>Nama</th>
                                         <th>Jenis</th>
-                                        <th class="d-none d-xl-table-cell">Tanggal Diajukan</th>
+                                        {{-- <th class="d-none d-xl-table-cell">Tanggal Diajukan</th> --}}
+                                        <th class="d-none d-xl-table-cell">Dokumen</th>
                                         <th>Status</th>
                                         <th class="d-none d-md-table-cell">Detil</th>
                                     </tr>
@@ -79,8 +80,16 @@
                                         <td>{{ $surat->nip }}</td>
                                         <td>{{ $surat->getNIP->name }}</td>
                                         <td class="d-none d-xl-table-cell"> {{ $surat->type_surat }} </td>
-                                        <td class="d-none d-xl-table-cell">{{ $surat->created_at }}</td>
+                                        {{-- <td class="d-none d-xl-table-cell">{{ $surat->created_at }}</td> --}}
                                         <td><span class="status"> {{ $surat->status_label }}                                    </span></td>
+                                        <td>
+                                            <a href="{{ route('surat.view', $surat->id_surat) }}" target="_blank" class="btn btn-primary">
+                                                View
+                                            </a>
+                                            <a href="{{ route('surat.download', $surat->id_surat) }}" class="btn btn-success">
+                                                Download
+                                            </a>
+                                        </td>
                                         <td class="d-none d-md-table-cell">
                                             <button type="button" class="btn btn-primary"
                                                 data-bs-toggle="modal"
@@ -92,6 +101,7 @@
                                                 <i class="align-middle" data-feather="edit"></i>
                                             </button>
                                         </td>
+
                                     </tr>
                                     @endforeach
 

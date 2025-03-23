@@ -140,6 +140,10 @@ Route::get('/surat-detail/{surat}', [SuratController::class, 'suratBox'])->name(
 Route::controller(SuratController::class)->group(function () {
     Route::get('/detail/{surat}', 'detailView')->name('surat.detailView');
     Route::put('/detail/{surat}', 'updateStatus')->name('surat.updateStatus');
+    Route::put('/detail/{surat}/upload', 'uploadSurat')->name('surat.upload');
+
+    Route::get('/surat/view/{surat}', 'viewSurat')->name('surat.view');
+    Route::get('/surat/download/{surat}', 'downloadSurat')->name('surat.download');
 });
 
 // SURAT
