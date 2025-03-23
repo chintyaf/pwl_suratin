@@ -10,6 +10,10 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuratPengantarController;
+use App\Http\Controllers\SuratKeteranganLulusController;
+use App\Http\Controllers\LaporanHasilStudiController;
+use App\Http\Controllers\SuratKeteranganMahasiswaAktifController;
+
 
 Route::get('/test', function () {
     return view('admin.add-user', ['id_role' => '0']);
@@ -126,6 +130,14 @@ Route::middleware(['auth', 'verified', 'role:3'])->group(function () {
     Route::get('/surat_pengantar/create', [SuratPengantarController::class, 'create'])->name('surat_pengantarCreate');
     Route::post('/surat_pengantar/create', [SuratPengantarController::class, 'store'])->name('surat_pengantarStore');
 
+    Route::get('/surat_keterangan_mahasiswa_aktif/create', [SuratKeteranganMahasiswaAktifController::class, 'create'])->name('surat_keterangan_mahasiswa_aktifCreate');
+    Route::post('/surat_keterangan_mahasiswa_aktif/create', [SuratKeteranganMahasiswaAktifController::class, 'store'])->name('surat_keterangan_mahasiswa_aktifStore');
+
+    Route::get('/surat_keterangan_lulus/create', [SuratKeteranganLulusController::class, 'create'])->name('surat_keterangan_lulusCreate');
+    Route::post('/surat_keterangan_lulus/create', [SuratKeteranganLulusController::class, 'store'])->name('surat_keterangan_lulusStore');
+
+    Route::get('/laporan_hasil_studi/create', [LaporanHasilStudiController::class, 'create'])->name('laporan_hasil_studiCreate');
+    Route::post('/laporan_hasil_studi/create', [LaporanHasilStudiController::class, 'store'])->name('laporan_hasil_studiStore');
 });
 
 // Route::get('/surat-detail', function () {

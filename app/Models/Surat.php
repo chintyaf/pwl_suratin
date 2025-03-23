@@ -38,6 +38,11 @@ class Surat extends Model
         return $this->hasOne(SuratPengantar::class, 'surat_id_surat', 'id_surat');
     }
 
+    public function suratKeteranganMahasiswaAktif()
+    {
+        return $this->hasOne(SuratKeteranganMahasiswaAktif::class, 'surat_id_surat', 'id_surat');
+    }
+
     // Mengambil data mahasiswa
     public function getNIP(): BelongsTo
     {

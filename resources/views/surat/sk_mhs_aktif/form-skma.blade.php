@@ -2,21 +2,25 @@
 @section('content')
 
 <div class="p-0 container-fluid">
-    <form class="form">
+    <form class="form" method="POST" action="{{ route('surat_keterangan_mahasiswa_aktifStore') }}">
+        @csrf
+
+        <input type="hidden" id="nip" name="nip" value = "{{ auth()->user()->nip }}">
+        <input type="text" id="surat_id_surat" name="surat_id_surat" value = "SKMA001">
         <div class="mb-3">
             <h1 class="align-middle d-inline">Pengajuan Surat Keterangan Mahasiswa Aktif</h1>
             <p class="text-muted">Silakan isi data berikut untuk mengajukan surat keterangan mahasiswa aktif.</p>
         </div>
 
-        <div class="mb-3">
-            <label for="nama" class="form-label">Nama Lengkap</label>
-            <input type="text" id="nama" name="nama" class="form-control" placeholder="Contoh: Susi Susanti" required>
-        </div>
+{{--        <div class="mb-3">--}}
+{{--            <label for="nama" class="form-label">Nama Lengkap</label>--}}
+{{--            <input type="text" id="nama" name="nama" class="form-control" placeholder="Contoh: Susi Susanti" required>--}}
+{{--        </div>--}}
 
-        <div class="mb-3">
-            <label for="nrp" class="form-label">NRP</label>
-            <input type="text" id="nrp" name="nrp" class="form-control" placeholder="Masukkan NRP Anda" required>
-        </div>
+{{--        <div class="mb-3">--}}
+{{--            <label for="nrp" class="form-label">NRP</label>--}}
+{{--            <input type="text" id="nrp" name="nrp" class="form-control" placeholder="Masukkan NRP Anda" required>--}}
+{{--        </div>--}}
 
         <div class="mb-3">
             <label for="periode" class="form-label">Periode</label>
@@ -31,13 +35,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="alamat" class="form-label">Alamat Lengkap di Bandung</label>
-            <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Masukkan alamat lengkap" required>
+            <label for="alamat_bandung" class="form-label">Alamat Lengkap di Bandung</label>
+            <input type="text" id="alamat_bandung" name="alamat_bandung" class="form-control" placeholder="Masukkan alamat lengkap" required>
         </div>
 
         <div class="mb-3">
-            <label for="keperluan" class="form-label">Keperluan Pengajuan</label>
-            <input type="text" id="keperluan" name="keperluan" class="form-control" placeholder="Masukkan keperluan pengajuan" required>
+            <label for="keperluan_pengajuan" class="form-label">Keperluan Pengajuan</label>
+            <input type="text" id="keperluan_pengajuan" name="keperluan_pengajuan" class="form-control" placeholder="Masukkan keperluan pengajuan" required>
         </div>
 
         <div class="justify-content-end d-flex">
