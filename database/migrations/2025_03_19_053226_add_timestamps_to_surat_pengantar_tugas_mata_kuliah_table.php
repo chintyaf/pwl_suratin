@@ -9,20 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-    {
-        Schema::table('surat_pengantar_tugas_mata_kuliah', function (Blueprint $table) {
-            $table->timestamps(); // This will add created_at and updated_at columns
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::table('surat_pengantar_tugas_mata_kuliah', function (Blueprint $table) {
+    //         $table->timestamps(); // This will add created_at and updated_at columns
+    //     });
+    // }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('surat_pengantar_tugas_mata_kuliah', function (Blueprint $table) {
-            //
-        });
-    }
+    // /**
+    //  * Reverse the migrations.
+    //  */
+    // public function down(): void
+    // {
+    //     Schema::table('surat_pengantar_tugas_mata_kuliah', function (Blueprint $table) {
+    //         //
+    //     });
+    // }
 };

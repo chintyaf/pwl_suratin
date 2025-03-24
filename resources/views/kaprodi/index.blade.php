@@ -77,7 +77,7 @@ Ketua Program Studi
                                     <td>{{ $surat->getNIP->name }}</td>
                                     <td class="d-none d-xl-table-cell"> {{ $surat->type_surat }} </td>
                                     <td class="d-none d-xl-table-cell">{{ $surat->created_at }}</td>
-                                    <td><span class="status"> {{ $surat->status_label }}                                    </span></td>
+                                    <td><span class="status"> {{ $surat->status_label }}</span></td>
                                     <td class="d-none d-md-table-cell">
                                         <button type="button" class="btn btn-primary"
                                             data-bs-toggle="modal"

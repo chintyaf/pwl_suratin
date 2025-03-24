@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // DB::table('users')->truncate();
+        // DB::table('role')->truncate();
+        // DB::table('program_studi')->truncate();
 
         DB::table('role')->insert([
 
@@ -42,6 +45,24 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
+        DB::table('program_studi')->insert([
+            [
+                'id_prodi' => '1',
+                'name_prodi' => 'Ilmu Komputer'
+            ],
+
+            [
+                'id_prodi' => '2',
+                'name_prodi' => 'Teknik Informatika'
+            ],
+
+            [
+                'id_prodi' => '3',
+                'name_prodi' => 'Sistem Informasi'
+            ],
+
+        ]);
+
         DB::table('users')->insert([
             [
                 'nip' => 'adm000',
@@ -49,20 +70,71 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@example.com',
                 'password' => Hash::make('12345678'),
                 'id_role' => '0',
+                'id_prodi' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nip' => '720001',
-                'name' => 'kaprodi01',
-                'email' => 'johndoe@example.com',
+                'name' => 'kaprodi IF',
+                'email' => 'kaprodiIF@example.com',
                 'password' => Hash::make('12345678'),
                 'id_role' => '1',
+                'id_prodi' => '2',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nip' => '720002',
-                'name' => 'mo01',
-                'email' => 'mo@gmail.com',
+                'name' => 'MO IF',
+                'email' => 'moIF@gmail.com',
                 'password' => Hash::make('12345678'),
                 'id_role' => '2',
+                'id_prodi' => '2',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'nip' => '730001',
+                'name' => 'kaprodi SI',
+                'email' => 'kaprodiIF@example.com',
+                'password' => Hash::make('12345678'),
+                'id_role' => '1',
+                'id_prodi' => '3',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nip' => '730002',
+                'name' => 'MO SI',
+                'email' => 'moIF@gmail.com',
+                'password' => Hash::make('12345678'),
+                'id_role' => '2',
+                'id_prodi' => '3',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'nip' => '710001',
+                'name' => 'kaprodi IlKom',
+                'email' => 'kaprodiIF@example.com',
+                'password' => Hash::make('12345678'),
+                'id_role' => '1',
+                'id_prodi' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nip' => '710002',
+                'name' => 'MO IlKom',
+                'email' => 'moIF@gmail.com',
+                'password' => Hash::make('12345678'),
+                'id_role' => '2',
+                'id_prodi' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -71,6 +143,9 @@ class DatabaseSeeder extends Seeder
                 'email' => '2372016@maranatha.ac.id',
                 'password' => Hash::make('12345678'),
                 'id_role' => '3',
+                'id_prodi' => '2',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -79,6 +154,31 @@ class DatabaseSeeder extends Seeder
                 'email' => '2372018@maranatha.ac.id',
                 'password' => Hash::make('12345678'),
                 'id_role' => '3',
+                'id_prodi' => '2',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'nip' => '2373001',
+                'name' => 'Mhs Sistem Informasi',
+                'email' => '2373001@maranatha.ac.id',
+                'password' => Hash::make('12345678'),
+                'id_role' => '3',
+                'id_prodi' => '3',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'nip' => '2371001',
+                'name' => 'Mhs Ilmu Komputer',
+                'email' => '2371001@maranatha.ac.id',
+                'password' => Hash::make('12345678'),
+                'id_role' => '3',
+                'id_prodi' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }

@@ -10,12 +10,14 @@ class SuratPengantar extends Model
 
     protected $primaryKey = 'surat_id_surat';
 
-    public $incrementing = false; 
-    
+    public $incrementing = false;
+
+    public $timestamps = false;
+
     protected $fillable = [
         'surat_id_surat',
-        'ditujukan_kepada', 
-        'mata_kuliah', 
+        'ditujukan_kepada',
+        'mata_kuliah',
         'periode',
         'nama_anggota_kelompok',
         'tujuan',

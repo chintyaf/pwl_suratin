@@ -12,6 +12,8 @@ class SuratKeteranganMahasiswaAktif extends Model
 
     public $incrementing = false;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'surat_id_surat',
         'periode',
