@@ -11,6 +11,7 @@ class Surat extends Model
     protected $primaryKey = 'id_surat';
     public $incrementing = false;
 
+
     protected $fillable = [
         'id_surat',
         'dokumen',
@@ -18,6 +19,20 @@ class Surat extends Model
         'nip',
         'type_surat',
     ];
+
+    // Status
+    const TYPE_LABELS = [
+        'pending' => 'Menunggu Persetujuan',
+        'rejected' => 'Ditolak',
+        'waiting_docs' => 'Disetujui - Menunggu Dokumen',
+        'doc_available' => 'Dokumen Sudah Tersedia',
+        'completed' => 'Selesai',
+    ];
+
+    public function getTypeLabelAttribute()
+    {
+        return self::TYPE_LABELS[$this->type_surat] ?? 'Unknown';
+    }
 
     // Status
     const STATUS_LABELS = [

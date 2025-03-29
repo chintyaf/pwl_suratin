@@ -79,9 +79,9 @@ class UserController extends Controller
             'nip' => ['required', 'string', 'max:7', "unique:users,nip,{$user->nip},nip"],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', "unique:users,email,{$user->nip},nip"],
-            // 'password' => ['required', Rules\Password::defaults()],
             'id_role' => ['required', 'exists:role,id_role'],
-
+            'alamat' => ['required', 'string', 'max:255'],
+            'alamat_bandung' => ['required', 'string', 'max:255'],
         ],[
             'id_role.exists' => 'The selected role does not exist. Please choose a valid role.',
         ]);
@@ -91,8 +91,9 @@ class UserController extends Controller
             'nip' => $request->nip,
             'name' => $request->name,
             'email' => $request->email,
-            // 'password' => $request->password ? Hash::make($request->password) : $user->password,
-            'id_role' => $request->id_role
+            'id_role' => $request->id_role,
+            'alamat' => $request->alamat,
+            'alamat_bandung' => $request->alamat_bandung
         ]);
 
         return redirect(route('user.index', absolute: false));
