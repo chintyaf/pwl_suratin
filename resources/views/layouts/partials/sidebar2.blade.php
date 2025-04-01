@@ -45,6 +45,7 @@
                 $adm_links = [
                 ['title' => 'List Akun', 'url' => 'user.index'],
                 ['title' => 'Buat Akun', 'url' => 'user.add'],
+                ['title' => 'Import Akun', 'url' => 'user.importForm'],
                 ];
                 @endphp
 
