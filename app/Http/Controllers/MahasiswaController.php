@@ -9,13 +9,18 @@ use Illuminate\Support\Facades\Auth;
 class MahasiswaController extends Controller
 {
     public function index()
-    {   
+    {
         $nip = Auth::user()->nip;
-        
-        $menunggu = Surat::where('nip', $nip)->where('status', 'Menunggu Persetujuan')->count();
-        $diproses = Surat::where('nip', $nip)->where('status', 'Disetujui - Menunggu Dokumen')->count();
-        $selesai = Surat::where('nip', $nip)->where('status', 'Selesai')->count();
-        $ditolak = Surat::where('nip', $nip)->where('status', 'Ditolak')->count();
+
+        $menunggu = Surat::where('nip', $nip)->where('status', 'pending')->count();
+        $diproses = Surat::where('nip', $nip)->where('status', 'waiting_docs')->count();
+        $selesai  = Surat::where('nip', $nip)->where('status', 'completed')->count();
+        $ditolak  = Surat::where('nip', $nip)->where('status', 'rejected')->count();
+
+//        $menunggu = Surat::where('nip', $nip)->where('status', 'Menunggu Persetujuan')->count();
+//        $diproses = Surat::where('nip', $nip)->where('status', 'Disetujui - Menunggu Dokumen')->count();
+//        $selesai = Surat::where('nip', $nip)->where('status', 'Selesai')->count();
+//        $ditolak = Surat::where('nip', $nip)->where('status', 'Ditolak')->count();
 
         $surats = Surat::where('nip', $nip)
             ->orderBy('created_at', 'desc')

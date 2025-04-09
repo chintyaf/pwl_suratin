@@ -48,6 +48,15 @@ class Surat extends Model
         return self::STATUS_LABELS[$this->status] ?? 'Unknown';
     }
 
+    public function suratKeteranganLulus()
+    {
+        return $this->hasOne(SuratKeteranganLulus::class, 'surat_id_surat', 'id_surat');
+    }
+
+    public function laporanHasilStudi()
+    {
+        return $this->hasOne(LaporanHasilStudi::class, 'surat_id_surat', 'id_surat');
+    }
     public function suratPengantar()
     {
         return $this->hasOne(SuratPengantar::class, 'surat_id_surat', 'id_surat');
@@ -63,4 +72,6 @@ class Surat extends Model
     {
         return $this->belongsTo(User::class, 'nip', 'nip');
     }
+
+
 }

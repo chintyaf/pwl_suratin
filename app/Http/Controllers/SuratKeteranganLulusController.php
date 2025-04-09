@@ -17,7 +17,7 @@ class SuratKeteranganLulusController extends Controller
     {
         $suratL= new Surat([
             'id_surat' => $request->surat_id_surat,
-            'status' => "Menunggu Persetujuan",
+            'status' => "pending",
             'nip' => $request->nip,
             'type_surat' => "Surat Keterangan Lulus",
         ]);

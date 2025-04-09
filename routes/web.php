@@ -138,6 +138,15 @@ Route::middleware(['auth', 'verified', 'role:3'])->group(function () {
 
     Route::get('/laporan_hasil_studi/create', [LaporanHasilStudiController::class, 'create'])->name('laporan_hasil_studiCreate');
     Route::post('/laporan_hasil_studi/create', [LaporanHasilStudiController::class, 'store'])->name('laporan_hasil_studiStore');
+
+    Route::get('/mahasiswa/surat/{id}', [SuratController::class, 'detailSuratMahasiswa']);
+
+    Route::get('/surat/{id}/edit', [SuratController::class, 'edit'])->name('surat.edit');
+    Route::put('/surat/{id}', [SuratController::class, 'update'])->name('surat.update');
+
+    Route::delete('/surat/{id}', [SuratController::class, 'destroy'])->name('surat.destroy');
+    Route::get('/dokumen/{id}/unduh', [SuratController::class, 'unduh'])->name('dokumen.unduh');
+
 });
 
 // Route::get('/surat-detail', function () {
@@ -154,8 +163,28 @@ Route::controller(SuratController::class)->group(function () {
     Route::put('/detail/{surat}', 'updateStatus')->name('surat.updateStatus');
     Route::put('/detail/{surat}/upload', 'uploadSurat')->name('surat.upload');
 
+
     Route::get('/surat/view/{surat}', 'viewSurat')->name('surat.view');
     Route::get('/surat/download/{surat}', 'downloadSurat')->name('surat.download');
+
+    Route::get('/edit/{surat}', 'editSurat')->name('surat.editSurat');
+    Route::get('/laporan-hasil-studi/edit/{surat}', [LaporanHasilStudiController::class, 'edit'])->name('laporan_hasil_studi.edit');
+    Route::put('/laporan-hasil-studi/edit/{surat}', [LaporanHasilStudiController::class, 'update'])->name('laporan_hasil_studi.update');
+    Route::delete('/laporan-hasil-studi/remove/{surat}', [LaporanHasilStudiController::class, 'destroy'])->name('laporan_hasil_studi.destroy');
+
+
+    Route::get('/surat_keterangan_lulus/edit/{surat}', [SuratKeteranganLulusController::class, 'edit'])->name('surat_keterangan_lulus.edit');
+    Route::put('/surat_keterangan_lulus/edit/{surat}', [SuratKeteranganLulusController::class, 'update'])->name('surat_keterangan_lulus.update');
+    Route::delete('/surat_keterangan_lulus/remove/{surat}', [SuratKeteranganLulusController::class, 'destroy'])->name('surat_keterangan_lulus.destroy');
+
+    Route::get('/surat_keterangan_mahasiswa_aktif/edit/{surat}', [SuratKeteranganMahasiswaAktifController::class, 'edit'])->name('surat_keterangan_mahasiswa_aktif.edit');
+    Route::put('/surat_keterangan_mahasiswa_aktif/edit/{surat}', [SuratKeteranganMahasiswaAktifController::class, 'update'])->name('surat_keterangan_mahasiswa_aktif.update');
+    Route::put('/surat_keterangan_mahasiswa_aktif/remove/{surat}', [SuratKeteranganMahasiswaAktifController::class, 'destroy'])->name('surat_keterangan_mahasiswa_aktif.destroy');
+
+    Route::get('/surat_pengantar/edit/{surat}', [SuratPengantarController::class, 'edit'])->name('surat_pengantar.edit');
+    Route::put('/surat_pengantar/edit/{surat}', [SuratPengantarController::class, 'update'])->name('surat_pengantar.update');
+    Route::put('/surat_pengantar/remove/{surat}', [SuratPengantarController::class, 'destroy'])->name('surat_pengantar.destroy');
+
 });
 
 // SURAT

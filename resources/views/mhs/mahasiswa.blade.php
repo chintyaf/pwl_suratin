@@ -17,7 +17,7 @@
 	<title>Dashboard Mahasiswa</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
      <!-- Flatpickr CSS -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -32,7 +32,7 @@
             background-color: #12978e !important; /* Warna biru lebih gelap */
             border-color: #008578 !important;
         }
-    
+
         /* Warna saat diklik (aktif) */
         .btn-hover-active:active,
         .btn-hover-active:focus {
@@ -46,7 +46,7 @@
 	<div class="wrapper">
         {{-- NAVBAR --}}
         @include('layouts.partials.sidebar_mhs')
-              
+
         	<div class="main">
             @include('layouts.partials.navbar_mhs')
 
@@ -63,14 +63,10 @@
 		</div>
 	</div>
 
-	{{-- <script src="{{ asset('js/app2.js') }}"></script> --}}
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-
     @yield('ExtraJS')
 
 	<script src="{{ asset('js/app.js') }}"></script>
-    
+
     <!-- Flatpickr JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -81,8 +77,5 @@
             allowInput: true
         });
     </script>
-
-
 </body>
-
 </html>

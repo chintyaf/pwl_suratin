@@ -18,7 +18,7 @@ class LaporanHasilStudiController extends Controller
 
         $surat = new Surat([
             'id_surat' => $request->surat_id_surat,
-            'status' => "Menunggu Persetujuan",
+            'status' => "pending",
             'nip' => $request->nip,
             'type_surat' => "Laporan Hasil Studi",
             'created_at' => now(),
@@ -42,4 +42,47 @@ class LaporanHasilStudiController extends Controller
         return redirect(route('mhs.dashboard'));
 
     }
+
+    public function update(Request $request, $id)
+    {
+        // Validasi hanya untuk keperluan_pembuatan
+        $validatedData = $request->validate([
+            'keperluan_pembuatan' => ['required', 'string', 'max:1000'],
+        ]);
+
+        // Ambil surat berdasarkan ID
+        $surat = Surat::findOrFail($id);
+
+        // Pastikan relasi Laporan Hasil Studi ada
+        if ($surat->laporanHasilStudi) {
+            $surat->laporanHasilStudi->keperluan_pembuatan = $validatedData['keperluan_pembuatan'];
+            $surat->laporanHasilStudi->save();
+        } else {
+            // Kalau belum ada, buat baru
+            $surat->laporanHasilStudi()->create([
+                'keperluan_pembuatan' => $validatedData['keperluan_pembuatan']
+            ]);
+        }
+
+        return redirect()->route('mhs.dashboard')
+            ->with('status', 'Keperluan pembuatan berhasil diupdate.');
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id_surat');
+
+        $surat = Surat::findOrFail($id);
+
+        // Hapus relasi laporan hasil studi
+        if ($surat->laporanHasilStudi) {
+            $surat->laporanHasilStudi->delete();
+        }
+
+        // Hapus surat utama
+        $surat->delete();
+
+        return redirect()->route('mhs.dashboard')->with('status', 'Surat berhasil dihapus.');
+    }
+
 }

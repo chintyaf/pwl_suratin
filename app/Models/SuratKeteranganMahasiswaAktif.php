@@ -25,4 +25,10 @@ class SuratKeteranganMahasiswaAktif extends Model
     {
         return $this->belongsTo(Surat::class, 'surat_id_surat', 'id_surat');
     }
+
+    public function suratKeteranganMahasiswaAktif()
+    {
+        return $this->hasOne(SuratKeteranganMahasiswaAktif::class, 'surat_id_surat', 'id_surat');
+    }
+
 }

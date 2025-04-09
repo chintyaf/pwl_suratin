@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Surat;
+use App\Models\SuratPengantar;
+use App\Models\SuratKeteranganLulus;
+use App\Models\LaporanHasilStudi;
+use App\Models\SuratKeteranganMahasiswaAktif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,14 +27,36 @@ class SuratController extends Controller
             $surat->load('suratPengantar');
             $url = 'surat.sp_tugas_mk.detail';
         } else if ($surat->type_surat == "Surat Keterangan Mahasiswa Aktif") {
-            $surat->load('suratPengantar');
+            $surat->load('suratKeteranganMahasiswaAktif');
             $url = 'surat.sk_mhs_aktif.detail';
         } else if ($surat->type_surat == "Surat Keterangan Lulus") {
-            $surat->load('suratPengantar');
+            $surat->load('suratKeteranganLulus');
             $url = 'surat.sk_lulus.detail';
         } else if ($surat->type_surat == "Laporan Hasil Studi") {
-            $surat->load('suratPengantar');
+            $surat->load('laporanHasilStudi');
             $url = 'surat.lhs.detail';
+        } else {
+            $url = 'tidak ada';
+        }
+        // return $surat;
+        return view($url)
+            ->with('surat', $surat);
+    }
+
+    public function editSurat(Surat $surat)
+    {
+        if ($surat->type_surat == "Surat Pengantar Tugas Mata Kuliah") {
+            $surat->load('suratPengantar');
+            $url = 'surat.sp_tugas_mk.edit';
+        } else if ($surat->type_surat == "Surat Keterangan Mahasiswa Aktif") {
+            $surat->load('suratKeteranganMahasiswaAktif');
+            $url = 'surat.sk_mhs_aktif.edit';
+        } else if ($surat->type_surat == "Surat Keterangan Lulus") {
+            $surat->load('suratKeteranganLulus');
+            $url = 'surat.sk_lulus.edit';
+        } else if ($surat->type_surat == "Laporan Hasil Studi") {
+            $surat->load('laporanHasilStudi');
+            $url = 'surat.lhs.edit';
         } else {
             $url = 'tidak ada';
         }
@@ -113,4 +139,67 @@ class SuratController extends Controller
         // Return the file as a downloadable response
         return response()->download($filePath, "{$surat->id_surat}.pdf");
     }
+
+
+    public function edit($id)
+    {
+        $surat = Surat::with(['getNIP', 'suratKeteranganMahasiswaAktif', 'suratPengantar'])->findOrFail($id);
+        return view('surat.edit', compact('surat'));
+//        $surat = Surat::findOrFail($id);
+//        return view('surat.edit', compact('surat'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $surat = Surat::with(['suratKeteranganMahasiswaAktif', 'suratPengantar'])->findOrFail($id);
+
+        // Cek jenis surat
+        if ($surat->type_surat === 'Surat Keterangan Mahasiswa Aktif') {
+            $validated = $request->validate([
+                'periode' => 'required|string',
+                'alamat_bandung' => 'required|string',
+                'keperluan_pengajuan' => 'required|string',
+            ]);
+
+            $surat->suratKeteranganMahasiswaAktif->update($validated);
+        }
+
+        elseif ($surat->type_surat === 'Surat Pengantar Tugas') {
+            $validated = $request->validate([
+                'ditujukan_kepada' => 'required|string',
+                'mata_kuliah' => 'required|string',
+                'periode' => 'required|string',
+                'nama_anggota_kelompok' => 'required|string',
+                'topik' => 'required|string',
+                'tujuan' => 'required|string',
+            ]);
+
+            $surat->suratPengantar->update($validated);
+        }
+
+        return redirect()->route('mhs.dashboard')->with('success', 'Data surat berhasil diperbarui.');
+    }
+
+    public function destroy($id)
+    {
+        $surat = Surat::findOrFail($id);
+        $surat->delete();
+
+        return redirect()->route('mhs.dashboard')->with('success', 'Surat berhasil dihapus.');
+    }
+
+    public function unduh($id)
+    {
+        $surat = Surat::findOrFail($id);
+
+        // Misal dokumen disimpan di: storage/app/public/surat/filename.pdf
+        $filePath = 'surat/' . $surat->file_name;
+
+        if (Storage::disk('public')->exists($filePath)) {
+            return Storage::disk('public')->download($filePath);
+        }
+
+        return redirect()->back()->with('error', 'Dokumen tidak ditemukan.');
+    }
+
 }

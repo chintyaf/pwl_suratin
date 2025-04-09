@@ -12,7 +12,7 @@
                 NRP
             </label>
             <input type="text" id="disabledTextInput" class="form-control"
-            value="2372018">
+            value="{{ $surat->nip }}">
           </div>
 
           <div class="mb-3">
@@ -20,14 +20,14 @@
                 Nama
             </label>
             <input type="text" id="disabledTextInput" class="form-control"
-            value="Jennifer Charity Sharon Lukita">
+            value="{{ $surat->getNIP->name }}">
           </div>
 
           <div class="mb-3">
             <label for="disabledTextInput" class="form-label">
                 Keperluan Pembuatan LHS
             </label>
-            <textarea class="form-control" rows="4" placeholder="Textarea">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, iste. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati consectetur dolorum dolorem molestiae ipsum aspernatur perferendis nam explicabo inventore maxime?
+            <textarea class="form-control" rows="4" placeholder="Textarea"> {{ $surat->laporanHasilStudi->keperluan_pembuatan ?? '-'}}
             </textarea>
           </div>
 

@@ -24,7 +24,7 @@ class SuratKeteranganMahasiswaAktifController extends Controller
 
         $surat = new Surat([
             'id_surat' => $request->surat_id_surat,
-            'status' => "Menunggu Persetujuan",
+            'status' => "pending",
             'nip' => $request->nip,
             'type_surat' => "Surat Keterangan Mahasiswa Aktif",
         ]);
@@ -48,6 +48,12 @@ class SuratKeteranganMahasiswaAktifController extends Controller
 //        dd($surat, $skma);
 
         return redirect(route('mhs.dashboard'));
-
     }
+
+    public function show($id)
+    {
+        $surat = Surat::with('suratKeteranganMahasiswaAktif')->findOrFail($id);
+        return view('detail_surat', compact('surat'));
+    }
+
 }

@@ -3,6 +3,7 @@
 - Semester
 - Alamat Lengkap Mahasiswa di Bandung
 - Keperluan Pengajuan --}}
+
 <div class="px-3">
     <form>
         <fieldset disabled>
@@ -12,7 +13,7 @@
                 NRP
             </label>
             <input type="text" id="disabledTextInput" class="form-control"
-            value="2372018">
+                   value="{{ $surat->nip }}" readonly>
           </div>
 
           <div class="mb-3">
@@ -20,7 +21,7 @@
                 Nama
             </label>
             <input type="text" id="disabledTextInput" class="form-control"
-            value="Jennifer Charity Sharon Lukita">
+            value="{{ $surat->getNIP->name }}" readonly>
           </div>
 
           <div class="mb-3">
@@ -28,15 +29,14 @@
                 Alamat Lengkap Mahasiswa di Bandung
             </label>
             <input type="text" id="disabledTextInput" class="form-control"
-            value="Jl. Palsu no 51">
+                   value="{{ $surat->suratKeteranganMahasiswaAktif->alamat_bandung ?? '-'}}" readonly>
           </div>
 
           <div class="mb-3">
             <label for="disabledTextInput" class="form-label">
                 Keperluan Pengajuan
             </label>
-            <textarea class="form-control" rows="4" placeholder="Textarea">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, iste. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati consectetur dolorum dolorem molestiae ipsum aspernatur perferendis nam explicabo inventore maxime?
-            </textarea>
+              <textarea class="form-control" rows="4" placeholder="Textarea" readonly>{{ $surat->suratKeteranganMahasiswaAktif->keperluan_pengajuan ?? '-'}}</textarea>
           </div>
 
         </fieldset>

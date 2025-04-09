@@ -12,7 +12,7 @@
                 NRP
             </label>
             <input type="text" id="disabledTextInput" class="form-control"
-            value="2372018">
+            value="{{ $surat->nip }}">
           </div>
 
           <div class="mb-3">
@@ -20,7 +20,7 @@
                 Nama
             </label>
             <input type="text" id="disabledTextInput" class="form-control"
-            value="Jennifer Charity Sharon Lukita">
+            value="{{$surat->getNIP->name}}">
           </div>
 
           <div class="mb-3">
@@ -28,7 +28,7 @@
                 Tanggal Kelulusan
             </label>
             <input type="date" id="disabledTextInput" class="form-control"
-            value="">
+            value="{{ $surat->suratKeteranganLulus->tanggal_kelulusan }}">
           </div>
 
         </fieldset>

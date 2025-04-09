@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let id_surat = button.dataset.idsurat
 
         let surat_name = button.dataset.surat || "Surat Detail";
-        let body_url = "/detail/" + id_surat;
+        let body_url = "/edit/" + id_surat;
         console.log(body_url)
 
         let modalContent = document.getElementById("modalContent");

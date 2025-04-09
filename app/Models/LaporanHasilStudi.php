@@ -23,4 +23,6 @@ class LaporanHasilStudi extends Model
     {
         return $this->belongsTo(Surat::class, 'surat_id_surat', 'id_surat');
     }
+
+
 }

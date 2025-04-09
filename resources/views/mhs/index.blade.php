@@ -71,14 +71,24 @@
                                 <td>{{ $surat->created_at }}</td>
                                 <td>
                                     {{-- <span class="badge bg-success">Selesai</span> --}}
-                                    {{ $surat->status }}
+                                    {{ $surat->status_label }}
                                 </td>
                                 <td>{{ $surat->dokumen?? 'Tidak ada Dokumen' }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalSurat2">Lihat</button>
+                                    <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                            data-role="mhs"
+                                            data-surat="{{ $surat->type_surat }}"
+                                            data-idsurat="{{ $surat->id_surat }}">
+                                        <i class="align-middle" data-feather="eye"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             @endforeach
+
+
                         </tbody>
                     </table>
                 </div>
@@ -105,71 +115,113 @@
     </div>
 </div>
 
-<!-- MODAL DETAIL SURAT -->
-@foreach ([
-    'modalSurat1' => ['title' => 'Detail Surat Keterangan Mahasiswa Aktif', 'date' => '10 Maret 2025', 'status' => 'Menunggu ACC'],
-    'modalSurat2' => ['title' => 'Detail Surat Keterangan Lulus', 'date' => '5 Maret 2025', 'status' => 'Selesai'],
-] as $id => $data)
-<div class="modal fade" id="{{ $id }}" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">{{ $data['title'] }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Tanggal Pengajuan:</strong> {{ $data['date'] }}</p>
-                <p><strong>Status:</strong> <span class="badge bg-warning">{{ $data['status'] }}</span></p>
-                @if($id == 'modalSurat2')
-                    <p><strong>Keterangan:</strong> Surat telah selesai dan dapat diunduh.</p>
-                    <a href="#" class="btn btn-success">Unduh Surat</a>
-                @endif
+    <!-- Modal Detail Surat Mahasiswa -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="modalContent">
+
             </div>
         </div>
     </div>
-</div>
-@endforeach
 
-@endsection
+{{--    @foreach ($surats as $surat)--}}
+        <!-- Modal Detail Surat -->
+{{--        <div class="modal fade" id="modalDetail{{ $surat->id_surat }}" tabindex="-1" aria-labelledby="modalDetailLabel{{ $surat->id_surat }}" aria-hidden="true">--}}
+{{--            <div class="modal-dialog modal-dialog-scrollable">--}}
+{{--                <div class="modal-content">--}}
 
-@section('ExtraJS')
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var btn = document.getElementById('btnAjukanSurat');
+{{--                    <div class="modal-header">--}}
+{{--                        <h5 class="modal-title" id="modalDetailLabel{{ $surat->id_surat }}">Detail Surat: {{ $surat->type_surat }}</h5>--}}
+{{--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>--}}
+{{--                    </div>--}}
 
-    if (btn) {
-        var popover = new bootstrap.Popover(btn, {
-            html: true,
-            content: `
-                <div class="list-group">
-                    <a href="{{ route('form-sk-mhs-aktif') }}" class="list-group-item list-group-item-action">Surat Keterangan Mahasiswa Aktif</a>
-                    <a href="{{ route('form-sp-tugas-mk') }}" class="list-group-item list-group-item-action">Surat Pengantar Tugas Mata Kuliah</a>
-                    <a href="{{ route('form-sk-lulus') }}" class="list-group-item list-group-item-action">Surat Keterangan Lulus</a>
-                    <a href="{{ route('form-lhs') }}" class="list-group-item list-group-item-action">Laporan Hasil Studi</a>
+{{--                    <div class="modal-body">--}}
+{{--                        <p><strong>Jenis Surat:</strong> {{ $surat->type_surat }}</p>--}}
+{{--                        <p><strong>Tanggal Pengajuan:</strong> {{ $surat->created_at->format('d-m-Y') }}</p>--}}
+{{--                        <p><strong>Status:</strong> {{ $surat->status_label }}</p>--}}
+{{--                        <p><strong>Dokumen:</strong> {{ $surat->dokumen ?? 'Tidak ada dokumen' }}</p>--}}
+
+{{--                        --}}{{-- Tambahkan detail lain sesuai kebutuhan --}}
+{{--                    </div>--}}
+
+{{--                    <div class="modal-footer d-flex justify-content-between">--}}
+{{--                        --}}{{-- Tombol Update --}}
+{{--                        <form action="{{ route('surat.update', $surat->id_surat) }}" method="POST">--}}
+{{--                            @csrf--}}
+{{--                            @method('PUT')--}}
+{{--                            <input type="hidden" name="status" value="revisi">--}}
+{{--                            <button type="submit" class="btn btn-warning">--}}
+{{--                                <i class="fa fa-edit me-1"></i> Update Status--}}
+{{--                            </button>--}}
+{{--                        </form>--}}
+
+{{--                        --}}{{-- Tombol Hapus --}}
+{{--                        <form action="{{ route('surat.destroy', $surat->id_surat) }}" method="POST" onsubmit="return confirm('Yakin ingin membatalkan pengajuan surat ini?');">--}}
+{{--                            @csrf--}}
+{{--                            @method('DELETE')--}}
+{{--                            <button type="submit" class="btn btn-danger">--}}
+{{--                                <i class="fa fa-trash me-1"></i> Hapus Surat--}}
+{{--                            </button>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    @endforeach--}}
+
+
+
+    @endsection
+
+
+    @section('ExtraJS')
+        <script src="{{ asset('js/edit-surat.js') }}"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const trigger = document.querySelector('#btnAjukanSurat');
+
+                const popoverBox = document.createElement('div');
+                popoverBox.id = 'customPopover';
+                popoverBox.innerHTML = `
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-3 d-flex flex-column gap-2">
+                    <a href="{{ route('form-sk-mhs-aktif') }}" class="btn btn-outline-primary w-100">Surat Keterangan Mahasiswa Aktif</a>
+                    <a href="{{ route('form-sp-tugas-mk') }}" class="btn btn-outline-primary w-100">Surat Pengantar Tugas Mata Kuliah</a>
+                    <a href="{{ route('form-sk-lulus') }}" class="btn btn-outline-primary w-100">Surat Keterangan Lulus</a>
+                    <a href="{{ route('form-lhs') }}" class="btn btn-outline-primary w-100">Laporan Hasil Studi</a>
                 </div>
-            `,
-            trigger: 'manual', // Memastikan popover dibuka & ditutup manual
-            placement: 'bottom',
-            container: 'body',
-            sanitize: false
-        });
+            </div>
+        `;
+                popoverBox.style.position = 'absolute';
+                popoverBox.style.zIndex = 1000;
+                popoverBox.style.display = 'none';
+                popoverBox.style.width = '260px';
 
-        btn.addEventListener("click", function() {
-            popover.toggle(); // Toggle popover saat tombol diklik
-        });
+                document.body.appendChild(popoverBox);
 
-        // Event listener untuk menutup popover saat klik di luar
-        document.addEventListener("click", function(e) {
-            if (!btn.contains(e.target) && !document.querySelector('.popover')?.contains(e.target)) {
-                popover.hide();
-            }
-        });
-    } else {
-        console.error("Element #btnAjukanSurat tidak ditemukan.");
-    }
-});
+                let isVisible = false;
 
+                trigger.addEventListener('click', function (e) {
+                    e.stopPropagation(); // biar tidak langsung ditutup
+                    const rect = trigger.getBoundingClientRect();
+                    const leftPos = rect.left + (rect.width / 2) - (260 / 2);
 
+                    popoverBox.style.top = `${window.scrollY + rect.bottom + 8}px`;
+                    popoverBox.style.left = `${leftPos}px`;
 
-</script>
+                    isVisible = !isVisible;
+                    popoverBox.style.display = isVisible ? 'block' : 'none';
+                });
+
+                // Tutup saat klik di luar popover
+                document.addEventListener('click', function (e) {
+                    if (!popoverBox.contains(e.target) && e.target !== trigger) {
+                        popoverBox.style.display = 'none';
+                        isVisible = false;
+                    }
+                });
+            });
+        </script>
 @endsection
