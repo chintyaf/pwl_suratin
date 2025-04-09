@@ -11,10 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Filesystem\FilesystemAdapter;
-use App\Models\SuratPengantar;
-use App\Models\SuratKeteranganLulus;
-use App\Models\LaporanHasilStudi;
-use App\Models\SuratKeteranganMahasiswaAktif;
 
 
 class SuratController extends Controller
@@ -173,18 +169,18 @@ class SuratController extends Controller
         return redirect()->route('mhs.dashboard')->with('success', 'Surat berhasil dihapus.');
     }
 
-    public function unduh($id)
-    {
-        $surat = Surat::findOrFail($id);
+    // public function unduh($id)
+    // {
+    //     $surat = Surat::findOrFail($id);
 
-        // Misal dokumen disimpan di: storage/app/public/surat/filename.pdf
-        $filePath = 'surat/' . $surat->file_name;
+    //     // Misal dokumen disimpan di: storage/app/public/surat/filename.pdf
+    //     $filePath = 'surat/' . $surat->file_name;
 
-        if (Storage::disk('public')->exists($filePath)) {
-            return Storage::disk('public')->download($filePath);
-        }
+    //     if (Storage::disk('public')->exists($filePath)) {
+    //         return Storage::disk('public')->download($filePath);
+    //     }
 
-        return redirect()->back()->with('error', 'Dokumen tidak ditemukan.');
-    }
+    //     return redirect()->back()->with('error', 'Dokumen tidak ditemukan.');
+    // }
 
 }
