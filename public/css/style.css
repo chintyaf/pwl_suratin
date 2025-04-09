@@ -4,6 +4,11 @@
     /* font-family: "Maven Pro", "Inter", Arial, sans-serif; */
 }
 
+.hidden {
+    display: none !important;
+}
+
+
 .modal-dialog {
     margin-top: 70px;
     max-width: 1000px;
@@ -22,18 +27,18 @@
     background-color: #13879b !important;
 }
 
-#submit-btn .btn{
+#submit-btn .btn {
     min-width: 100px;
     min-height: 35px;
 }
 
-.btn-danger{
-    background-color:#ff4d4f !important;
+.btn-danger {
+    background-color: #ff4d4f !important;
     color: #ffffff !important;
 }
 
-.btn-success{
-    background-color:#13879b !important;
+.btn-success {
+    background-color: #13879b !important;
     color: #fff !important;
 }
 
@@ -244,8 +249,6 @@
     word-wrap: break-word;
 }
 
-
-
 .card {
     border: 2px solid #eef0f5;
 }
@@ -261,15 +264,13 @@
     color: #13879b;
 }
 
-.pc-link{
-    padding-left:20px;
+.pc-link {
+    padding-left: 20px;
 }
 
-.modal-body{
-    background:white;
+.modal-body {
+    background: white;
 }
-
-
 
 .dropdown .form-control {
     height: 50px;
@@ -297,3 +298,31 @@
     background-color: #f8f9fa;
 }
 
+#usersTable_info {
+    display: flex;
+    justify-content: end;
+    margin: 10px;
+}
+
+#usersTable_paginate {
+    display: flex;
+    justify-content: space-between;
+}
+
+#usersTable_paginate {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+#usersTable_paginate a {
+    color: #006577;
+    margin: 0px 7px;
+}
+
+#usersTable_length {
+    margin: 10px 10px;
+}
+
+#usersTable_length select {
+    padding: 5px 10px;
+}

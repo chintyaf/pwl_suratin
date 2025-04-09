@@ -12,7 +12,7 @@
                 NRP
             </label>
             <input type="text" id="disabledTextInput" class="form-control"
-            value="2372018">
+            value="{{ surat->nrp }}">
           </div>
 
           <div class="mb-3">
