@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Filesystem\FilesystemAdapter;
+use App\Models\SuratPengantar;
+use App\Models\SuratKeteranganLulus;
+use App\Models\LaporanHasilStudi;
+use App\Models\SuratKeteranganMahasiswaAktif;
+
 
 class SuratController extends Controller
 {
@@ -20,7 +25,7 @@ class SuratController extends Controller
         return view('surat.box', compact('surat'));
     }
 
-    // Untuk Kaprodi Setujui /
+    // Untuk Kaprodi / MO
     public function detailView(Surat $surat)
     {
         if ($surat->type_surat == "Surat Pengantar Tugas Mata Kuliah") {
@@ -36,34 +41,14 @@ class SuratController extends Controller
             $surat->load('laporanHasilStudi');
             $url = 'surat.lhs.detail';
         } else {
-            $url = 'tidak ada';
+            // Please change
+            $url = 'tidakada';
         }
         // return $surat;
         return view($url)
             ->with('surat', $surat);
     }
 
-    public function editSurat(Surat $surat)
-    {
-        if ($surat->type_surat == "Surat Pengantar Tugas Mata Kuliah") {
-            $surat->load('suratPengantar');
-            $url = 'surat.sp_tugas_mk.edit';
-        } else if ($surat->type_surat == "Surat Keterangan Mahasiswa Aktif") {
-            $surat->load('suratKeteranganMahasiswaAktif');
-            $url = 'surat.sk_mhs_aktif.edit';
-        } else if ($surat->type_surat == "Surat Keterangan Lulus") {
-            $surat->load('suratKeteranganLulus');
-            $url = 'surat.sk_lulus.edit';
-        } else if ($surat->type_surat == "Laporan Hasil Studi") {
-            $surat->load('laporanHasilStudi');
-            $url = 'surat.lhs.edit';
-        } else {
-            $url = 'tidak ada';
-        }
-        // return $surat;
-        return view($url)
-            ->with('surat', $surat);
-    }
 
     public function updateStatus(Request $request, Surat $surat)
     {

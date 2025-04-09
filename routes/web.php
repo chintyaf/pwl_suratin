@@ -63,16 +63,16 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
 
     // Create account
     Route::controller(UserController::class)->prefix('user')->group(function () {
-        Route::get('/user', 'index')->name('user.index');
+        Route::get('', 'index')->name('user.index');
 
-        Route::get('/user/add', 'add')->name('user.add');
-        Route::post('/user/store', 'store')->name('user.store');
-        Route::get('/user/edit/{nip}', 'edit')->name('user.edit');
-        Route::post('/user/update/{id}', 'update')->name('user.update');
-        Route::get('/user/delete/{id}', 'delete')->name('user.delete');
+        Route::get('add', 'add')->name('user.add');
+        Route::post('store', 'store')->name('user.store');
+        Route::get('edit/{nip}', 'edit')->name('user.edit');
+        Route::post('update/{id}', 'update')->name('user.update');
+        Route::get('delete/{id}', 'delete')->name('user.delete');
 
-        Route::get('/addmulti-user', 'multiAdd')->name('user.multiAdd');
-        Route::get('/addmulti-user/store', 'multiStore')->name('user.multiStore');
+        Route::get('import', 'importForm')->name('user.importForm');
+        Route::post('import/store', 'importStore')->name('user.importStore');
     });
 });
 
@@ -80,21 +80,21 @@ Route::get('/box-modal', function () {
     return view('layouts.partials.box');
 });
 
-Route::controller(UserController::class)->group(function () {
-    Route::get('/user', 'index')->name('user.index');
-    Route::get('/user/admin', 'lsAdmin')->name('user.lsadmin');
-    Route::get('/user/kaprodi', 'ls')->name('user.lskaprodi');
-    Route::get('/user/mo', 'index')->name('user.lsmo');
-    Route::get('/user/mhs', 'index')->name('user.lsmhs');
+// Route::controller(UserController::class)->group(function () {
+//     Route::get('/user', 'index')->name('user.index');
+//     Route::get('/user/admin', 'lsAdmin')->name('user.lsadmin');
+//     Route::get('/user/kaprodi', 'ls')->name('user.lskaprodi');
+//     Route::get('/user/mo', 'index')->name('user.lsmo');
+//     Route::get('/user/mhs', 'index')->name('user.lsmhs');
 
 
 
-    Route::get('/add-user', 'add')->name('user.add');
-    Route::post('/user/store', 'store')->name('user.store');
-    Route::get('/user/edit/{nip}', 'edit')->name('user.edit');
-    Route::post('/user/update/{id}', 'update')->name('user.update');
-    Route::get('/user/delete/{id}', 'delete')->name('user.delete');
-});
+//     Route::get('/add-user', 'add')->name('user.add');
+//     Route::post('/user/store', 'store')->name('user.store');
+//     Route::get('/user/edit/{nip}', 'edit')->name('user.edit');
+//     Route::post('/user/update/{id}', 'update')->name('user.update');
+//     Route::get('/user/delete/{id}', 'delete')->name('user.delete');
+// });
 
 
 // KAPRODI

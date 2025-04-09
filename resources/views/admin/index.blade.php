@@ -1,4 +1,10 @@
 @extends('layouts.index')
+
+@section('ExtraCSS')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+@endsection
+
+
 @section('content')
     Admin
     <h1 class="mb-3 h3">
@@ -6,9 +12,15 @@
         Dashboard
     </h1>
 
-
-
     <div class="p-2 table_component rounded-4" role="region" tabindex="0">
+        <div class="search-wrapper">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search...">
+            </div>
+        </div>
+
+        {{-- @include('layouts.partials.search') --}}
 
 
         <div class="row">
@@ -19,7 +31,7 @@
                         <h5 class="px-3 py-2 mb-0 card-title">Users</h5>
                     </div>
                     <div class="px-4 pb-4">
-                        <table class="table p-2 my-0 table-hover">
+                        <table id="usersTable" class="table p-2 my-0 table-hover">
                             <thead>
                                 <tr>
                                     <th>NIP</th>
@@ -73,8 +85,15 @@
 @endsection
 
 @section('ExtraJS')
+    <script>
+
+    </script>
     <script src="{{ asset('js/box.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.delete-button').forEach(button => {
@@ -98,8 +117,21 @@
                     });
                 });
             });
+
         });
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable({
+                "paging": true,        // Aktifkan pagination
+                "searching": false,     // Aktifkan search otomatis
+                "ordering": true,      // Aktifkan sorting
+                "info": true           // Tampilkan info jumlah data
+            });
+        });
+    </script>
 
 @endsection

@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\UserImport;
+
 
 class UserController extends Controller
 {
@@ -82,7 +85,7 @@ class UserController extends Controller
             'id_role' => ['required', 'exists:role,id_role'],
             'alamat' => ['required', 'string', 'max:255'],
             'alamat_bandung' => ['required', 'string', 'max:255'],
-        ],[
+        ], [
             'id_role.exists' => 'The selected role does not exist. Please choose a valid role.',
         ]);
 
@@ -100,7 +103,6 @@ class UserController extends Controller
     }
 
     public function delete($nip)
-
     {
         $user = User::find($nip);
         if ($user) {
@@ -108,5 +110,17 @@ class UserController extends Controller
         }
 
         return redirect(route('user.index', absolute: false));
+    }
+
+    public function importForm()
+    {
+        return view(
+            'user.import-add',
+        );
+    }
+    public function importStore(Request $request) {
+        Excel::import(new UserImport, $request->file('excel_file'));
+
+        return redirect(route('dashboard', absolute: false));
     }
 }

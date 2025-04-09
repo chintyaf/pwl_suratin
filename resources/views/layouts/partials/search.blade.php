@@ -7,17 +7,9 @@
         <i class="fas fa-search search-icon"></i>
         <input type="text" class="search-input" placeholder="Search...">
     </div>
-
-    <div class="suggestions">
-        <div class="suggestion-item">
-            Example Search 1
-        </div>
-        <div class="suggestion-item">
-            Example Search 1
-        </div>
-        <div class="suggestion-item">
-            Example Search 1
-        </div>
-
-    </div>
 </div>
+
+
+@section('ExtraJS')
+
+@endsection

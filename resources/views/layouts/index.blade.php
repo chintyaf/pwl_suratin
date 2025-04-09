@@ -47,19 +47,17 @@
 
             </div>
         </div> --}}
-		<div class="main">
+        <div class="main" style="overflow:auto">
             @auth
             @include('layouts.partials.navbar')
             @endauth
 
-			<main class="content">
-
+            <main class="content">
                 @yield('content')
-			</main>
+            </main>
 
             @include('layouts.partials.footer')
-
-		</div>
+        </div>
 	</div>
 
 	{{-- <script src="{{ asset('js/app2.js') }}"></script> --}}
