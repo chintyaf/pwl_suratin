@@ -89,6 +89,28 @@ class SuratController extends Controller
         return redirect()->back()->with('success', 'File uploaded successfully.');
     }
 
+    public function editSurat(Surat $surat)
+    {
+        if ($surat->type_surat == "Surat Pengantar Tugas Mata Kuliah") {
+            $surat->load('suratPengantar');
+            $url = 'surat.sp_tugas_mk.edit';
+        } else if ($surat->type_surat == "Surat Keterangan Mahasiswa Aktif") {
+            $surat->load('suratKeteranganMahasiswaAktif');
+            $url = 'surat.sk_mhs_aktif.edit';
+        } else if ($surat->type_surat == "Surat Keterangan Lulus") {
+            $surat->load('suratKeteranganLulus');
+            $url = 'surat.sk_lulus.edit';
+        } else if ($surat->type_surat == "Laporan Hasil Studi") {
+            $surat->load('laporanHasilStudi');
+            $url = 'surat.lhs.edit';
+        } else {
+            $url = 'tidak ada';
+        }
+        // return $surat;
+        return view($url)
+            ->with('surat', $surat);
+    }
+
 
     public function viewSurat(Surat $surat)
     {

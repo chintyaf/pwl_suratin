@@ -25,7 +25,7 @@
             <textarea id="keperluan_pembuatan" name="keperluan_pembuatan" class="form-control" rows="3" placeholder="Jelaskan keperluan Anda" required>{{ $surat->laporanHasilStudi->keperluan_pembuatan ?? ''}}</textarea>
         </div>
 
-        <div class="d-flex justify-content-end gap-3">
+        <div class="gap-3 d-flex justify-content-end">
             <button type="submit" class="px-5 py-2 mt-3 btn btn-primary rounded-3">Simpan</button>
             <form method="POST" action="{{ route('laporan_hasil_studi.destroy', $surat->id_surat) }}" class="d-inline">
                 @csrf
