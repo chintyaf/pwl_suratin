@@ -43,16 +43,27 @@ class KaprodiController extends Controller
         $totalSelesai = $selesai->count();
         $totalDitolak = $ditolak->count();
 
+        // dd(            compact(
+        //     'menunggu' ?? [],
+        //     'totalMenunggu',
+        //     'diproses' ?? [],
+        //     'totalDiproses',
+        //     'selesai' ?? [],
+        //     'totalSelesai',
+        //     'ditolak' ?? [],
+        //     'totalDitolak'
+        // ));
+
         return view(
             'kaprodi.index',
             compact(
-                'menunggu',
+                'menunggu' ?? [],
                 'totalMenunggu',
-                'diproses',
+                'diproses' ?? [],
                 'totalDiproses',
-                'selesai',
+                'selesai' ?? [],
                 'totalSelesai',
-                'ditolak',
+                'ditolak' ?? [],
                 'totalDitolak'
             )
         );

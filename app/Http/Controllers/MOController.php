@@ -13,10 +13,30 @@ class MOController extends Controller
     {
         $prodi = Auth::user()->id_prodi;
 
-        $pendingSurat = Surat::where('id_prodi', $prodi)->where('status', 'pending')->orderBy('created_at', 'desc')->get();
-        $processingSurat = Surat::where('id_prodi', $prodi)->where('status', 'waiting_docs')->orderBy('created_at', 'desc')->get();
-        $completedSurat = Surat::where('id_prodi', $prodi)->where('status', 'doc_available')->orderBy('created_at', 'desc')->get();
-        $receivedSurat = Surat::where('id_prodi', $prodi)->where('status', 'doc_available')->orderBy('created_at', 'desc')->get();
+        $pendingSurat = Surat::join('users', 'users.nip', '=', 'surat.nip')
+            ->where('surat.status', 'pending')
+            ->where('users.id_prodi', $prodi)
+            ->orderBy('surat.created_at', 'desc')
+            ->get(['surat.*']);
+
+        $processingSurat = Surat::join('users', 'users.nip', '=', 'surat.nip')
+            ->where('surat.status', 'waiting_docs')
+            ->where('users.id_prodi', $prodi)
+            ->orderBy('surat.created_at', 'desc')
+            ->get(['surat.*']);
+
+        $completedSurat = Surat::join('users', 'users.nip', '=', 'surat.nip')
+            ->where('surat.status', 'completed')
+            ->where('users.id_prodi', $prodi)
+            ->orderBy('surat.created_at', 'desc')
+            ->get(['surat.*']);
+
+        $receivedSurat = Surat::join('users', 'users.nip', '=', 'surat.nip')
+            ->where('surat.status', 'doc_available')
+            ->where('users.id_prodi', $prodi)
+            ->orderBy('surat.created_at', 'desc')
+            ->get(['surat.*']);
+
 
         $pendingCount = $pendingSurat->count();
         $processingCount = $processingSurat->count();
@@ -27,13 +47,13 @@ class MOController extends Controller
             'mo.index',
             compact(
                 'pendingSurat',
-                'pendingCount',
                 'processingSurat',
-                'processingCount',
                 'completedSurat',
-                'completedCount',
                 'receivedSurat',
-                'receivedCount'
+                'pendingCount',
+                'processingCount',
+                'completedCount',
+                'receivedCount',
             )
         );
     }

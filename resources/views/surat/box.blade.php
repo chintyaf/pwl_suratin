@@ -18,11 +18,11 @@
         <form action="{{ route('surat.upload', $surat->id_surat) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <label for="disabledTextInput" class="form-label">
-                Unggah Dokumen
-            </label>
-            <input type="file" name="dokumen" id="" class="form-control">
-            <button type="submit">Upload</button>
+            <div class="mb-3">
+                <label for="formFileSm" class="form-label">Unggah Dokumen</label>
+                <input class="form-control form-control-sm" name="dokumen" id="formFileSm" type="file">
+                <button type="submit" class="mt-3 btn btn-success">Upload</button>
+            </div>
         </form>
     </div>
 
