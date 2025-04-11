@@ -83,8 +83,8 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', "unique:users,email,{$user->nip},nip"],
             'id_role' => ['required', 'exists:role,id_role'],
-            'alamat' => ['required', 'string', 'max:255'],
-            'alamat_bandung' => ['required', 'string', 'max:255'],
+            // 'alamat' => ['required', 'string', 'max:255'],
+            // 'alamat_bandung' => ['required', 'string', 'max:255'],
         ], [
             'id_role.exists' => 'The selected role does not exist. Please choose a valid role.',
         ]);

@@ -14,7 +14,7 @@ class MahasiswaController extends Controller
 
         $menunggu = Surat::where('nip', $nip)->where('status', 'pending')->count();
         $diproses = Surat::where('nip', $nip)->where('status', 'waiting_docs')->count();
-        $selesai  = Surat::where('nip', $nip)->where('status', 'completed')->count();
+        $selesai  = Surat::where('nip', $nip)->where('status', 'doc_available')->count();
         $ditolak  = Surat::where('nip', $nip)->where('status', 'rejected')->count();
 
 //        $menunggu = Surat::where('nip', $nip)->where('status', 'Menunggu Persetujuan')->count();

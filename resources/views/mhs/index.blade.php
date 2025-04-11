@@ -73,7 +73,20 @@
                                     {{-- <span class="badge bg-success">Selesai</span> --}}
                                     {{ $surat->status_label }}
                                 </td>
-                                <td>{{ $surat->dokumen?? 'Tidak ada Dokumen' }}</td>
+                                <td style="width:13%">
+                                    @if($surat->status == "doc_available" or $surat->status == "completed")
+                                    <a href="{{ route('surat.view', $surat->id_surat) }}" target="_blank" class="btn btn-primary">
+                                        {{-- View --}}
+                                        <i class="align-middle" data-feather="eye"></i>
+                                    </a>
+                                    <a href="{{ route('surat.download', $surat->id_surat) }}" class="btn btn-success">
+                                        {{-- Download --}}
+                                        <i class="align-middle" data-feather="download"></i>
+                                    </a>
+                                    @else
+                                    No File
+                                    @endif
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-primary"
                                             data-bs-toggle="modal"
@@ -81,7 +94,11 @@
                                             data-role="mhs"
                                             data-surat="{{ $surat->type_surat }}"
                                             data-idsurat="{{ $surat->id_surat }}">
+                                        @if ($surat->status == 'pending')
+                                        <i class="align-middle" data-feather="edit"></i>
+                                        @else
                                         <i class="align-middle" data-feather="eye"></i>
+                                        @endif
                                     </button>
 
                                 </td>
@@ -185,8 +202,8 @@
                 const popoverBox = document.createElement('div');
                 popoverBox.id = 'customPopover';
                 popoverBox.innerHTML = `
-            <div class="card shadow-sm border-0">
-                <div class="card-body p-3 d-flex flex-column gap-2">
+            <div class="border-0 shadow-sm card">
+                <div class="gap-2 p-3 card-body d-flex flex-column">
                     <a href="{{ route('form-sk-mhs-aktif') }}" class="btn btn-outline-primary w-100">Surat Keterangan Mahasiswa Aktif</a>
                     <a href="{{ route('form-sp-tugas-mk') }}" class="btn btn-outline-primary w-100">Surat Pengantar Tugas Mata Kuliah</a>
                     <a href="{{ route('form-sk-lulus') }}" class="btn btn-outline-primary w-100">Surat Keterangan Lulus</a>
