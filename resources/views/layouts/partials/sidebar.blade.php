@@ -41,14 +41,35 @@
                 </li>
 
                 @php
-                $adm_links = [
+                $akun_links = [
                 ['title' => 'List Akun', 'url' => 'user.index'],
                 ['title' => 'Buat Akun', 'url' => 'user.add'],
                 ['title' => 'Import Akun', 'url' => 'user.importForm'],
                 ];
                 @endphp
 
-                @foreach ($adm_links as $link)
+                @foreach ($akun_links as $link)
+
+                <li class="pc-item {{ request()->routeIs($link['url']) ? 'active' : '' }}">
+                    <a href="{{ route($link['url']) }}" class="pc-link">
+                        <span class="pc-mtext">{{ $link['title'] }}</span>
+                    </a>
+                </li>
+                @endforeach
+
+                <li class="pc-item pc-caption">
+                    <label>Database</label>
+                </li>
+
+                @php
+                $akun_links = [
+                ['title' => 'Program Studi', 'url' => 'program_studi.index'],
+                ['title' => 'Mata Kuliah', 'url' => 'mata_kuliah.index'],
+                ['title' => 'Jenis Surat', 'url' => 'type_surat.index'],
+                ];
+                @endphp
+
+                @foreach ($akun_links as $link)
 
                 <li class="pc-item {{ request()->routeIs($link['url']) ? 'active' : '' }}">
                     <a href="{{ route($link['url']) }}" class="pc-link">
