@@ -202,11 +202,11 @@ Route::controller(SuratController::class)->group(function () {
 
     Route::get('/surat_keterangan_mahasiswa_aktif/edit/{surat}', [SuratKeteranganMahasiswaAktifController::class, 'edit'])->name('surat_keterangan_mahasiswa_aktif.edit');
     Route::put('/surat_keterangan_mahasiswa_aktif/edit/{surat}', [SuratKeteranganMahasiswaAktifController::class, 'update'])->name('surat_keterangan_mahasiswa_aktif.update');
-    Route::put('/surat_keterangan_mahasiswa_aktif/remove/{surat}', [SuratKeteranganMahasiswaAktifController::class, 'destroy'])->name('surat_keterangan_mahasiswa_aktif.destroy');
+    Route::delete('/surat_keterangan_mahasiswa_aktif/remove/{surat}', [SuratKeteranganMahasiswaAktifController::class, 'destroy'])->name('surat_keterangan_mahasiswa_aktif.destroy');
 
     Route::get('/surat_pengantar/edit/{surat}', [SuratPengantarController::class, 'edit'])->name('surat_pengantar.edit');
     Route::put('/surat_pengantar/edit/{surat}', [SuratPengantarController::class, 'update'])->name('surat_pengantar.update');
-    Route::put('/surat_pengantar/remove/{surat}', [SuratPengantarController::class, 'destroy'])->name('surat_pengantar.destroy');
+    Route::delete('/surat_pengantar/remove/{surat}', [SuratPengantarController::class, 'destroy'])->name('surat_pengantar.destroy');
 
 });
 

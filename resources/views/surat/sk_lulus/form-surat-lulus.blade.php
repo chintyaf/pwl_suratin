@@ -6,7 +6,7 @@
         @csrf
 
         <input type="hidden" id="nip" name="nip" value="{{auth()->user()->nip}}">
-        <input type="text" id="surat_id_surat" name="surat_id_surat" value="SKLU001">
+{{--        <input type="text" id="surat_id_surat" name="surat_id_surat" value="SKLU001">--}}
         <div class="mb-3">
             <h1 class="align-middle d-inline">Form Surat Keterangan Lulus</h1>
             <p class="text-muted">Silakan isi data berikut untuk mengajukan surat keterangan lulus.</p>

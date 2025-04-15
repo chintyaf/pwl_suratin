@@ -6,12 +6,12 @@
 
         <div class="mb-3">
             <label for="disabledTextInput" class="form-label">NIP</label>
-            <input type="text" name="nip" id="disabledTextInput" class="form-control" value="{{ $surat->nip }}">
+            <input type="text" name="nip" id="disabledTextInput" class="form-control" value="{{ $surat->nip }}" readonly>
         </div>
 
         <div class="mb-3">
             <label for="disabledTextInput" class="form-label">Nama</label>
-            <input type="text" name="nip" id="disabledTextInput" class="form-control" value="{{ $surat->getNIP->name }}">
+            <input type="text" name="nip" id="disabledTextInput" class="form-control" value="{{ $surat->getNIP->name }}" readonly>
         </div>
 
         <div class="mb-3">
