@@ -65,6 +65,7 @@
                     </a>
                 </li>
 
+                {{-- MO --}}
                 @elseif(auth()->user()->id_role === '2')
                 <li class="pc-item {{ request()->routeIs('mo.dashboard') ? 'active' : '' }}">
                     <a href="{{ route('mo.dashboard') }}" class="pc-link">
@@ -72,6 +73,7 @@
                     </a>
                 </li>
 
+                {{-- MAHASISWA --}}
                 @elseif(auth()->user()->id_role === '3')
                 <li class="pc-item {{ request()->routeIs('mhs.dashboard') ? 'active' : '' }}">
                     <a href="{{ route('mhs.dashboard') }}" class="pc-link">
@@ -93,12 +95,31 @@
                 @endphp
 
                 @foreach ($mhs_links as $link)
-                <li class="pc-item {{ request()->is($link['url']) ? 'active' : '' }}">
-                    <a href="{{ route($link['url']) }}" class="pc-link">
-                        <span class="pc-mtext">{{ $link['title'] }}</span>
+                    <li class="pc-item {{ request()->is($link['url']) ? 'active' : '' }}">
+                        <a href="{{ route($link['url']) }}" class="pc-link">
+                            <span class="pc-mtext">{{ $link['title'] }}</span>
+                        </a>
+                    </li>
+                @endforeach
+
+                <li class="pc-item pc-caption">
+                    <label>Riwayat</label>
+                </li>
+                <li class="pc-item {{ Route::currentRouteName() === 'mhs.history-surat' ? 'active' : '' }}">
+                    <a href="{{ route('mhs.history-surat') }}" class="pc-link">
+                        <span class="pc-mtext">Semua Riwayat Pengajuan Surat</span>
                     </a>
                 </li>
-                @endforeach
+
+{{--                @php--}}
+{{--                    $riwayat_links = [--}}
+{{--                    ['title' => 'Riwayat', 'url' => 'mhs.history-surat'],--}}
+{{--                    ];--}}
+{{--                @endphp--}}
+
+
+
+
 
                 @endif
             </ul>
