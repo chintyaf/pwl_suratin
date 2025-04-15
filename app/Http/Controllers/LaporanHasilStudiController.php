@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use App\Models\Surat;
 use App\Models\LaporanHasilStudi;
 use Illuminate\Http\Request;
@@ -15,33 +15,77 @@ class LaporanHasilStudiController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'keperluan_pembuatan' => 'required|string',
+            'nip' => 'required',
+        ]);
 
+        $kodeSurat = 'LHST'; // Karena ini form khusus Laporan Hasil Studi
+        $nip = $request->nip;
+
+        // Cari nomor urut terakhir dengan format yang sama
+        $lastSurat = Surat::where('id_surat', 'LIKE', "$kodeSurat-$nip-%")
+            ->orderBy('id_surat', 'desc')
+            ->first();
+
+        if ($lastSurat) {
+            $lastNumber = (int) Str::afterLast($lastSurat->id_surat, '-');
+            $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+        } else {
+            $newNumber = '001';
+        }
+
+        $generatedIdSurat = "$kodeSurat-$nip-$newNumber";
+
+        // Buat surat utama
         $surat = new Surat([
-            'id_surat' => $request->surat_id_surat,
+            'id_surat' => $generatedIdSurat,
             'status' => "pending",
-            'nip' => $request->nip,
+            'nip' => $nip,
             'type_surat' => "Laporan Hasil Studi",
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        // return $request;
-
-        $validatedData = validator($request->all(),[
-            'surat_id_surat' => 'required|string',
-            'keperluan_pembuatan' => 'required|string',
-        ])->validate();
-
-        $laporan_hasil_studi = new LaporanHasilStudi($validatedData);
 
         $surat->save();
-        $laporan_hasil_studi -> save();
 
+        // Buat relasi data Laporan Hasil Studi
+        $laporan_hasil_studi = new LaporanHasilStudi([
+            'surat_id_surat' => $generatedIdSurat,
+            'keperluan_pembuatan' => $request->keperluan_pembuatan,
+        ]);
 
-        // dd($surat, $surat_pengantar);
+        $laporan_hasil_studi->save();
 
-        return redirect(route('mhs.dashboard'));
-
+        return redirect(route('mhs.dashboard'))->with('success', 'Surat berhasil dibuat dengan nomor: ' . $generatedIdSurat);
     }
+
+//    public function store(Request $request)
+//    {
+//
+//        $surat = new Surat([
+//            'id_surat' => $request->surat_id_surat,
+//            'status' => "pending",
+//            'nip' => $request->nip,
+//            'type_surat' => "Laporan Hasil Studi",
+//            'created_at' => now(),
+//            'updated_at' => now(),
+//        ]);
+//        // return $request;
+//
+//        $validatedData = validator($request->all(),[
+//            'surat_id_surat' => 'required|string',
+//            'keperluan_pembuatan' => 'required|string',
+//        ])->validate();
+//
+//        $laporan_hasil_studi = new LaporanHasilStudi($validatedData);
+//
+//        $surat->save();
+//        $laporan_hasil_studi -> save();
+//
+//        return redirect(route('mhs.dashboard'));
+//
+//    }
 
     public function update(Request $request, $id)
     {
