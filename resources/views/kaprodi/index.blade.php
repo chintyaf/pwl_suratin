@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('ExtraCSS')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 @endsection
 
 
@@ -135,7 +135,7 @@ Ketua Program Studi
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.querySelector(".search-input");
     const table = $(".table").DataTable({ // Initialize DataTable
         "paging": true,

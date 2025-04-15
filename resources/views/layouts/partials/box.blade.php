@@ -6,32 +6,25 @@
     <p>Loading...</p>
 </div>
 
-{{-- <hr> --}}
+{{--
+<hr> --}}
 
-<div id="submit-btn" class="pt-0 modal-body"  style="padding-bottom: 16px">
-
-
-        {{-- MO --}}
-        @if (auth()->user()->id_role === '2')
-        <div class="mb-3">
-            <label for="disabledTextInput" class="form-label">
-                Unggah Dokumen
-            </label>
-            <input type="file" name="" id="" class="form-control" >
-        </div>
-
-        {{-- <button type="button" class="btn btn-success">Simpan</button> --}}
-
-        @endif
+<div id="submit-btn" class="pt-0 modal-body" style="padding-bottom: 16px">
 
 
-        {{-- Kaprodi --}}
-    @if (auth()->user()->id_role === '1')
-    <div class="gap-3 px-3 justify-content-center d-flex">
-        <button type="button" class="btn btn-success">Terima</button>
-        <button type="button" class="btn btn-danger">Tolak</button>
+    {{-- MO --}}
+    @if (auth()->user()->id_role === '2')
+    <div class="mb-3">
+        <label for="disabledTextInput" class="form-label">
+            Unggah Dokumen
+        </label>
+        <input type="file" name="" id="" class="form-control">
     </div>
+
+    {{-- <button type="button" class="btn btn-success">Simpan</button> --}}
+
     @endif
+
 
 </div>
 {{-- <div class="modal-footer"> --}}
@@ -40,4 +33,5 @@
     <button type="button" class="btn btn-danger">Tolak</button> --}}
 
     {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-{{-- </div> --}}
+    {{--
+</div> --}}

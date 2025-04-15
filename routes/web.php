@@ -16,26 +16,13 @@ use App\Http\Controllers\SuratKeteranganMahasiswaAktifController;
 
 
 Route::get('/test', function () {
-    return view('admin.add-user', ['id_role' => '0']);
+    return view('user.add', ['id_role' => '0']);
 });
 
 // DASHBOARD
 Route::get('/', function () {
     return redirect()->route('dashboard');
 })->middleware('auth');
-
-// Redirect dashboard
-// Route::get('/dashboard', function () {
-//     if (Auth::check() && Auth::user()->id_role === '0') {
-//         return redirect()->route('admin.dashboard');
-//     } else if (Auth::check() && Auth::user()->id_role === '1') {
-//         return redirect()->route('kaprodi.dashboard');
-//     } else if (Auth::check() && Auth::user()->id_role === '2') {
-//         return redirect()->route('mo.dashboard');
-//     } else if (Auth::check() && Auth::user()->id_role === '3') {
-//         return redirect()->route('mhs.dashboard');
-//     }
-// })->name('dashboard');
 
 Route::get('/dashboard', function () {
     if (!Auth::check()) {
@@ -68,8 +55,10 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
         Route::get('add', 'add')->name('user.add');
         Route::post('store', 'store')->name('user.store');
         Route::get('edit/{nip}', 'edit')->name('user.edit');
-        Route::post('update/{id}', 'update')->name('user.update');
+        Route::put('update/{nip}', 'update')->name('user.update');
         Route::get('delete/{id}', 'delete')->name('user.delete');
+
+        Route::get('disable/{id}', 'disable')->name('user.disable');
 
         Route::get('import', 'importForm')->name('user.importForm');
         Route::post('import/store', 'importStore')->name('user.importStore');
@@ -79,22 +68,6 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
 Route::get('/box-modal', function () {
     return view('layouts.partials.box');
 });
-
-// Route::controller(UserController::class)->group(function () {
-//     Route::get('/user', 'index')->name('user.index');
-//     Route::get('/user/admin', 'lsAdmin')->name('user.lsadmin');
-//     Route::get('/user/kaprodi', 'ls')->name('user.lskaprodi');
-//     Route::get('/user/mo', 'index')->name('user.lsmo');
-//     Route::get('/user/mhs', 'index')->name('user.lsmhs');
-
-
-
-//     Route::get('/add-user', 'add')->name('user.add');
-//     Route::post('/user/store', 'store')->name('user.store');
-//     Route::get('/user/edit/{nip}', 'edit')->name('user.edit');
-//     Route::post('/user/update/{id}', 'update')->name('user.update');
-//     Route::get('/user/delete/{id}', 'delete')->name('user.delete');
-// });
 
 
 // KAPRODI

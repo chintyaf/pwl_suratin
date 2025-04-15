@@ -13,6 +13,8 @@ use Illuminate\View\View;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UserImport;
+use App\Models\Role;
+use Illuminate\Validation\Rule;
 
 
 class UserController extends Controller
@@ -31,18 +33,13 @@ class UserController extends Controller
 
     public function add()
     {
-        $user = User::all();
         return view(
-            'admin.add-user',
-            [
-                'user' => $user,
-            ]
+            'user.add',
         );
     }
 
     public function store(Request $request)
     {
-
         $request->validate([
             'nip' => ['required', 'string', 'max:7', 'unique:users'],
             'name' => ['required', 'string', 'max:255'],
@@ -51,17 +48,45 @@ class UserController extends Controller
             'id_role' => ['required', 'string', 'exists:role,id_role'],
         ]);
 
+        if($request->id_role != '0'){
+            $request->validate([
+                'id_prodi' => ['required', 'string', 'exists:program_studi,id_prodi'],
+            ]);
+        }
+
+        // Custom validation: only for Ketua Program Studi (id_role == 1)
+        if ($request->id_role == '1' || $request->id_role == '2') {
+            $exists = User::where('id_role', $request->id_role)
+                        ->where('id_prodi', $request->id_prodi)
+                        ->exists();
+
+            if($request->id_role == '1'){
+                $name = "Ketua Program Studi";
+            } else {
+                $name = "Manajemen Operasional";
+            }
+
+            if ($exists) {
+                return back()->withErrors(['id_prodi' => $name . ' untuk program studi ini sudah terdaftar.'])->withInput();
+            }
+        }
+
         $user = User::create([
             'nip' => $request->nip,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'id_role' => $request->id_role
+            'id_role' => $request->id_role,
+            'id_prodi' => $request->id_prodi ?? null,
+            'alamat' => $request->alamat ?? null,
+            'alamat_bandung' => $request->alamat_bandung ?? null,
         ]);
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
-        return redirect(route('user.index', absolute: false));
+
+        return redirect(route('user.index', absolute: false))
+        ->with('status', 'User berhasil dibuat');
     }
 
     public function edit($nip)
@@ -73,30 +98,35 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $nip)
     {
-        // return $request;
-
-        $user = User::findOrFail($request->nip); // Pastikan user ditemukan, jika tidak maka error 404
+        $user = User::findOrFail($nip); // Pastikan user ditemukan, jika tidak maka error 404
         $request->validate([
-            'nip' => ['required', 'string', 'max:7', "unique:users,nip,{$user->nip},nip"],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', "unique:users,email,{$user->nip},nip"],
-            'id_role' => ['required', 'exists:role,id_role'],
-            // 'alamat' => ['required', 'string', 'max:255'],
-            // 'alamat_bandung' => ['required', 'string', 'max:255'],
-        ], [
-            'id_role.exists' => 'The selected role does not exist. Please choose a valid role.',
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255',
+                Rule::unique('users', 'email')->ignore($request->email, 'email')
+            ],
+            'alamat' => ['max:255'],
+            'alamat_bandung' => ['max:255'],
         ]);
-
         // Update user
         $user->update([
-            'nip' => $request->nip,
             'name' => $request->name,
             'email' => $request->email,
-            'id_role' => $request->id_role,
-            'alamat' => $request->alamat,
-            'alamat_bandung' => $request->alamat_bandung
+            'alamat' => $request->alamat ?? null,
+            'alamat_bandung' => $request->alamat_bandung ?? null,
+            'id_prodi' => $request->id_prodi
+        ]);
+
+        return redirect(route('user.index', absolute: false))
+        ->with('status', 'User berhasil diperbaharui');
+    }
+
+    public function disable($nip){
+        $user = User::findOrFail($nip);
+
+        $user->update([
+            'id_role' => null
         ]);
 
         return redirect(route('user.index', absolute: false));
