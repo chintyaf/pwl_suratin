@@ -61,6 +61,48 @@ class SuratKeteranganLulusController extends Controller
         return redirect(route('mhs.dashboard'))->with('success', 'Surat berhasil dibuat dengan nomor: ' . $generatedIdSurat);
     }
 
+    public function update(Request $request, $id)
+    {
+        // Validasi hanya untuk tanggal_kelulusan
+        $validatedData = $request->validate([
+            'tanggal_kelulusan' => ['required'],
+        ]);
+
+        // Ambil surat berdasarkan ID
+        $surat = Surat::findOrFail($id);
+
+        // Pastikan relasi Surat Keterangan Lulus ada
+        if ($surat->suratKeteranganLulus) {
+            $surat->suratKeteranganLulus->tanggal_kelulusan = $validatedData['tanggal_kelulusan'];
+            $surat->suratKeteranganLulus->save();
+        } else {
+            // Kalau belum ada, buat baru
+            $surat->suratKeteranganLulus()->create([
+                'tanggal_kelulusan' => $validatedData['tanggal_kelulusan']
+            ]);
+        }
+
+        return redirect()->route('mhs.dashboard')
+            ->with('status', 'tanggal kelulusan berhasil diupdate.');
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id_surat');
+
+        $surat = Surat::findOrFail($id);
+
+        // Hapus relasi laporan hasil studi
+        if ($surat->suratKeteranganLulus) {
+            $surat->suratKeteranganLulus->delete();
+        }
+
+        // Hapus surat utama
+        $surat->delete();
+
+        return redirect()->route('mhs.dashboard')->with('status', 'Surat berhasil dihapus.');
+    }
+
 //    public function store(Request $request)
 //    {
 //        $suratL= new Surat([

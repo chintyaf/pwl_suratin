@@ -60,33 +60,6 @@ class LaporanHasilStudiController extends Controller
         return redirect(route('mhs.dashboard'))->with('success', 'Surat berhasil dibuat dengan nomor: ' . $generatedIdSurat);
     }
 
-//    public function store(Request $request)
-//    {
-//
-//        $surat = new Surat([
-//            'id_surat' => $request->surat_id_surat,
-//            'status' => "pending",
-//            'nip' => $request->nip,
-//            'type_surat' => "Laporan Hasil Studi",
-//            'created_at' => now(),
-//            'updated_at' => now(),
-//        ]);
-//        // return $request;
-//
-//        $validatedData = validator($request->all(),[
-//            'surat_id_surat' => 'required|string',
-//            'keperluan_pembuatan' => 'required|string',
-//        ])->validate();
-//
-//        $laporan_hasil_studi = new LaporanHasilStudi($validatedData);
-//
-//        $surat->save();
-//        $laporan_hasil_studi -> save();
-//
-//        return redirect(route('mhs.dashboard'));
-//
-//    }
-
     public function update(Request $request, $id)
     {
         // Validasi hanya untuk keperluan_pembuatan

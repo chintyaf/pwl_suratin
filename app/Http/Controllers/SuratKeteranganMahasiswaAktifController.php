@@ -101,6 +101,38 @@ class SuratKeteranganMahasiswaAktifController extends Controller
 //
 //        return redirect(route('mhs.dashboard'));
 //    }
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'periode' => 'required|string',
+            'alamat_bandung' => 'required|string',
+            'keperluan_pengajuan' => 'required|string',
+        ]);
+
+        $surat = Surat::findOrFail($id);
+
+        if ($surat->suratKeteranganMahasiswaAktif) {
+            $surat->suratKeteranganMahasiswaAktif->update($validatedData);
+        } else {
+            $surat->suratKeteranganMahasiswaAktif()->create($validatedData);
+        }
+
+        return redirect()->route('mhs.dashboard')->with('status', 'Data surat berhasil diperbarui.');
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id_surat');
+        $surat = Surat::findOrFail($id);
+
+        if ($surat->suratKeteranganMahasiswaAktif) {
+            $surat->suratKeteranganMahasiswaAktif->delete();
+        }
+
+        $surat->delete();
+
+        return redirect()->route('mhs.dashboard')->with('status', 'Surat berhasil dihapus.');
+    }
 
     public function show($id)
     {
