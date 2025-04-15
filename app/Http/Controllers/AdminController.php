@@ -9,10 +9,12 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('created_at', 'desc')->get();
+
         return view('admin.index', [
             'users' => $users
         ]);
+
     }
 
     public function store(Request $request)
