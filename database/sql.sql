@@ -108,27 +108,6 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `suratin`.`mahasiswa`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `suratin`.`mahasiswa` ;
-
-CREATE TABLE IF NOT EXISTS `suratin`.`mahasiswa` (
-  `nrp` VARCHAR(9) NOT NULL,
-  `name` VARCHAR(120) NULL DEFAULT NULL,
-  `address` VARCHAR(300) NULL DEFAULT NULL,
-  `birth_date` DATE NULL DEFAULT NULL,
-  `phone` VARCHAR(16) NULL DEFAULT NULL,
-  `email` VARCHAR(45) NULL DEFAULT NULL,
-  `profile_picture` VARCHAR(15) NULL DEFAULT NULL,
-  `password` VARCHAR(100) NULL DEFAULT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT NULL,
-  `updated_at` TIMESTAMP NULL DEFAULT NULL,
-  PRIMARY KEY (`nrp`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
 -- Table `suratin`.`migrations`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `suratin`.`migrations` ;
@@ -226,10 +205,13 @@ CREATE TABLE IF NOT EXISTS `suratin`.`users` (
   INDEX `fk_users_program_studi1_idx` (`id_prodi` ASC) ,
   CONSTRAINT `fk_users_program_studi1`
     FOREIGN KEY (`id_prodi`)
-    REFERENCES `suratin`.`program_studi` (`id_prodi`),
+    REFERENCES `suratin`.`program_studi` (`id_prodi`)
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_users_role1`
     FOREIGN KEY (`id_role`)
-    REFERENCES `suratin`.`role` (`id_role`))
+    REFERENCES `suratin`.`role` (`id_role`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -326,6 +308,38 @@ CREATE TABLE IF NOT EXISTS `suratin`.`surat_pengantar_tugas_mata_kuliah` (
     REFERENCES `suratin`.`surat` (`id_surat`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `suratin`.`mata_kuliah`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `suratin`.`mata_kuliah` ;
+
+CREATE TABLE IF NOT EXISTS `suratin`.`mata_kuliah` (
+  `id_mk` INT NOT NULL,
+  `kode_mk` VARCHAR(15) NOT NULL,
+  `nama_mk` VARCHAR(45) NOT NULL,
+  `id_prodi` VARCHAR(2) NOT NULL,
+  PRIMARY KEY (`id_mk`),
+  INDEX `fk_mata_kuliah_program_studi1_idx` (`id_prodi` ASC) ,
+  CONSTRAINT `fk_mata_kuliah_program_studi1`
+    FOREIGN KEY (`id_prodi`)
+    REFERENCES `suratin`.`program_studi` (`id_prodi`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `suratin`.`type_surat`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `suratin`.`type_surat` ;
+
+CREATE TABLE IF NOT EXISTS `suratin`.`type_surat` (
+  `id_type` VARCHAR(10) NOT NULL,
+  `name_type` VARCHAR(50) NULL,
+  PRIMARY KEY (`id_type`))
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

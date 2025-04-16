@@ -11,11 +11,26 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuratPengantarController;
 use App\Http\Controllers\SuratKeteranganLulusController;
 use App\Http\Controllers\LaporanHasilStudiController;
+use App\Http\Controllers\MatkulController;
+use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SuratKeteranganMahasiswaAktifController;
+use App\Http\Controllers\TypeSuratController;
+use App\Models\User;
+
+Route::get('/register-admin', function () {
+    if (User::where('id_role', '0')->exists()) {
+        return redirect()->route('login');
+    }
+
+    return view('admin.register');
+});
+
+Route::post('/register-admin/create', [UserController::class, 'storeAdmin'])->name('storeAdmin');
+
 use Illuminate\Notifications\DatabaseNotification;
 
 
-Route::get('/test', function () {
+Route::get('/testieee', function () {
     return view('user.add', ['id_role' => '0']);
 });
 
@@ -63,6 +78,41 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
         Route::get('import', 'importForm')->name('user.importForm');
         Route::post('import/store', 'importStore')->name('user.importStore');
     });
+
+        // Program Studi
+        Route::controller(ProdiController::class)->prefix('program-studi')->group(function () {
+            Route::get('', 'index')->name('program_studi.index');
+
+            Route::get('add', 'add')->name('program_studi.add');
+            Route::post('store', 'store')->name('program_studi.store');
+            Route::get('edit/{id}', 'edit')->name('program_studi.edit');
+            Route::put('update/{id}', 'update')->name('program_studi.update');
+            Route::delete('delete/{id}', 'delete')->name('program_studi.delete');
+        });
+
+        // Tipe Surat
+        Route::controller(TypeSuratController::class)->prefix('type-surat')->group(function () {
+            Route::get('', 'index')->name('type_surat.index');
+
+            Route::get('add', 'add')->name('type_surat.add');
+            Route::post('store', 'store')->name('type_surat.store');
+            Route::get('edit/{nip}', 'edit')->name('type_surat.edit');
+            Route::put('update/{nip}', 'update')->name('type_surat.update');
+            Route::delete('delete/{id}', 'delete')->name('type_surat.delete');
+        });
+
+        // Mata Kuliah
+        Route::controller(MatkulController::class)->prefix('mata-kuliah')->group(function () {
+            Route::get('', 'index')->name('mata_kuliah.index');
+
+            Route::get('add', 'add')->name('mata_kuliah.add');
+            Route::post('store', 'store')->name('mata_kuliah.store');
+            Route::get('edit/{id}', 'edit')->name('mata_kuliah.edit');
+            Route::put('update/{id}', 'update')->name('mata_kuliah.update');
+            Route::delete('delete/{id}', 'delete')->name('mata_kuliah.delete');
+        });
+
+
 });
 
 Route::get('/box-modal', function () {
@@ -173,9 +223,13 @@ Route::get('/form-sk-mhs-aktif', function () {
     return view('surat.sk_mhs_aktif.form-skma');
 })->name('form-sk-mhs-aktif');
 
-Route::get('/form-sp-tugas-mk', function () {
-    return view('surat.sp_tugas_mk.form-surat-pengantar');
-})->name('form-sp-tugas-mk');
+
+Route::get('/form-sp-tugas-mk',
+[SuratPengantarController::class, 'create'])->name('form-sp-tugas-mk');
+
+// Route::get('/form-sp-tugas-mk', function () {
+//     return view('surat.sp_tugas_mk.form-surat-pengantar');
+// })->name('form-sp-tugas-mk');
 
 Route::get('/form-sk-lulus', function () {
     return view('surat.sk_lulus.form-surat-lulus');

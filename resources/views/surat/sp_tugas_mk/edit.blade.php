@@ -22,40 +22,13 @@
 {{--        <div class="mb-3">--}}
 {{--            <label for="mata_kuliah" class="form-label fw-bold">Nama Mata Kuliah - Kode Mata Kuliah</label>--}}
 {{--            <div class="dropdown w-100">--}}
-{{--                <button class="form-control d-flex justify-content-between align-items-center dropdown-toggle"--}}
-{{--                        type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">--}}
-{{--            <span id="dropdownDisplay">--}}
-{{--                --}}{{-- Ini hanya untuk tampilan, JS akan override jika user memilih baru --}}
-{{--                {{ $surat->suratPengantar->mata_kuliah ?? 'Pilih Mata Kuliah' }}--}}
-{{--            </span>--}}
-{{--                </button>--}}
-{{--                <div class="dropdown-menu w-100 p-2">--}}
-{{--                    <input type="text" class="form-control mb-2" id="searchInput" placeholder="Cari Mata Kuliah">--}}
-{{--                    <ul class="list-unstyled mb-0" id="dropdownList">--}}
-{{--                        @php--}}
-{{--                            $options = ['Proses Bisnis - IN255', 'Dasar Pemrograman - IN220', 'Web Dasar - IN212'];--}}
-{{--                        @endphp--}}
-{{--                        @foreach($options as $option)--}}
-{{--                            <li><a class="dropdown-item" href="#" data-value="{{ $option }}">{{ $option }}</a></li>--}}
-{{--                        @endforeach--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <!-- Hidden input (VALUE awal tetap dari database) -->--}}
-{{--            <input type="hidden" name="mata_kuliah" id="mata_kuliah" value="{{ $surat->suratPengantar->mata_kuliah ?? '' }}" required>--}}
-{{--        </div>--}}
-
-
-{{--        <div class="mb-3">--}}
-{{--            <label for="mata_kuliah" class="form-label fw-bold">Nama Mata Kuliah - Kode Mata Kuliah</label>--}}
-{{--            <div class="dropdown w-100">--}}
 {{--                <button class="form-control d-flex justify-content-between align-items-center dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">--}}
 {{--                    <span id="dropdownDisplay">{{ $surat->suratPengantar->mata_kuliah ?? '' }}</span>--}}
 
 {{--                </button>--}}
-{{--                <div class="dropdown-menu w-100 p-2">--}}
-{{--                    <input type="text" class="form-control mb-2" id="searchInput" placeholder="Cari Mata Kuliah">--}}
-{{--                    <ul class="list-unstyled mb-0" id="dropdownList">--}}
+{{--                <div class="p-2 dropdown-menu w-100">--}}
+{{--                    <input type="text" class="mb-2 form-control" id="searchInput" placeholder="Cari Mata Kuliah">--}}
+{{--                    <ul class="mb-0 list-unstyled" id="dropdownList">--}}
 {{--                        <li><a class="dropdown-item" href="#">Proses Bisnis - IN255</a></li>--}}
 {{--                        <li><a class="dropdown-item" href="#">Dasar Pemrograman - IN220</a></li>--}}
 {{--                        <li><a class="dropdown-item" href="#">Web Dasar - IN212</a></li>--}}
@@ -76,9 +49,9 @@
             </span>
                 </button>
 
-                <div class="dropdown-menu w-100 p-2">
-                    <input type="text" class="form-control mb-2" id="searchInput" placeholder="Cari Mata Kuliah">
-                    <ul class="list-unstyled mb-0" id="dropdownList">
+                <div class="p-2 dropdown-menu w-100">
+                    <input type="text" class="mb-2 form-control" id="searchInput" placeholder="Cari Mata Kuliah">
+                    <ul class="mb-0 list-unstyled" id="dropdownList">
                         @php
                             $mataKuliahOptions = ['Proses Bisnis - IN255', 'Dasar Pemrograman - IN220', 'Web Dasar - IN212'];
                         @endphp
@@ -117,7 +90,7 @@
         </div>
 
         @if($surat->status === 'pending')
-            <div class="d-flex justify-content-end gap-3">
+            <div class="gap-3 d-flex justify-content-end">
                 <button type="submit" class="px-5 py-2 mt-3 btn btn-primary rounded-3">Simpan</button>
             </div>
         @endif
@@ -125,7 +98,7 @@
     <br>
     {{-- Form Delete: HARUS DI LUAR form update --}}
     @if($surat->status === 'pending')
-        <form method="POST" action="{{ route('laporan_hasil_studi.destroy', $surat->id_surat) }}" class="d-flex justify-content-end gap-3">
+        <form method="POST" action="{{ route('laporan_hasil_studi.destroy', $surat->id_surat) }}" class="gap-3 d-flex justify-content-end">
             @csrf
             @method('DELETE')
             <input type="hidden" name="id_surat" value="{{ $surat->id_surat }}">

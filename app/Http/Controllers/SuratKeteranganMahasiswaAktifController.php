@@ -42,7 +42,7 @@ class SuratKeteranganMahasiswaAktifController extends Controller
             ->first();
 
         if ($lastSurat) {
-            $lastNumber = (int) Str::afterLast($lastSurat->id_surat, '-');
+            $lastNumber = (int) Str::afterLast($subject, 'search')::afterLast($lastSurat->id_surat, '-');
             $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $newNumber = '001';
