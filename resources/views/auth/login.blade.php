@@ -18,9 +18,11 @@
 
             <x-text-input id="password" class="block w-full mt-1"
             type="password"
-            name="password"
-            required autocomplete="current-password"
-            value="12345678"/>
+            name="password">
+
+            </x-text-input>
+{{--            required autocomplete="current-password"--}}
+{{--            value="12345678"/>--}}
 
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
