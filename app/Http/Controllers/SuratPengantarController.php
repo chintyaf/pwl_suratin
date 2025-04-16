@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MataKuliah;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Surat;
 use App\Models\SuratPengantar;
+use Illuminate\Support\Facades\Auth;
 
 
 class SuratPengantarController extends Controller
@@ -13,7 +15,14 @@ class SuratPengantarController extends Controller
 
     public function create()
     {
-        return view('surat_pengantarCreate');
+        $prodi = Auth::user()->id_prodi;
+
+        $mk = MataKuliah::where('id_prodi', $prodi)->get();
+
+        return view('surat.sp_tugas_mk.form-surat-pengantar',
+        [
+            'mk' => $mk,
+        ]);
     }
 
     public function store(Request $request)

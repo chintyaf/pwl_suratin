@@ -6,11 +6,24 @@
 
 
 @section('content')
-Admin
-<h1 class="mb-3 h3">
-    {{-- Ketua Program Studi --}}
-    Dashboard
-</h1>
+<div class="col-12 row">
+    <div class="col-4">
+        Admin
+        <h1 class="mb-3 h3">
+            Mata Kuliah
+        </h1>
+    </div>
+
+
+    <div class="col-8 d-flex align-items-center justify-content-end">
+        <div>
+            <a href="{{ route('mata_kuliah.add') }}" class="btn btn-primary ">
+                Tambahkan Mata Kuliah
+            </a>
+        </div>
+    </div>
+
+</div>
 
 <div class="p-2 table_component rounded-4" role="region" tabindex="0">
     <div class="search-wrapper">
@@ -28,36 +41,35 @@ Admin
             <div class="card flex-fill">
                 <div class="card-header">
 
-                    <h5 class="px-3 py-2 mb-0 card-title">Users</h5>
+                    <h5 class="px-3 py-2 mb-0 card-title">Mata Kuliah</h5>
                 </div>
                 <div class="px-4 pb-4">
                     <table id="usersTable" class="table p-2 my-0 table-hover">
                         <thead>
                             <tr>
-                                <th>NIP</th>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Jurusan</th>
-                                <th class="">Role</th>
-                                <th class="">Detil</th>
+                                <th style="width: 10%">Kode</th>
+                                <th >Nama</th>
+                                <th >Program Studi</th>
+                                <th style="width: 15%">Detil</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($data as $data)
                             <tr>
-                                <td>{{ $user->nip }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td class="d-none d-xl-table-cell">{{ $user->getProdi->name_prodi ?? 'None' }}</td>
-                                <td>{{ $user->getRole->name_role ?? 'Inactive' }}</td>
+                                <td>{{ $data->kode_mk }}</td>
+                                <td>{{ $data->nama_mk }}</td>
+                                <td>{{ $data->getProdi->name_prodi }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#myModal" data-type="user" data-id="{{ $user->nip }}"
-                                        id="{{ $user->nip }}">
+                                    <button type="button" class="btn btn-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#myModal"
+                                        data-url="{{ route('mata_kuliah.edit', $data->kode_mk) }}"
+                                        data-id="{{ $data->kode_mk }}"
+                                        >
                                         <i class="align-middle" data-feather="edit"></i>
                                     </button>
                                     <a href="#" class="delete-button btn btn-danger"
-                                        data-url="{{ route('user.delete', $user->nip) }}">
+                                        data-url="{{ route('mata_kuliah.delete', $data->kode_mk) }}">
                                         <i class="align-middle" data-feather="delete"></i>
                                     </a>
                                 </td>
@@ -65,9 +77,6 @@ Admin
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- <div class="mt-4"> --}}
-                        {{-- {{ $users->links() }} --}}
-                        {{-- </div> --}}
                 </div>
             </div>
         </div>
@@ -79,10 +88,13 @@ Admin
         <div class="modal-dialog">
             <div class="modal-content" id="modalContent">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="suratDetailTitle">Edit Akun</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="boxTitle">Mata Kuliah</h5>
+                    <button type="button" class="btn-close"
+                    data-bs-dismiss="modal"
+
+                    aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="suratDetailBody">
+                <div class="modal-body" id="boxContent">
                     <div class="content-asal">
                         <p>Loading...</p>
                     </div>
@@ -124,10 +136,6 @@ Admin
                 });
             });
         });
-
-
-
-
     });
 
     @if (session('status'))
@@ -140,53 +148,6 @@ Admin
     @endif
 </script>
 
-<script>
-const modal = document.getElementById("myModal");
-
-modal.addEventListener("click", function (e) {
-    const disableButton = e.target.closest(".disable-button");
-    const deleteButton = e.target.closest(".delete-button");
-
-    if (disableButton) {
-        e.preventDefault();
-        Swal.fire({
-            title: "Yakin ingin menonaktifkan akun ini?",
-            text: "Tindakan ini tidak dapat dibatalkan!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#6c757d",
-            confirmButtonText: "Ya, nonaktifkan!",
-            cancelButtonText: "Batal",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = disableButton.dataset.url;
-            }
-        });
-    }
-
-    if (deleteButton) {
-        e.preventDefault();
-        Swal.fire({
-            title: "Hapus item ini?",
-            text: "Item akan dihapus secara permanen!",
-            icon: "error",
-            showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#6c757d",
-            confirmButtonText: "Ya, hapus!",
-            cancelButtonText: "Batal",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = deleteButton.dataset.url;
-            }
-        });
-    }
-});
-
-</script>
-
-
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -194,7 +155,7 @@ modal.addEventListener("click", function (e) {
                     "paging": true,
                     "searching": false,
                     "ordering": false,
-                    "info": true
+                    "info": false
                 });
             });
 </script>

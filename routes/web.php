@@ -107,8 +107,8 @@ Route::middleware(['auth', 'verified', 'role:0'])->group(function () {
 
             Route::get('add', 'add')->name('mata_kuliah.add');
             Route::post('store', 'store')->name('mata_kuliah.store');
-            Route::get('edit/{nip}', 'edit')->name('mata_kuliah.edit');
-            Route::put('update/{nip}', 'update')->name('mata_kuliah.update');
+            Route::get('edit/{id}', 'edit')->name('mata_kuliah.edit');
+            Route::put('update/{id}', 'update')->name('mata_kuliah.update');
             Route::delete('delete/{id}', 'delete')->name('mata_kuliah.delete');
         });
 
@@ -223,9 +223,13 @@ Route::get('/form-sk-mhs-aktif', function () {
     return view('surat.sk_mhs_aktif.form-skma');
 })->name('form-sk-mhs-aktif');
 
-Route::get('/form-sp-tugas-mk', function () {
-    return view('surat.sp_tugas_mk.form-surat-pengantar');
-})->name('form-sp-tugas-mk');
+
+Route::get('/form-sp-tugas-mk',
+[SuratPengantarController::class, 'create'])->name('form-sp-tugas-mk');
+
+// Route::get('/form-sp-tugas-mk', function () {
+//     return view('surat.sp_tugas_mk.form-surat-pengantar');
+// })->name('form-sp-tugas-mk');
 
 Route::get('/form-sk-lulus', function () {
     return view('surat.sk_lulus.form-surat-lulus');
