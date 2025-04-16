@@ -1,4 +1,7 @@
 <x-guest-layout>
+    <h1 style="font-size: 23px; font-weight:900; text-align:center;">
+        Admin Register
+    </h1>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -48,16 +51,27 @@
 
 
         <div class="mb-3">
-            <label for="role" class="form-label">
-                Role
-            </label>
-            <select name="role" id="role" class="mb-3 form-select" required>
-                <option selected>None</option>
-                <option>Admin</option>
-                <option>Ketua Program Studi</option>
-                <option>Manajemen Operasional</option>
-                <option>Mahasiswa</option>
-            </select>
+            <input type="hidden" name="id_role" value="0">
+
+            {{--            <label for="role" class="form-label">--}}
+{{--                Role--}}
+{{--            </label>--}}
+{{--            <select name="id_role" required>--}}
+{{--                <option value="">Pilih Role</option>--}}
+{{--                <option value="0">Admin</option>--}}
+{{--                <option value="2">Kaprodi</option>--}}
+{{--                <option value="3">MO</option>--}}
+{{--                <!-- Tambahkan sesuai dengan data di tabel roles -->--}}
+{{--            </select>--}}
+
+
+{{--            <select name="role" id="role" class="mb-3 form-select" required>--}}
+{{--                <option selected>None</option>--}}
+{{--                <option >Admin</option>--}}
+{{--                <option>Ketua Program Studi</option>--}}
+{{--                <option>Manajemen Operasional</option>--}}
+{{--                <option>Mahasiswa</option>--}}
+{{--            </select>--}}
         </div>
 
 
