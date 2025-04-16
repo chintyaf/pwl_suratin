@@ -21,47 +21,47 @@ class DatabaseSeeder extends Seeder
         // DB::table('role')->truncate();
         // DB::table('program_studi')->truncate();
 
-        DB::table('role')->insert([
+        // DB::table('role')->insert([
 
-            [
-                'id_role' => '0',
-                'name_role' => 'Admin'
-            ],
+        //     [
+        //         'id_role' => '0',
+        //         'name_role' => 'Admin'
+        //     ],
 
-            [
-                'id_role' => '1',
-                'name_role' => 'Kepala Program Studi'
-            ],
+        //     [
+        //         'id_role' => '1',
+        //         'name_role' => 'Kepala Program Studi'
+        //     ],
 
-            [
-                'id_role' => '2',
-                'name_role' => 'Manajemen Operasional'
-            ],
+        //     [
+        //         'id_role' => '2',
+        //         'name_role' => 'Manajemen Operasional'
+        //     ],
 
-            [
-                'id_role' => '3',
-                'name_role' => 'Mahasiswa'
-            ],
+        //     [
+        //         'id_role' => '3',
+        //         'name_role' => 'Mahasiswa'
+        //     ],
 
-        ]);
+        // ]);
 
-        DB::table('program_studi')->insert([
-            [
-                'id_prodi' => '1',
-                'name_prodi' => 'Ilmu Komputer'
-            ],
+        // DB::table('program_studi')->insert([
+        //     [
+        //         'id_prodi' => '1',
+        //         'name_prodi' => 'Ilmu Komputer'
+        //     ],
 
-            [
-                'id_prodi' => '2',
-                'name_prodi' => 'Teknik Informatika'
-            ],
+        //     [
+        //         'id_prodi' => '2',
+        //         'name_prodi' => 'Teknik Informatika'
+        //     ],
 
-            [
-                'id_prodi' => '3',
-                'name_prodi' => 'Sistem Informasi'
-            ],
+        //     [
+        //         'id_prodi' => '3',
+        //         'name_prodi' => 'Sistem Informasi'
+        //     ],
 
-        ]);
+        // ]);
 
         DB::table('users')->insert([
             [

@@ -41,8 +41,11 @@ class SuratKeteranganMahasiswaAktifController extends Controller
             ->orderBy('id_surat', 'desc')
             ->first();
 
+        $subject = "some-string-search-12345";
         if ($lastSurat) {
-            $lastNumber = (int) Str::afterLast($subject, 'search')::afterLast($lastSurat->id_surat, '-');
+            // $lastNumber = (int) Str::afterLast(Str::afterLast($subject, 'search'), '-');
+            $lastNumber = (int) Str::afterLast($lastSurat->id_surat, '-');
+
             $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $newNumber = '001';

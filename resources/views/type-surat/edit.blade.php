@@ -6,19 +6,19 @@
 
         <div class="mb-3">
             <label for="id_type" class="form-label">
-                Kode Program Studi
+                Kode Jenis Surat
             </label>
             <input type="text" id="id_type" name="id_type" class="form-control"
-            placeholder="Masukkan kode program studi"
+            placeholder="Masukkan kode Jenis Surat"
             value="{{ $data->id_type }}" required>
         </div>
 
         <div class="mb-3">
             <label for="name_type" class="form-label">
-                Nama Program Studi
+                Nama Jenis Surat
             </label>
             <input type="text" id="name_type" name="name_type"
-            class="form-control" placeholder="Masukkan nama program studi dengan lengkap"
+            class="form-control" placeholder="Masukkan nama Jenis Surat dengan lengkap"
             value="{{ $data->name_type }}" required>
         </div>
 
