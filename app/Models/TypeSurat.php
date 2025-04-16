@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProgramStudi extends Model
+class TypeSurat extends Model
 {
-    protected $table = 'program_studi';
+    protected $table = 'type_surat';
 
 
     protected $keyType = 'string';
 
-    protected $primaryKey = 'id_prodi';
+    protected $primaryKey = 'id_type';
 
     protected $fillable = [
-        'id_prodi',
-        'name_prodi',
+        'id_type',
+        'name_type',
     ];
 
     public $timestamps = false;

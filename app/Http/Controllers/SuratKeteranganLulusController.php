@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Surat;
 use App\Models\SuratKeteranganLulus;
+use App\Models\User;
+use App\Notifications\SendNotif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -57,6 +59,18 @@ class SuratKeteranganLulusController extends Controller
         ]);
 
         $surat_keterangan_lulus->save();
+
+        $mhs = User::findOrFail($request->nip);
+
+        $kaprodi = User::where('id_role', '1')
+        ->where('id_prodi', $mhs->id_prodi)
+        ->first();
+
+        $kaprodi->notify(new SendNotif("Pengajuan Surat Baru",
+         $mhs->name . " telah mengajukan surat dan menunggu persetujuan Anda."));
+
+         $mhs->notify(new SendNotif("Pengajuan Surat Baru",
+         $generatedIdSurat . " telah berhasil diajukan."));
 
         return redirect(route('mhs.dashboard'))->with('success', 'Surat berhasil dibuat dengan nomor: ' . $generatedIdSurat);
     }

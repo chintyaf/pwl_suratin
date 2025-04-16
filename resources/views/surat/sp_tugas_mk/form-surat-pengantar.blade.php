@@ -24,12 +24,13 @@
                 <button class="form-control d-flex justify-content-between align-items-center dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <span id="dropdownDisplay">Pilih Mata Kuliah</span>
                 </button>
-                <div class="dropdown-menu w-100 p-2">
-                    <input type="text" class="form-control mb-2" id="searchInput" placeholder="Cari Mata Kuliah">
-                    <ul class="list-unstyled mb-0" id="dropdownList">
-                        <li><a class="dropdown-item" href="#">Proses Bisnis - IN255</a></li>
-                        <li><a class="dropdown-item" href="#">Dasar Pemrograman - IN220</a></li>
-                        <li><a class="dropdown-item" href="#">Web Dasar - IN212</a></li>
+
+                <div class="p-2 dropdown-menu w-100">
+                    <input type="text" class="mb-2 form-control" id="searchInput" placeholder="Cari Mata Kuliah">
+                    <ul class="mb-0 list-unstyled" id="dropdownList">
+                        @foreach ($mk as $mk)
+                        <li><a class="dropdown-item">{{ $mk->nama_formatted }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

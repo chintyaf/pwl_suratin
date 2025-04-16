@@ -63,6 +63,32 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     @stack('scripts')
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.btn-delete-notif');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const notifId = this.dataset.id;
+            console.log(notifId)
+
+            fetch(`/notifications/${notifId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                },
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'deleted') {
+                    document.getElementById(`notif-${notifId}`).remove();
+                }
+            })
+            .catch(err => console.error('Delete error:', err));
+        });
+    });
+});
+</script>
 </body>
 
 </html>

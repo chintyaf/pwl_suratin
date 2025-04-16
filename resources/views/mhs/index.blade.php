@@ -80,6 +80,7 @@
                             <table class="table p-2 my-0 table-hover">
                                 <thead>
                                     <tr>
+                                        <th>Id Surat</th>
                                         <th>Jenis Surat</th>
                                         <th>Tanggal Pengajuan</th>
                                         <th>Status</th>
@@ -90,6 +91,7 @@
                                 <tbody>
                                     @foreach ($surats as $surat)
                                         <tr>
+                                            <td>{{ $surat->id_surat }}</td>
                                             <td>{{ $surat->type_surat }}</td>
                                             <td>{{ $surat->created_at }}</td>
                                             <td>

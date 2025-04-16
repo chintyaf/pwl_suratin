@@ -3,67 +3,53 @@
         <i class="hamburger align-self-center"></i>
     </a>
 
-    <div class="navbar-collapse collapse">
+<div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
-            @if (request()->routeIs('mhs.*'))
             <li class="mx-2 nav-item dropdown d-flex align-items-center">
                 <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                     <div class="position-relative">
                         <i class="align-middle" data-feather="mail"></i>
-                        <span class="indicator">3</span> <!-- Jumlah notifikasi -->
+                        <span class="indicator">
+                            {{ auth()->user()->unreadNotifications->count() }}
+                        </span> <!-- Jumlah notifikasi -->
                     </div>
                 </a>
+
                 <div class="py-0 dropdown-menu dropdown-menu-lg dropdown-menu-end" aria-labelledby="alertsDropdown">
                     <div class="dropdown-menu-header">
-                        3 Notifikasi Surat
+                        {{ auth()->user()->unreadNotifications->count() }} Notifikasi Surat
                     </div>
                     <div class="list-group">
+                        @foreach (auth()->user()->unreadNotifications as $notif)
                         <a href="#" class="list-group-item">
                             <div class="row g-0 align-items-center">
-                                <div class="col-2">
+
+                                <!-- <div class="col-2">
                                     <i class="text-success" data-feather="check-circle"></i>
-                                </div>
+                                </div> -->
                                 <div class="col-10">
-                                    <div class="text-dark">Surat Anda telah selesai</div>
-                                    <div class="mt-1 text-muted small">Surat Keterangan Mahasiswa Aktif siap
-                                        diunduh.</div>
-                                    <div class="mt-1 text-muted small">10 menit yang lalu</div>
+                                    <div class="text-dark">{{ $notif->data['title'] }}</div>
+                                    <div class="mt-1 text-muted small">
+                                        {{ $notif->data['body'] }}
+                                    </div>
+                                    <div class="mt-1 text-muted small">
+
+                                        {{ $notif->created_at->diffForHumans() }}
+                                    </div>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <button class="btn-delete-notif" data-id="{{ $notif->id }}" title="Hapus Notifikasi" style="background: none; border: none; color: red;">🗑️</button>
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="list-group-item">
-                            <div class="row g-0 align-items-center">
-                                <div class="col-2">
-                                    <i class="text-warning" data-feather="clock"></i>
-                                </div>
-                                <div class="col-10">
-                                    <div class="text-dark">Surat menunggu ACC</div>
-                                    <div class="mt-1 text-muted small">Surat Pengantar Tugas sedang menunggu
-                                        persetujuan Kaprodi.</div>
-                                    <div class="mt-1 text-muted small">1 jam yang lalu</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div class="row g-0 align-items-center">
-                                <div class="col-2">
-                                    <i class="text-danger" data-feather="x-circle"></i>
-                                </div>
-                                <div class="col-10">
-                                    <div class="text-dark">Pengajuan surat ditolak</div>
-                                    <div class="mt-1 text-muted small">Surat Keterangan Lulus ditolak. Silakan cek
-                                        alasan penolakan.</div>
-                                    <div class="mt-1 text-muted small">3 jam yang lalu</div>
-                                </div>
-                            </div>
-                        </a>
+                        @endforeach
+
                     </div>
                     <div class="dropdown-menu-footer">
                         <a href="{{ route('notif-mhs') }}" class="text-muted">Lihat semua notifikasi</a>
                     </div>
                 </div>
             </li>
-            @endif
 
             <li class="nav-item dropdown">
                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">

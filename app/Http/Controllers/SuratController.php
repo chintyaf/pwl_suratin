@@ -7,11 +7,13 @@ use App\Models\SuratPengantar;
 use App\Models\SuratKeteranganLulus;
 use App\Models\LaporanHasilStudi;
 use App\Models\SuratKeteranganMahasiswaAktif;
+use App\Models\User;
+use App\Notifications\SendNotif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Filesystem\FilesystemAdapter;
-
+use Illuminate\Support\Facades\Auth;
 
 class SuratController extends Controller
 {
@@ -48,12 +50,26 @@ class SuratController extends Controller
 
     public function updateStatus(Request $request, Surat $surat)
     {
+        $mhs = User::findOrFail($surat->nip);
+        $mo = User::where('id_role', '2')
+        ->where('id_prodi', $mhs->id_prodi)
+        ->first();
+
         if ($request->status == 'setuju') {
             $surat['status'] = "waiting_docs";
             $msg = "Surat disetujui";
+
+            $mo->notify(new SendNotif("Surat Disetujui oleh Kaprodi",
+            $surat->id_surat . " - Surat telah disetujui dan siap untuk diproses."));
+
+            $mhs->notify(new SendNotif("Surat Anda Disetujui",
+            $surat->id_surat . " - Surat Anda disetujui oleh Kaprodi. Sedang diproses oleh MO."));
         } else {
             $surat['status'] = "rejected";
             $msg = "Surat ditolak";
+
+            $mhs->notify(new SendNotif("Surat Anda ditolak",
+            $surat->id_surat . "Pengajuan surat Anda telah ditolak oleh Kaprodi. Silakan periksa kembali dan ajukan ulang jika diperlukan."));
         }
         $surat->save();
         return redirect()->back()
@@ -85,6 +101,11 @@ class SuratController extends Controller
 
         $surat['status'] = "doc_available";
         $surat->save();
+
+        $mhs = User::findOrFail($surat->nip);
+
+        $mhs->notify(new SendNotif("Surat Anda Telah Selesai Diproses",
+        $surat->id_surat . "Surat Anda telah selesai diproses dan dapat diunduh melalui sistem."));
 
         return redirect()->back()->with('success', 'File uploaded successfully.');
     }
@@ -190,19 +211,5 @@ class SuratController extends Controller
 
         return redirect()->route('mhs.dashboard')->with('success', 'Surat berhasil dihapus.');
     }
-
-    // public function unduh($id)
-    // {
-    //     $surat = Surat::findOrFail($id);
-
-    //     // Misal dokumen disimpan di: storage/app/public/surat/filename.pdf
-    //     $filePath = 'surat/' . $surat->file_name;
-
-    //     if (Storage::disk('public')->exists($filePath)) {
-    //         return Storage::disk('public')->download($filePath);
-    //     }
-
-    //     return redirect()->back()->with('error', 'Dokumen tidak ditemukan.');
-    // }
 
 }

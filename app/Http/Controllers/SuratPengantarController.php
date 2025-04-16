@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MataKuliah;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Surat;
 use App\Models\SuratPengantar;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Notifications\SendNotif;
 
 class SuratPengantarController extends Controller
 {
 
     public function create()
     {
-        return view('surat_pengantarCreate');
+        $prodi = Auth::user()->id_prodi;
+
+        $mk = MataKuliah::where('id_prodi', $prodi)->get();
+
+        return view('surat.sp_tugas_mk.form-surat-pengantar',
+        [
+            'mk' => $mk,
+        ]);
     }
 
     public function store(Request $request)
@@ -61,6 +71,18 @@ class SuratPengantarController extends Controller
             'topik' => $request->topik,
         ]);
         $surat_pengantar->save();
+
+        $mhs = User::findOrFail($request->nip);
+
+        $kaprodi = User::where('id_role', '1')
+        ->where('id_prodi', $mhs->id_prodi)
+        ->first();
+
+        $kaprodi->notify(new SendNotif("Pengajuan Surat Baru",
+         $mhs->name . " telah mengajukan surat dan menunggu persetujuan Anda."));
+
+         $mhs->notify(new SendNotif("Pengajuan Surat Baru",
+         $generatedIdSurat . " telah berhasil diajukan."));
 
         return redirect(route('mhs.dashboard'))->with('success', 'Surat berhasil dibuat dengan nomor: ' . $generatedIdSurat);
     }

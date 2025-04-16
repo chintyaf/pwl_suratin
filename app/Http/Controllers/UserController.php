@@ -31,6 +31,36 @@ class UserController extends Controller
     }
 
 
+    public function addAdmin()
+    {
+        return view(
+            'user.add',
+        );
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        $request->validate([
+            'nip' => ['required', 'string', 'max:7', 'unique:users'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', Rules\Password::defaults(), 'confirmed'],
+        ]);
+
+        $user = User::create([
+            'nip' => $request->nip,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'id_role' => '0',
+        ]);
+
+        event(new Registered($user));
+
+        return redirect(route('admin.dashboard', absolute: false));
+    }
+
+
     public function add()
     {
         return view(
@@ -88,6 +118,8 @@ class UserController extends Controller
         return redirect(route('user.index', absolute: false))
         ->with('status', 'User berhasil dibuat');
     }
+
+
 
     public function edit($nip)
     {
