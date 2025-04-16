@@ -21,6 +21,7 @@ class MatkulController extends Controller
     }
 
     public function add()
+    {
         return view('mata_kuliah.add');
     }
 
