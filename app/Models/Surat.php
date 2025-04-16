@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
 
 class Surat extends Model
 {
+    use Notifiable;
+
     protected $table = 'surat';
     protected $primaryKey = 'id_surat';
     public $incrementing = false;

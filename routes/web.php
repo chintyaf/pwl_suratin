@@ -4,7 +4,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MOController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +12,7 @@ use App\Http\Controllers\SuratPengantarController;
 use App\Http\Controllers\SuratKeteranganLulusController;
 use App\Http\Controllers\LaporanHasilStudiController;
 use App\Http\Controllers\SuratKeteranganMahasiswaAktifController;
+use Illuminate\Notifications\DatabaseNotification;
 
 
 Route::get('/test', function () {
@@ -181,4 +181,19 @@ Route::get('/form-sk-lulus', function () {
     return view('surat.sk_lulus.form-surat-lulus');
 })->name('form-sk-lulus');
 
+
+
+Route::get('/notifications/{id}', function ($id) {
+    $notif = DatabaseNotification::where('id', $id)
+        // ->where('notifiable_id', Auth::user()->id_role)
+        ->firstOrFail();
+
+    $notif->delete();
+
+    return response()->json(['status' => 'deleted']);
+})->name('notif.ajax.delete');
+
+
 require __DIR__ . '/auth.php';
+
+

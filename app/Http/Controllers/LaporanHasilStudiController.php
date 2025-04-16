@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Models\Surat;
 use App\Models\LaporanHasilStudi;
+use App\Models\User;
+use App\Notifications\SendNotif;
+use App\Notifications\SuratSubmitted;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LaporanHasilStudiController extends Controller
 {
@@ -56,6 +61,18 @@ class LaporanHasilStudiController extends Controller
         ]);
 
         $laporan_hasil_studi->save();
+
+        $mhs = User::findOrFail($request->nip);
+
+        $kaprodi = User::where('id_role', '1')
+        ->where('id_prodi', $mhs->id_prodi)
+        ->first();
+
+        $kaprodi->notify(new SendNotif("Pengajuan Surat Baru",
+         $mhs->name . " telah mengajukan surat dan menunggu persetujuan Anda."));
+
+         $mhs->notify(new SendNotif("Pengajuan Surat Baru",
+         $generatedIdSurat . " telah berhasil diajukan."));
 
         return redirect(route('mhs.dashboard'))->with('success', 'Surat berhasil dibuat dengan nomor: ' . $generatedIdSurat);
     }
